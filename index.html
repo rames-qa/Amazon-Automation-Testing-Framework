@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon Automation Testing Framework - QA Engineering Hub</title>
+    <title>Selenium QA Automation Suite - Functional Control Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -56,10 +56,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #00f3ff;
         }
-        .tab-active {
-            border-bottom: 2px solid #00f3ff;
-            color: #00f3ff !important;
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
@@ -68,401 +64,189 @@
     <nav class="sticky top-0 z-50 flex flex-col md:flex-row items-center justify-between px-6 py-4 bg-darkPanel/90 backdrop-blur-md border-b border-borderCol">
         <div class="flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-neonBlue animate-ping"></div>
-            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neonBlue to-neonPurple bg-clip-text text-transparent">Amazon QA Framework</span>
+            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neonBlue to-neonPurple bg-clip-text text-transparent">Selenium Automation Suite</span>
         </div>
-        <div class="flex items-center gap-6 mt-3 md:mt-0">
-            <ul class="flex items-center gap-6 list-none text-sm font-medium">
-                <li><a href="#repo-overview" class="text-slate-400 hover:text-neonBlue transition-colors">Repository Overview</a></li>
-                <li><a href="#test-runner" class="text-slate-400 hover:text-neonBlue transition-colors">Interactive Pipeline</a></li>
-                <li><a href="#code-viewer" class="text-slate-400 hover:text-neonBlue transition-colors">Code Repository</a></li>
-            </ul>
+        <div class="flex items-center gap-6 mt-3 md:mt-0 font-mono text-xs text-slate-400">
+            <span>Packages: <strong class="text-neonBlue">selenium.advanced</strong> & <strong class="text-neonPurple">selenium.basics</strong></span>
         </div>
     </nav>
 
     <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto w-full px-6 py-8 space-y-10">
+    <main class="max-w-7xl mx-auto w-full px-6 py-8 space-y-8">
 
-        <!-- GitHub Repository Hero Card Section -->
-        <section id="repo-overview" class="glass-panel rounded-2xl p-8 border border-borderCol">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800 pb-5 mb-6">
+        <!-- Module Selector & Control Hub -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Package: selenium.advanced.AMEZON -->
+            <div class="glass-panel rounded-2xl p-6 md:p-8 border border-borderCol flex flex-col justify-between">
                 <div>
-                    <div class="flex items-center gap-3">
-                        <svg class="w-6 h-6 text-neonBlue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                        </svg>
-                        <h1 class="font-mono text-lg text-neonBlue font-bold">Amazon-Automation-Testing</h1>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+                        <div>
+                            <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30 uppercase">Package: selenium.advanced</span>
+                            <h2 class="text-xl font-bold text-white mt-1">AMEZON Workflow</h2>
+                        </div>
+                        <span class="w-2.5 h-2.5 rounded-full bg-neonBlue"></span>
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Amazon Automation Testing Framework</h2>
-                </div>
-                <div class="flex items-center gap-3">
-                    <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/10 text-neonBlue border border-cyan-500/30">Public Repository</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/10 text-neonPurple border border-purple-500/30">Java 17 / 21</span>
-                </div>
-            </div>
+                    <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
+                        Automates browser launch, searches Amazon India for custom product requirements, handles multi-tab switching, extracts live pricing/reviews, and captures target screenshots.
+                    </p>
 
-            <p class="text-slate-300 text-sm md:text-base mb-6 leading-relaxed">
-                End-to-end automation testing framework for Amazon e-commerce workflows using Java, Selenium WebDriver, TestNG, and Maven. Includes advanced search result parsing, multi-tab window handling, robust explicit wait strategy, and utility screenshot capture.
-            </p>
-
-            <div class="mb-6">
-                <h4 class="text-xs font-mono uppercase text-slate-400 mb-3">Repository Topics</h4>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">amazon-automation</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">selenium</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">java</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">testng</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">maven</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">automation-testing</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">ecommerce-testing</span>
-                    <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-[#090d16] text-slate-300 border border-slate-800">qa-automation</span>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Product Requirement Keyword</label>
+                            <input type="text" id="amazonQuery" value="OnePlus phone" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Screenshot Output Directory</label>
+                            <input type="text" id="amazonDest" value="C:/Users/rames/Downloads/screenShot/amazon_product.png" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono">
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800">
-                <div class="flex items-center gap-3">
-                    <a href="https://github.com" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-semibold text-sm transition-all hover:opacity-90">View on GitHub</a>
-                    <button onclick="document.getElementById('test-runner').scrollIntoView({behavior: 'smooth'})" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm border border-slate-700 transition-all">Launch Test Simulator</button>
-                </div>
-                <span class="text-xs text-slate-500 font-mono">Build Status: <span class="text-neonGreen font-bold">Passing</span></span>
-            </div>
-        </section>
-
-        <!-- Interactive Test Pipeline Simulator -->
-        <section id="test-runner" class="glass-panel rounded-2xl p-6">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-4 mb-5 gap-3">
-                <div>
-                    <span class="text-[10px] font-mono font-bold text-neonGreen bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30 uppercase">Interactive QA Engine</span>
-                    <h3 class="text-xl font-bold text-white mt-1">Live Automation Execution Simulator</h3>
-                </div>
-                <button id="runBtn" onclick="runTestPipeline()" class="px-6 py-2.5 rounded-xl bg-neonGreen hover:bg-emerald-400 text-black font-bold text-sm transition-all flex items-center gap-2">
+                <button onclick="executeAmezon()" id="btnAmezon" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-neonBlue to-cyan-600 text-black font-bold text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                    Run Test Execution Suite
+                    Execute `selenium.advanced.AMEZON`
                 </button>
             </div>
 
-            <!-- Pipeline Execution Stages -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                <div id="stage1" class="bg-[#090d16] p-3 rounded-xl border border-slate-800 text-center">
-                    <span class="text-[9px] font-mono text-slate-500 uppercase block">Step 01</span>
-                    <span class="text-xs font-semibold text-slate-300">Driver Init & Launch</span>
-                    <div id="stage1-status" class="text-[10px] font-mono mt-1 text-slate-500">IDLE</div>
-                </div>
-                <div id="stage2" class="bg-[#090d16] p-3 rounded-xl border border-slate-800 text-center">
-                    <span class="text-[9px] font-mono text-slate-500 uppercase block">Step 02</span>
-                    <span class="text-xs font-semibold text-slate-300">Search & Results Click</span>
-                    <div id="stage2-status" class="text-[10px] font-mono mt-1 text-slate-500">IDLE</div>
-                </div>
-                <div id="stage3" class="bg-[#090d16] p-3 rounded-xl border border-slate-800 text-center">
-                    <span class="text-[9px] font-mono text-slate-500 uppercase block">Step 03</span>
-                    <span class="text-xs font-semibold text-slate-300">Window Switch & Wait</span>
-                    <div id="stage3-status" class="text-[10px] font-mono mt-1 text-slate-500">IDLE</div>
-                </div>
-                <div id="stage4" class="bg-[#090d16] p-3 rounded-xl border border-slate-800 text-center">
-                    <span class="text-[9px] font-mono text-slate-500 uppercase block">Step 04</span>
-                    <span class="text-xs font-semibold text-slate-300">Data Scrape & Assert</span>
-                    <div id="stage4-status" class="text-[10px] font-mono mt-1 text-slate-500">IDLE</div>
-                </div>
-            </div>
+            <!-- Package: selenium.basics.SCreenShot -->
+            <div class="glass-panel rounded-2xl p-6 md:p-8 border border-borderCol flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+                        <div>
+                            <span class="text-[10px] font-mono font-bold text-neonPurple bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30 uppercase">Package: selenium.basics</span>
+                            <h2 class="text-xl font-bold text-white mt-1">SCreenShot Utility</h2>
+                        </div>
+                        <span class="w-2.5 h-2.5 rounded-full bg-neonPurple"></span>
+                    </div>
+                    <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
+                        Executes basic WebDriver instantiation, loads target URL (e.g., Facebook), invokes TakesScreenshot interface, and copies file bytes via Apache Commons IO FileUtils.
+                    </p>
 
-            <!-- Console Log Terminal -->
-            <div class="bg-[#090d16] rounded-xl border border-slate-800 p-4 font-mono text-xs">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
-                    <span class="text-slate-400 font-semibold">Standard Execution Output Log</span>
-                    <button onclick="clearConsole()" class="text-slate-500 hover:text-slate-300">Clear Output</button>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Target Web URL</label>
+                            <input type="text" id="screenshotUrl" value="https://www.facebook.com" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonPurple font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Destination File Path</label>
+                            <input type="text" id="screenshotDest" value="C:/Users/rames/Downloads/screenShot/test.png" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonPurple font-mono">
+                        </div>
+                    </div>
                 </div>
-                <div id="consoleOutput" class="h-44 overflow-y-auto space-y-1 text-slate-400">
-                    <div>[INFO] Ready to execute Selenium test suite. Click 'Run Test Execution Suite' above.</div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Tabbed Code Viewer Section -->
-        <section id="code-viewer" class="glass-panel rounded-2xl p-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 mb-4 gap-4">
-                <div class="flex items-center gap-6">
-                    <button id="tab-amazon" onclick="switchTab('amazon')" class="text-sm font-semibold text-slate-400 pb-2 transition-colors tab-active">
-                        selenium.advanced.AMEZON
-                    </button>
-                    <button id="tab-screenshot" onclick="switchTab('screenshot')" class="text-sm font-semibold text-slate-400 pb-2 transition-colors">
-                        selenium.basics.SCreenShot
-                    </button>
-                </div>
-                <button onclick="copyCurrentTabCode()" class="self-start sm:self-auto px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-all flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    Copy Java Class
+                <button onclick="executeScreenshot()" id="btnScreenshot" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-neonPurple to-indigo-600 text-white font-bold text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                    Execute `selenium.basics.SCreenShot`
                 </button>
             </div>
 
-            <!-- View 1: Advanced Amazon Code -->
-            <div id="content-amazon" class="block">
-                <pre class="bg-[#090d16] p-4 rounded-xl font-mono text-xs overflow-x-auto text-slate-300 border border-slate-800"><code id="code-amazon-text">package selenium.advanced;
+        </div>
 
-import java.time.Duration;
-import java.util.List;
-import java.util.Set;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class AMEZON {
-    public static void main(String[] args) {
-
-        // Setup ChromeDriver automatically
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-
-        try {
-            driver.manage().window().maximize();
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-            // Step 1: Open Amazon India
-            driver.get("https://www.amazon.in/");
-
-            // Step 2: Search for a phone (OnePlus in this example)
-            WebElement searchBox = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(By.id("twotabsearchtextbox")));
-            searchBox.sendKeys("OnePlus phone");
-
-            driver.findElement(By.id("nav-search-submit-button")).click();
-
-            // Step 3: Wait for search results to load
-            wait.until(ExpectedConditions.presenceOfElementLocated(
-                    By.xpath("//div[@data-component-type='s-search-result']")));
-
-            // Step 4: Click the first product (stable XPath)
-            WebElement firstProduct = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("(//div[@data-component-type='s-search-result']//h2/a)[1]")));
-
-            // Scroll + JS click to ensure reliability
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", firstProduct);
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", firstProduct);
-
-            // Step 5: Switch to new tab if opened
-            String mainWindow = driver.getWindowHandle();
-            Set<String> windows = driver.getWindowHandles();
-            for (String window : windows) {
-                if (!window.equals(mainWindow)) {
-                    driver.switchTo().window(window);
-                    break;
-                }
-            }
-
-            // Step 6: Scrape product details safely
-
-            // Product Name
-            WebElement productTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productTitle")));
-            System.out.println("Product Name: " + productTitle.getText());
-
-            // Price
-            String price = "";
-            try {
-                price = driver.findElement(By.id("priceblock_ourprice")).getText();
-            } catch (Exception e1) {
-                try {
-                    price = driver.findElement(By.id("priceblock_dealprice")).getText();
-                } catch (Exception e2) {
-                    price = "Price not found";
-                }
-            }
-            System.out.println("Price: " + price);
-
-            // Rating
-            String rating = "";
-            try {
-                rating = driver.findElement(By.xpath("//span[@id='acrPopover']//span[@class='a-icon-alt']")).getText();
-            } catch (Exception e) {
-                rating = "Rating not found";
-            }
-            System.out.println("Rating: " + rating);
-
-            // Total reviews
-            String totalReviews = "";
-            try {
-                totalReviews = driver.findElement(By.id("acrCustomerReviewText")).getText();
-            } catch (Exception e) {
-                totalReviews = "Reviews not found";
-            }
-            System.out.println("Total Reviews: " + totalReviews);
-
-            // Availability
-            String availability = "";
-            try {
-                availability = driver.findElement(By.id("availability")).getText();
-            } catch (Exception e) {
-                availability = "Availability not found";
-            }
-            System.out.println("Availability: " + availability);
-
-            // Key Features
-            System.out.println("\nKey Features:");
-            try {
-                List<WebElement> features = driver.findElements(By.xpath("//div[@id='feature-bullets']//li/span"));
-                for (WebElement feature : features) {
-                    System.out.println("- " + feature.getText());
-                }
-            } catch (Exception e) {
-                System.out.println("Features not found");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Optional: close browser
-            driver.quit();
-        }
-    }
-}</code></pre>
+        <!-- Live Execution Console / Terminal -->
+        <section class="glass-panel rounded-2xl p-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse"></span>
+                    <h3 class="text-sm font-bold text-white font-mono uppercase tracking-wider">Live Execution Terminal</h3>
+                </div>
+                <button onclick="clearConsole()" class="text-xs font-mono text-slate-400 hover:text-white transition-colors">Clear Console</button>
             </div>
-
-            <!-- View 2: Screenshot Code -->
-            <div id="content-screenshot" class="hidden">
-                <pre class="bg-[#090d16] p-4 rounded-xl font-mono text-xs overflow-x-auto text-slate-300 border border-slate-800"><code id="code-screenshot-text">package selenium.basics;
-
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-public class SCreenShot {
-    public static void main(String[] args) throws IOException {
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.facebook.com");
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File src = ts.getScreenshotAs(OutputType.FILE);
-        File dst = new File("C:/Users/rames/Downloads/screenShot/test.png");
-        FileUtils.copyFile(src, dst);
-        driver.quit();
-    }
-}</code></pre>
+            <div id="consoleLog" class="bg-[#090d16] p-4 rounded-xl font-mono text-xs h-56 overflow-y-auto space-y-1.5 text-slate-300 border border-slate-900">
+                <div class="text-slate-500">[INFO] Automation engine ready. Choose a function above (`selenium.advanced.AMEZON` or `selenium.basics.SCreenShot`) to run simulation.</div>
             </div>
         </section>
 
     </main>
 
     <footer class="mt-auto text-center py-6 text-xs text-slate-400 border-t border-borderCol bg-[#090d16]">
-        &copy; 2026 Amazon Automation Testing Framework | QA Engineering Suite
+        &copy; By RameshKumar K 2026 Selenium Automation Framework | Functional Controller Module
     </footer>
 
-    <!-- Interactive Logic Scripts -->
+    <!-- Interactive Execution Logic -->
     <script>
-        let currentTab = 'amazon';
-
-        function switchTab(tab) {
-            currentTab = tab;
-            const tabAmazon = document.getElementById('tab-amazon');
-            const tabScreenshot = document.getElementById('tab-screenshot');
-            const contentAmazon = document.getElementById('content-amazon');
-            const contentScreenshot = document.getElementById('content-screenshot');
-
-            if (tab === 'amazon') {
-                tabAmazon.classList.add('tab-active');
-                tabScreenshot.classList.remove('tab-active');
-                contentAmazon.classList.remove('hidden');
-                contentScreenshot.classList.add('hidden');
-            } else {
-                tabScreenshot.classList.add('tab-active');
-                tabAmazon.classList.remove('tab-active');
-                contentScreenshot.classList.remove('hidden');
-                contentAmazon.classList.add('hidden');
-            }
-        }
-
-        function copyCurrentTabCode() {
-            const codeId = currentTab === 'amazon' ? 'code-amazon-text' : 'code-screenshot-text';
-            const codeText = document.getElementById(codeId).innerText;
-            navigator.clipboard.writeText(codeText).then(() => {
-                alert('Copied ' + (currentTab === 'amazon' ? 'AMEZON.java' : 'SCreenShot.java') + ' to clipboard!');
-            });
-        }
-
-        function appendConsole(msg, type = 'info') {
-            const out = document.getElementById('consoleOutput');
+        function log(msg, type = 'info') {
+            const consoleEl = document.getElementById('consoleLog');
             const colorClass = type === 'success' ? 'text-neonGreen' : type === 'warn' ? 'text-neonAmber' : type === 'error' ? 'text-neonRose' : 'text-slate-300';
-            out.innerHTML += `<div class="${colorClass}">[${new Date().toLocaleTimeString()}] ${msg}</div>`;
-            out.scrollTop = out.scrollHeight;
+            consoleEl.innerHTML += `<div class="${colorClass}">[${new Date().toLocaleTimeString()}] ${msg}</div>`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
         }
 
         function clearConsole() {
-            document.getElementById('consoleOutput').innerHTML = '<div class="text-slate-500">[INFO] Console cleared. Ready for execution.</div>';
+            document.getElementById('consoleLog').innerHTML = '<div class="text-slate-500">[INFO] Console cleared. Ready for next execution.</div>';
         }
 
-        function runTestPipeline() {
-            const btn = document.getElementById('runBtn');
+        function executeAmezon() {
+            const query = document.getElementById('amazonQuery').value || 'OnePlus phone';
+            const dest = document.getElementById('amazonDest').value;
+            const btn = document.getElementById('btnAmezon');
+
             btn.disabled = true;
             btn.classList.add('opacity-50');
 
-            // Reset status
-            ['stage1', 'stage2', 'stage3', 'stage4'].forEach(id => {
-                document.getElementById(id + '-status').textContent = 'QUEUED';
-                document.getElementById(id + '-status').className = 'text-[10px] font-mono mt-1 text-slate-500';
-            });
+            log(`[RUNNING] selenium.advanced.AMEZON.main() invoked...`, 'info');
+            log(`[INFO] WebDriverManager.chromedriver().setup() & ChromeDriver initialization...`, 'info');
 
-            appendConsole('[START] Initiating Maven Test Execution Engine...', 'info');
-
-            // Stage 1
             setTimeout(() => {
-                document.getElementById('stage1-status').textContent = 'EXECUTING';
-                document.getElementById('stage1-status').className = 'text-[10px] font-mono mt-1 text-neonBlue font-bold';
-                appendConsole('[INFO] WebDriverManager.chromedriver().setup() executed successfully.', 'info');
-                appendConsole('[INFO] ChromeDriver launched. Maximizing window...', 'info');
-            }, 500);
+                log(`[INFO] Window maximized. Opening Amazon India: https://www.amazon.in/`, 'info');
+            }, 800);
 
-            // Stage 2
             setTimeout(() => {
-                document.getElementById('stage1-status').textContent = 'PASSED';
-                document.getElementById('stage1-status').className = 'text-[10px] font-mono mt-1 text-neonGreen font-bold';
-                
-                document.getElementById('stage2-status').textContent = 'EXECUTING';
-                document.getElementById('stage2-status').className = 'text-[10px] font-mono mt-1 text-neonBlue font-bold';
-                appendConsole('[ACTION] Navigated to https://www.amazon.in/', 'info');
-                appendConsole('[ACTION] Searching for keyword: "OnePlus phone"', 'info');
-                appendConsole('[ACTION] Clicked search submit button. Waiting for XPath results...', 'info');
+                log(`[ACTION] Search box located (id="twotabsearchtextbox"). Sending keys: "${query}"`, 'info');
             }, 1800);
 
-            // Stage 3
             setTimeout(() => {
-                document.getElementById('stage2-status').textContent = 'PASSED';
-                document.getElementById('stage2-status').className = 'text-[10px] font-mono mt-1 text-neonGreen font-bold';
+                log(`[ACTION] Clicked search submit button. Waiting for search result DOM elements...`, 'info');
+            }, 2600);
 
-                document.getElementById('stage3-status').textContent = 'EXECUTING';
-                document.getElementById('stage3-status').className = 'text-[10px] font-mono mt-1 text-neonBlue font-bold';
-                appendConsole('[ACTION] Clicked first product via JavascriptExecutor scroll & click.', 'info');
-                appendConsole('[INFO] New window handle detected. Switching window focus...', 'info');
-            }, 3200);
-
-            // Stage 4
             setTimeout(() => {
-                document.getElementById('stage3-status').textContent = 'PASSED';
-                document.getElementById('stage3-status').className = 'text-[10px] font-mono mt-1 text-neonGreen font-bold';
+                log(`[ACTION] First product located via XPath. Executing scrollIntoView and JavascriptExecutor click...`, 'info');
+            }, 3600);
 
-                document.getElementById('stage4-status').textContent = 'EXECUTING';
-                document.getElementById('stage4-status').className = 'text-[10px] font-mono mt-1 text-neonBlue font-bold';
-                appendConsole('Product Name: OnePlus Nord CE 3 Lite 5G (Pastel Lime, 8GB RAM, 128GB Storage)', 'success');
-                appendConsole('Price: ₹17,499.00', 'success');
-                appendConsole('Rating: 4.2 out of 5 stars', 'success');
-                appendConsole('Total Reviews: 45,210 ratings', 'success');
-                appendConsole('Availability: In stock', 'success');
-                appendConsole('Key Features extracted: [Camera: 108MP, Battery: 5000 mAh, Display: 120Hz]', 'success');
+            setTimeout(() => {
+                log(`[INFO] New window handle detected. Switching driver focus to product details tab.`, 'info');
             }, 4500);
 
-            // Finish Pipeline
             setTimeout(() => {
-                document.getElementById('stage4-status').textContent = 'PASSED';
-                document.getElementById('stage4-status').className = 'text-[10px] font-mono mt-1 text-neonGreen font-bold';
-                appendConsole('[COMPLETE] Test Execution Finished. Browser closed cleanly via driver.quit().', 'success');
+                log(`[SCRAPE] Product Title: OnePlus Nord CE 3 Lite 5G (Pastel Lime)`, 'success');
+                log(`[SCRAPE] Price: ₹17,499.00 | Rating: 4.2 stars | Reviews: 45,210`, 'success');
+            }, 5300);
+
+            setTimeout(() => {
+                log(`[SCREENSHOT] TakesScreenshot ts = (TakesScreenshot) driver;`, 'warn');
+                log(`[SUCCESS] FileUtils.copyFile(src, new File("${dest}")) completed successfully.`, 'success');
+                log(`[COMPLETE] AMEZON workflow finished. driver.quit() invoked.`, 'info');
                 btn.disabled = false;
                 btn.classList.remove('opacity-50');
-            }, 5500);
+            }, 6500);
+        }
+
+        function executeScreenshot() {
+            const url = document.getElementById('screenshotUrl').value || 'https://www.facebook.com';
+            const dest = document.getElementById('screenshotDest').value;
+            const btn = document.getElementById('btnScreenshot');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+
+            log(`[RUNNING] selenium.basics.SCreenShot.main() invoked...`, 'info');
+            log(`[INFO] Initializing ChromeDriver instance...`, 'info');
+
+            setTimeout(() => {
+                log(`[INFO] Navigating to target URL: ${url}`, 'info');
+            }, 1000);
+
+            setTimeout(() => {
+                log(`[INFO] Casting WebDriver driver to TakesScreenshot interface...`, 'warn');
+            }, 2200);
+
+            setTimeout(() => {
+                log(`[SUCCESS] Screenshot captured as temporary OUTPUT_FILE.`, 'success');
+                log(`[SUCCESS] FileUtils.copyFile saved screenshot to: ${dest}`, 'success');
+                log(`[COMPLETE] SCreenShot utility finished. driver.quit() invoked.`, 'info');
+                btn.disabled = false;
+                btn.classList.remove('opacity-50');
+            }, 3500);
         }
     </script>
 </body>
