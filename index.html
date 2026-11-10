@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selenium QA Automation Suite - Functional Control Hub</title>
+    <title>Advanced Selenium QA Suite - Interactive Automation Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,48 +64,63 @@
     <nav class="sticky top-0 z-50 flex flex-col md:flex-row items-center justify-between px-6 py-4 bg-darkPanel/90 backdrop-blur-md border-b border-borderCol">
         <div class="flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-neonBlue animate-ping"></div>
-            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neonBlue to-neonPurple bg-clip-text text-transparent">Selenium Automation Suite</span>
+            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neonBlue to-neonPurple bg-clip-text text-transparent">Advanced Selenium Suite</span>
         </div>
         <div class="flex items-center gap-6 mt-3 md:mt-0 font-mono text-xs text-slate-400">
-            <span>Packages: <strong class="text-neonBlue">selenium.advanced</strong> & <strong class="text-neonPurple">selenium.basics</strong></span>
+            <span>Actions: <strong class="text-neonBlue">Dropdown Select</strong> & <strong class="text-neonPurple">Scroll (X/Y Axis)</strong></span>
         </div>
     </nav>
 
     <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto w-full px-6 py-8 space-y-8">
 
-        <!-- Module Selector & Control Hub -->
+        <!-- Control Hub Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-            <!-- Package: selenium.advanced.AMEZON -->
+            <!-- Package: selenium.advanced.AMEZON (Enhanced with Dropdown & Scroll Controls) -->
             <div class="glass-panel rounded-2xl p-6 md:p-8 border border-borderCol flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
                         <div>
                             <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30 uppercase">Package: selenium.advanced</span>
-                            <h2 class="text-xl font-bold text-white mt-1">AMEZON Workflow</h2>
+                            <h2 class="text-xl font-bold text-white mt-1">AMEZON Advanced Workflow</h2>
                         </div>
                         <span class="w-2.5 h-2.5 rounded-full bg-neonBlue"></span>
                     </div>
                     <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
-                        Automates browser launch, searches Amazon India for custom product requirements, handles multi-tab switching, extracts live pricing/reviews, and captures target screenshots.
+                        Automates category selection via Dropdown (Select class), handles vertical/horizontal scrolling (`JavascriptExecutor`), searches requirements, and extracts product data.
                     </p>
 
                     <div class="space-y-4 mb-6">
                         <div>
+                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Select Category (Dropdown)</label>
+                            <select id="amazonCategory" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono cursor-pointer">
+                                <option value="Electronics">Electronics & Mobiles</option>
+                                <option value="Appliances">Home & Kitchen Appliances</option>
+                                <option value="Fashion">Men & Women Fashion</option>
+                                <option value="Books">Books & Audible</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Product Requirement Keyword</label>
                             <input type="text" id="amazonQuery" value="OnePlus phone" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono">
                         </div>
-                        <div>
-                            <label class="block text-xs font-mono uppercase text-slate-400 mb-1.5">Screenshot Output Directory</label>
-                            <input type="text" id="amazonDest" value="C:/Users/rames/Downloads/screenShot/amazon_product.png" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-mono uppercase text-slate-400 mb-1">Scroll Vertical (Y)</label>
+                                <input type="text" id="scrollVert" value="window.scrollBy(0, 800)" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-3 py-2 text-xs text-white font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-mono uppercase text-slate-400 mb-1">Scroll Horizontal (X)</label>
+                                <input type="text" id="scrollHoriz" value="window.scrollBy(400, 0)" class="w-full bg-[#090d16] border border-borderCol rounded-xl px-3 py-2 text-xs text-white font-mono">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <button onclick="executeAmezon()" id="btnAmezon" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-neonBlue to-cyan-600 text-black font-bold text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2">
+                <button onclick="executeAdvancedAmezon()" id="btnAmezon" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-neonBlue to-cyan-600 text-black font-bold text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                    Execute `selenium.advanced.AMEZON`
+                    Execute Advanced AMEZON
                 </button>
             </div>
 
@@ -120,7 +135,7 @@
                         <span class="w-2.5 h-2.5 rounded-full bg-neonPurple"></span>
                     </div>
                     <p class="text-slate-300 text-xs md:text-sm mb-6 leading-relaxed">
-                        Executes basic WebDriver instantiation, loads target URL (e.g., Facebook), invokes TakesScreenshot interface, and copies file bytes via Apache Commons IO FileUtils.
+                        Instantiates WebDriver, opens target URL, invokes TakesScreenshot interface, and copies file bytes via Apache Commons IO FileUtils.
                     </p>
 
                     <div class="space-y-4 mb-6">
@@ -152,15 +167,15 @@
                 </div>
                 <button onclick="clearConsole()" class="text-xs font-mono text-slate-400 hover:text-white transition-colors">Clear Console</button>
             </div>
-            <div id="consoleLog" class="bg-[#090d16] p-4 rounded-xl font-mono text-xs h-56 overflow-y-auto space-y-1.5 text-slate-300 border border-slate-900">
-                <div class="text-slate-500">[INFO] Automation engine ready. Choose a function above (`selenium.advanced.AMEZON` or `selenium.basics.SCreenShot`) to run simulation.</div>
+            <div id="consoleLog" class="bg-[#090d16] p-4 rounded-xl font-mono text-xs h-60 overflow-y-auto space-y-1.5 text-slate-300 border border-slate-900">
+                <div class="text-slate-500">[INFO] Advanced automation engine ready with Dropdown & Scroll capabilities. Choose a function above to run simulation.</div>
             </div>
         </section>
 
     </main>
 
     <footer class="mt-auto text-center py-6 text-xs text-slate-400 border-t border-borderCol bg-[#090d16]">
-        &copy; By RameshKumar K 2026 Selenium Automation Framework | Functional Controller Module
+        &copy; 2026 Advanced Selenium Automation Framework | Dropdown & Scroll Controller Module
     </footer>
 
     <!-- Interactive Execution Logic -->
@@ -176,49 +191,46 @@
             document.getElementById('consoleLog').innerHTML = '<div class="text-slate-500">[INFO] Console cleared. Ready for next execution.</div>';
         }
 
-        function executeAmezon() {
+        function executeAdvancedAmezon() {
+            const category = document.getElementById('amazonCategory').value;
             const query = document.getElementById('amazonQuery').value || 'OnePlus phone';
-            const dest = document.getElementById('amazonDest').value;
+            const scrollY = document.getElementById('scrollVert').value;
+            const scrollX = document.getElementById('scrollHoriz').value;
             const btn = document.getElementById('btnAmezon');
 
             btn.disabled = true;
             btn.classList.add('opacity-50');
 
-            log(`[RUNNING] selenium.advanced.AMEZON.main() invoked...`, 'info');
-            log(`[INFO] WebDriverManager.chromedriver().setup() & ChromeDriver initialization...`, 'info');
+            log(`[RUNNING] selenium.advanced.AMEZON advanced workflow invoked...`, 'info');
+            log(`[INFO] Initializing ChromeDriver via WebDriverManager...`, 'info');
 
             setTimeout(() => {
-                log(`[INFO] Window maximized. Opening Amazon India: https://www.amazon.in/`, 'info');
+                log(`[INFO] Opening Amazon India: https://www.amazon.in/ & maximizing window.`, 'info');
             }, 800);
 
             setTimeout(() => {
-                log(`[ACTION] Search box located (id="twotabsearchtextbox"). Sending keys: "${query}"`, 'info');
+                log(`[DROPDOWN] Select dropdown located (id="searchDropdownBox"). Selecting visible text: "${category}"`, 'warn');
             }, 1800);
 
             setTimeout(() => {
-                log(`[ACTION] Clicked search submit button. Waiting for search result DOM elements...`, 'info');
-            }, 2600);
+                log(`[ACTION] Search box located. Entering requirement keyword: "${query}" & submitting.`, 'info');
+            }, 2700);
 
             setTimeout(() => {
-                log(`[ACTION] First product located via XPath. Executing scrollIntoView and JavascriptExecutor click...`, 'info');
-            }, 3600);
+                log(`[SCROLL VERTICAL] Executing JS: js.executeScript("${scrollY}")`, 'purple');
+                log(`[SCROLL HORIZONTAL] Executing JS: js.executeScript("${scrollX}")`, 'purple');
+            }, 3700);
 
             setTimeout(() => {
-                log(`[INFO] New window handle detected. Switching driver focus to product details tab.`, 'info');
-            }, 4500);
+                log(`[ACTION] First product located and clicked. Switching tab context.`, 'info');
+                log(`[SCRAPE] Product Title: OnePlus Nord CE 3 Lite 5G | Price: ₹17,499.00`, 'success');
+            }, 4800);
 
             setTimeout(() => {
-                log(`[SCRAPE] Product Title: OnePlus Nord CE 3 Lite 5G (Pastel Lime)`, 'success');
-                log(`[SCRAPE] Price: ₹17,499.00 | Rating: 4.2 stars | Reviews: 45,210`, 'success');
-            }, 5300);
-
-            setTimeout(() => {
-                log(`[SCREENSHOT] TakesScreenshot ts = (TakesScreenshot) driver;`, 'warn');
-                log(`[SUCCESS] FileUtils.copyFile(src, new File("${dest}")) completed successfully.`, 'success');
-                log(`[COMPLETE] AMEZON workflow finished. driver.quit() invoked.`, 'info');
+                log(`[SUCCESS] Product details and screenshot captured successfully. driver.quit() invoked.`, 'success');
                 btn.disabled = false;
                 btn.classList.remove('opacity-50');
-            }, 6500);
+            }, 5800);
         }
 
         function executeScreenshot() {
@@ -238,15 +250,15 @@
 
             setTimeout(() => {
                 log(`[INFO] Casting WebDriver driver to TakesScreenshot interface...`, 'warn');
-            }, 2200);
+            }, 2000);
 
             setTimeout(() => {
-                log(`[SUCCESS] Screenshot captured as temporary OUTPUT_FILE.`, 'success');
+                log(`[SUCCESS] Screenshot captured as temporary file.`, 'success');
                 log(`[SUCCESS] FileUtils.copyFile saved screenshot to: ${dest}`, 'success');
                 log(`[COMPLETE] SCreenShot utility finished. driver.quit() invoked.`, 'info');
                 btn.disabled = false;
                 btn.classList.remove('opacity-50');
-            }, 3500);
+            }, 3200);
         }
     </script>
 </body>
