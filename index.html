@@ -492,7 +492,7 @@
 
     <!-- FOOTER -->
     <footer class="mt-auto text-center py-4 text-xs font-mono text-slate-500 border-t border-borderCol bg-[#050811]">
-        &copy; 2026 Ramesh Kumar K Omni-App Voice Orchestration Platform | Enterprise Microservice Driver Architecture
+        &copy; 2026 Ramesh Kumar K Omni-App Voice.
     </footer>
 
     <!-- PROOF LIGHTBOX MODAL -->
@@ -892,9 +892,9 @@
             const app = APP_TARGET_MAP[appKey];
 
             logFullTerminal(`Dispatching payload to target driver [${app.name}] | Package: ${app.pkg}`, 'INFO');
-            logFullTerminal(`Selective Routing: Isolating [${app.name}] node. Setting secondary nodes to IDLE.`, 'WARN');
+            logFullTerminal(`[ROUTER] Selective Node Dispatch: Isolated execution strictly to target [${app.name.toUpperCase()}]. Non-targeted nodes locked in IDLE state.`, 'WARN');
 
-            // Highlight Active Node in Cards Grid
+            // Enforce Strict Selective Node Isolation in Cards Grid: Highlight ONLY the target node, lock others in IDLE
             document.querySelectorAll('.app-node-card').forEach(node => {
                 const nodeAppKey = node.getAttribute('data-app');
                 const stateSpan = node.querySelector('.node-state');
@@ -907,8 +907,8 @@
                     stateSpan.className = `node-state text-[10px] font-mono text-${app.color} font-bold mt-2 block animate-pulse`;
                     dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping';
                 } else {
-                    node.style.opacity = '0.35';
-                    node.className = 'app-node-card bg-[#080d1a] p-3.5 rounded-xl border border-slate-800 text-center opacity-35 transition-all';
+                    node.style.opacity = '0.3';
+                    node.className = 'app-node-card bg-[#080d1a] p-3.5 rounded-xl border border-slate-800 text-center opacity-30 transition-all';
                     stateSpan.textContent = 'STATE: IDLE';
                     stateSpan.className = 'node-state text-[10px] font-mono text-slate-500 mt-2 block font-semibold';
                     dot.className = 'w-1.5 h-1.5 rounded-full bg-slate-600';
@@ -918,13 +918,13 @@
             // Update Viewport Tag
             document.getElementById('activeAppTag').textContent = `Target Node: ${app.name.toUpperCase()} (${searchQuery})`;
 
-            // Render Multi-Axis Interactive Viewport Simulation
+            // Render Multi-Axis Interactive Viewport Simulation exclusively for targeted app
             renderViewportSimulation(appKey, searchQuery);
 
             // Simulate Driver Execution Log Sequence
             setTimeout(() => {
-                logFullTerminal(`DOM Deep Link synthesized: ${app.deepLink}${encodeURIComponent(searchQuery)}`, 'SUCCESS');
-                logFullTerminal(`Viewport X/Y sweep completed. Lazy DOM components loaded for target ${app.name}.`, 'SUCCESS');
+                logFullTerminal(`DOM Deep Link synthesized for single node: ${app.deepLink}${encodeURIComponent(searchQuery)}`, 'SUCCESS');
+                logFullTerminal(`Viewport X/Y sweep completed. Isolated DOM components loaded for target ${app.name}. Non-targeted nodes remain idle.`, 'SUCCESS');
             }, 800);
         }
 
