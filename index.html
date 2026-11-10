@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autonomous Voice-Driven Multi-App Automation Hub</title>
+    <title> Voice Over Oder a Commercial Automated Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -37,7 +38,7 @@
             overflow-x: hidden;
         }
         .glass-panel {
-            background: rgba(20, 27, 45, 0.75);
+            background: rgba(20, 27, 45, 0.85);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(34, 47, 76, 0.8);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -56,52 +57,80 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #00f3ff;
         }
-        .app-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .subtoolbar-btn {
+            transition: all 0.2s ease;
         }
-        .app-card:hover {
-            transform: translateY(-2px);
+        .subtoolbar-btn:hover, .subtoolbar-btn.active {
+            background: rgba(0, 243, 255, 0.15);
+            color: #00f3ff;
+            border-color: #00f3ff;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-black">
 
-    <!-- Header & Navigation -->
-    <nav class="sticky top-0 z-50 flex flex-col md:flex-row items-center justify-between px-6 py-4 bg-darkPanel/90 backdrop-blur-md border-b border-borderCol">
-        <div class="flex items-center gap-3">
-            <div class="w-3.5 h-3.5 rounded-full bg-neonBlue animate-ping"></div>
-            <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-neonBlue via-neonPurple to-neonGreen bg-clip-text text-transparent">Voice Engine</span>
-        </div>
-        <div class="flex items-center gap-4 mt-3 md:mt-0 font-mono text-xs">
-            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-neonGreen border border-emerald-500/30 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse"></span>
-                Automation Driver Ready
-            </span>
-        </div>
-    </nav>
+    <!-- 1. MAIN PRIMARY TOOLBAR -->
+    <header class="sticky top-0 z-50 bg-darkPanel/95 backdrop-blur-md border-b border-borderCol">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-3.5 h-3.5 rounded-full bg-neonBlue animate-ping"></div>
+                <span class="text-lg font-bold tracking-wider bg-gradient-to-r from-neonBlue via-neonPurple to-neonGreen bg-clip-text text-transparent">Agentic Voice Commerce Orchestrator</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-4 text-xs font-mono">
+                <span class="text-slate-400">Driver Engine: <strong class="text-neonGreen">Selenium Grid v4.21 / WebSpeech</strong></span>
+                <span class="text-slate-400">Target Protocol: <strong class="text-neonBlue">Direct DeepLink</strong></span>
+            </div>
 
-    <!-- Main Workspace Container -->
-    <main class="max-w-7xl mx-auto w-full px-6 py-8 space-y-8">
+            <div class="flex items-center gap-3">
+                <button onclick="startVoiceParser()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-bold text-xs font-mono transition-all hover:opacity-90 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path></svg>
+                    Voice Input
+                </button>
+            </div>
+        </div>
 
-        <!-- Voiceover Execution Control Center -->
+        <!-- 2. SECONDARY NESTED SUB-TOOLBAR (Filter App Node Categories & Executions) -->
+        <div class="bg-[#090d16] border-t border-slate-800/80 px-6 py-2.5">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                <div class="flex items-center gap-2 overflow-x-auto py-1">
+                    <span class="text-slate-500 uppercase tracking-widest text-[10px] mr-1">Sub-Toolbars:</span>
+                    <button onclick="filterNodes('all', this)" class="subtoolbar-btn active px-3 py-1 rounded-lg text-slate-300 border border-slate-800">All Platforms</button>
+                    <button onclick="filterNodes('ecommerce', this)" class="subtoolbar-btn px-3 py-1 rounded-lg text-slate-300 border border-slate-800">E-Commerce (Amazon/Flipkart/Meesho)</button>
+                    <button onclick="filterNodes('food', this)" class="subtoolbar-btn px-3 py-1 rounded-lg text-slate-300 border border-slate-800">Food Apps (Zomato/Swiggy)</button>
+                    <button onclick="executeMultiAxisScroll()" class="subtoolbar-btn px-3 py-1 rounded-lg text-neonPurple border border-purple-900/50">Run Multi-Axis Scroll (X/Y)</button>
+                    <button onclick="clearConsoleLog()" class="subtoolbar-btn px-3 py-1 rounded-lg text-rose-400 border border-rose-900/50">Clear Logs</button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-500 text-[10px]">Screenshot Utility:</span>
+                    <span id="screenshotStatusBadge" class="px-2 py-0.5 rounded bg-emerald-500/10 text-neonGreen border border-emerald-500/30 font-bold text-[10px]">LISTENING FOR "OKAY"</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="max-w-7xl mx-auto w-full px-6 py-8 space-y-8 flex-1">
+
+        <!-- Voiceover Command Input & Control Panel -->
         <section class="glass-panel rounded-2xl p-6 md:p-8 border border-borderCol">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800 pb-5 mb-6">
                 <div>
-                    <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/30 uppercase tracking-widest">Multi-App Automated Voice Engine</span>
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-white mt-2">Autonomous Voice Order & Screenshot Pipeline</h1>
+                    <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/30 uppercase tracking-widest">Speech-to-Intent AI Parser</span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-white mt-2">Autonomous Multi-App Navigation & Order Pipeline</h1>
                 </div>
                 <div class="flex items-center gap-3">
-                    <span id="voiceBadge" class="px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-500/10 text-neonBlue border border-cyan-500/30 font-semibold">AWAITING VOICE INPUT</span>
+                    <span id="aiParserBadge" class="px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-500/10 text-neonBlue border border-cyan-500/30 font-semibold">AWAITING VOICE INSTRUCTION</span>
                 </div>
             </div>
 
-            <!-- Voice Command Input Console -->
+            <!-- Speech Input Controls -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                 <div class="lg:col-span-2 space-y-4">
-                    <label class="block text-xs font-mono uppercase text-slate-400 tracking-wider">Voiceover Command Transcriber</label>
+                    <label class="block text-xs font-mono uppercase text-slate-400 tracking-wider">Voice Command Input (or type instructions)</label>
                     <div class="flex gap-3">
-                        <input type="text" id="voiceCommandInput" placeholder="Click 'Speak' and say: 'Search OnePlus phone on Amazon and Flipkart' or 'Order Biryani on Swiggy and Zomato'..." class="flex-1 bg-[#090d16] border border-borderCol rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono transition-all">
-                        <button onclick="startVoiceCapture()" id="btnMic" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-neonBlue to-cyan-600 text-black font-bold text-sm transition-all hover:opacity-90 flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                        <input type="text" id="voiceCommandInput" placeholder="Say: 'Search OnePlus phone on Amazon' or 'Order Biryani on Swiggy then say Okay'..." class="flex-1 bg-[#090d16] border border-borderCol rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-neonBlue font-mono transition-all">
+                        <button onclick="startVoiceParser()" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-neonBlue font-semibold text-sm border border-slate-700 transition-all flex items-center gap-2">
                             <svg class="w-4 h-4 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path></svg>
                             Speak
                         </button>
@@ -109,51 +138,60 @@
                 </div>
 
                 <div class="flex flex-col justify-end gap-3">
-                    <button onclick="executeSequentialAutomation()" id="btnExecute" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-neonPurple to-indigo-600 text-white font-bold text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2 shadow-lg shadow-purple-500/20">
+                    <button onclick="runSequentialOrchestrator()" id="btnExecute" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-neonGreen to-emerald-600 text-black font-bold text-sm transition-all hover:opacity-90 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                        Execute Sequential App Pipeline
+                        Execute Order Pipeline
                     </button>
                 </div>
             </div>
 
-            <!-- Target Applications Operational Matrix -->
-            <div class="mb-8">
-                <h3 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-4">Integrated Platform Automation Nodes</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                    <div id="node-amazon" class="app-card bg-[#090d16] p-3.5 rounded-xl border border-slate-800 text-center">
-                        <span class="text-[10px] font-mono text-neonBlue font-bold block mb-1">E-Commerce</span>
-                        <div class="text-sm font-bold text-white">Amazon</div>
-                        <span class="status-lbl text-[9px] font-mono text-slate-500 mt-1 block">IDLE</span>
+            <!-- Integrated Platform App Nodes -->
+            <div id="nodesGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+                <div data-app="amazon" data-category="ecommerce" class="app-node bg-[#090d16] p-4 rounded-xl border border-slate-800 text-center">
+                    <span class="text-[10px] font-mono text-neonBlue font-bold block mb-1">E-COMMERCE</span>
+                    <div class="text-sm font-bold text-white">Amazon India</div>
+                    <span class="node-status text-[10px] font-mono text-slate-500 mt-1 block">IDLE</span>
+                </div>
+                <div data-app="flipkart" data-category="ecommerce" class="app-node bg-[#090d16] p-4 rounded-xl border border-slate-800 text-center">
+                    <span class="text-[10px] font-mono text-neonPurple font-bold block mb-1">E-COMMERCE</span>
+                    <div class="text-sm font-bold text-white">Flipkart</div>
+                    <span class="node-status text-[10px] font-mono text-slate-500 mt-1 block">IDLE</span>
+                </div>
+                <div data-app="meesho" data-category="ecommerce" class="app-node bg-[#090d16] p-4 rounded-xl border border-slate-800 text-center">
+                    <span class="text-[10px] font-mono text-neonAmber font-bold block mb-1">WHOLESALE</span>
+                    <div class="text-sm font-bold text-white">Meesho</div>
+                    <span class="node-status text-[10px] font-mono text-slate-500 mt-1 block">IDLE</span>
+                </div>
+                <div data-app="zomato" data-category="food" class="app-node bg-[#090d16] p-4 rounded-xl border border-slate-800 text-center">
+                    <span class="text-[10px] font-mono text-neonRose font-bold block mb-1">FOOD DELIVERY</span>
+                    <div class="text-sm font-bold text-white">Zomato</div>
+                    <span class="node-status text-[10px] font-mono text-slate-500 mt-1 block">IDLE</span>
+                </div>
+                <div data-app="swiggy" data-category="food" class="app-node bg-[#090d16] p-4 rounded-xl border border-slate-800 text-center">
+                    <span class="text-[10px] font-mono text-neonRose font-bold block mb-1">FOOD DELIVERY</span>
+                    <div class="text-sm font-bold text-white">Swiggy</div>
+                    <span class="node-status text-[10px] font-mono text-slate-500 mt-1 block">IDLE</span>
+                </div>
+            </div>
+
+            <!-- Aggregated Live Specifications Block -->
+            <div id="captureViewportArea" class="bg-[#090d16] rounded-xl border border-slate-800 p-5 mb-8">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-neonBlue animate-pulse"></span>
+                        <h3 class="text-xs font-mono font-bold text-white uppercase tracking-wider">Aggregated Product Specifications & Checkout State</h3>
                     </div>
-                    <div id="node-flipkart" class="app-card bg-[#090d16] p-3.5 rounded-xl border border-slate-800 text-center">
-                        <span class="text-[10px] font-mono text-neonPurple font-bold block mb-1">E-Commerce</span>
-                        <div class="text-sm font-bold text-white">Flipkart</div>
-                        <span class="status-lbl text-[9px] font-mono text-slate-500 mt-1 block">IDLE</span>
-                    </div>
-                    <div id="node-meesho" class="app-card bg-[#090d16] p-3.5 rounded-xl border border-slate-800 text-center">
-                        <span class="text-[10px] font-mono text-neonAmber font-bold block mb-1">Wholesale</span>
-                        <div class="text-sm font-bold text-white">Meesho</div>
-                        <span class="status-lbl text-[9px] font-mono text-slate-500 mt-1 block">IDLE</span>
-                    </div>
-                    <div id="node-swiggy" class="app-card bg-[#090d16] p-3.5 rounded-xl border border-slate-800 text-center">
-                        <span class="text-[10px] font-mono text-neonRose font-bold block mb-1">Food Delivery</span>
-                        <div class="text-sm font-bold text-white">Swiggy</div>
-                        <span class="status-lbl text-[9px] font-mono text-slate-500 mt-1 block">IDLE</span>
-                    </div>
-                    <div id="node-zomato" class="app-card bg-[#090d16] p-3.5 rounded-xl border border-slate-800 text-center">
-                        <span class="text-[10px] font-mono text-neonRose font-bold block mb-1">Food Delivery</span>
-                        <div class="text-sm font-bold text-white">Zomato</div>
-                        <span class="status-lbl text-[9px] font-mono text-slate-500 mt-1 block">IDLE</span>
-                    </div>
-                    <div id="node-playstore" class="app-card bg-[#090d16] p-3.5 rounded-xl border border-slate-800 text-center">
-                        <span class="text-[10px] font-mono text-neonGreen font-bold block mb-1">App Store</span>
-                        <div class="text-sm font-bold text-white">Google Play</div>
-                        <span class="status-lbl text-[9px] font-mono text-slate-500 mt-1 block">IDLE</span>
+                    <span class="text-[10px] font-mono text-slate-400">DOM Rendering Viewport</span>
+                </div>
+
+                <div id="specsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="col-span-3 text-center py-6 text-slate-500 italic text-xs font-mono">
+                        Awaiting voiceover search execution to aggregate specifications from Amazon, Flipkart, Meesho, Swiggy, or Zomato...
                     </div>
                 </div>
             </div>
 
-            <!-- Execution Logs & Dynamic Screenshot Gallery -->
+            <!-- Execution Terminal & Dynamic Screenshot Archive Gallery -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Terminal Telemetry -->
                 <div class="bg-[#090d16] rounded-xl border border-slate-800 p-4 font-mono text-xs flex flex-col justify-between">
@@ -161,27 +199,27 @@
                         <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
                             <span class="text-slate-400 font-semibold flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse"></span>
-                                Live Automation Telemetry
+                                Orchestrator Execution Log
                             </span>
-                            <button onclick="clearConsole()" class="text-slate-500 hover:text-slate-300 transition-colors">Clear Console</button>
+                            <span class="text-[10px] text-slate-500">Live Telemetry</span>
                         </div>
-                        <div id="telemetryLog" class="h-64 overflow-y-auto space-y-1.5 text-slate-300">
-                            <div class="text-slate-500">[SYSTEM READY] Engine online. Click 'Speak' or type a command to trigger multi-app order automation and screenshot verification.</div>
+                        <div id="telemetryTerminal" class="h-56 overflow-y-auto space-y-1.5 text-slate-300">
+                            <div class="text-slate-500">[SYSTEM INIT] Orchestrator ready. Say or enter command to begin multi-app automation.</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Automated Screenshot Capture Gallery -->
+                <!-- Automated Screenshot Proof Archive -->
                 <div class="bg-[#090d16] rounded-xl border border-slate-800 p-4 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
-                            <span class="text-slate-400 font-mono text-xs font-semibold">Demo Purpose Screenshot Archive</span>
-                            <span id="screenshotCount" class="text-[10px] font-mono text-neonBlue bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30">0 Screens Captured</span>
+                            <span class="text-slate-400 font-mono text-xs font-semibold">Demo Proof Screenshot Archive</span>
+                            <span id="archiveBadge" class="text-[10px] font-mono text-neonBlue bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/30">0 Screens Saved</span>
                         </div>
-                        <div id="screenshotGallery" class="grid grid-cols-2 gap-3 h-64 overflow-y-auto p-1">
+                        <div id="screenshotGallery" class="grid grid-cols-2 gap-3 h-56 overflow-y-auto p-1">
                             <div class="col-span-2 flex flex-col items-center justify-center h-full border border-dashed border-slate-800 rounded-lg text-slate-500 text-xs font-mono">
-                                <span>No screenshot captured yet.</span>
-                                <span>Screenshots automatically capture after order sequence.</span>
+                                <span>No screenshots captured yet.</span>
+                                <span>Captures automatically upon saying "Okay" or order completion.</span>
                             </div>
                         </div>
                     </div>
@@ -192,45 +230,73 @@
     </main>
 
     <footer class="mt-auto text-center py-6 text-xs text-slate-400 border-t border-borderCol bg-[#090d16]">
-        &copy; RameshKumar K 2026 Autonomous Voice Commerce & Multi-Platform Screenshot Framework
+        &copy;  2026 Ramesh Kumar K  Voice Commercial Automated Architecture Implementation
     </footer>
 
-    <!-- Interactive Execution Architecture Scripts -->
+    <!-- 3. JAVASCRIPT AUTOMATION ENGINE -->
     <script>
-        let isProcessing = false;
-        let captureCounter = 0;
+        let isExecuting = false;
+        let screenshotCounter = 0;
 
         function logTelemetry(msg, type = 'info') {
-            const term = document.getElementById('telemetryLog');
+            const term = document.getElementById('telemetryTerminal');
             const colorClass = type === 'success' ? 'text-neonGreen' : type === 'warn' ? 'text-neonAmber' : type === 'error' ? 'text-neonRose' : 'text-slate-300';
             term.innerHTML += `<div class="${colorClass}">[${new Date().toLocaleTimeString()}] ${msg}</div>`;
             term.scrollTop = term.scrollHeight;
         }
 
-        function clearConsole() {
-            document.getElementById('telemetryLog').innerHTML = '<div class="text-slate-500">[SYSTEM READY] Console cleared. Engine waiting for input.</div>';
+        function clearConsoleLog() {
+            document.getElementById('telemetryTerminal').innerHTML = '<div class="text-slate-500">[CONSOLE CLEARED] Ready for next execution pipeline.</div>';
         }
 
-        function setNodeStatus(nodeId, status, isError = false) {
-            const el = document.getElementById(`node-${nodeId}`);
-            if (!el) return;
-            const statusLbl = el.querySelector('.status-lbl');
-            statusLbl.textContent = status;
-            if (status === 'EXECUTING') {
-                el.className = 'app-card bg-[#090d16] p-3.5 rounded-xl border border-neonBlue text-center shadow-lg shadow-cyan-500/10';
-                statusLbl.className = 'status-lbl text-[9px] font-mono text-neonBlue font-bold mt-1 block animate-pulse';
-            } else if (status === 'COMPLETED & CAPTURED') {
-                el.className = 'app-card bg-[#090d16] p-3.5 rounded-xl border border-neonGreen text-center';
-                statusLbl.className = 'status-lbl text-[9px] font-mono text-neonGreen font-bold mt-1 block';
-            } else if (isError) {
-                el.className = 'app-card bg-[#090d16] p-3.5 rounded-xl border border-neonRose text-center';
-                statusLbl.className = 'status-lbl text-[9px] font-mono text-neonRose font-bold mt-1 block';
+        function filterNodes(category, btnEl) {
+            document.querySelectorAll('.subtoolbar-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+
+            const nodes = document.querySelectorAll('.app-node');
+            nodes.forEach(node => {
+                if (category === 'all' || node.getAttribute('data-category') === category) {
+                    node.style.display = 'block';
+                } else {
+                    node.style.display = 'none';
+                }
+            });
+            logTelemetry(`[SUB-TOOLBAR FILTER] View filtered to: ${category.toUpperCase()}`, 'info');
+        }
+
+        function updateNodeStatus(appKey, statusText, state = 'normal') {
+            const node = document.querySelector(`.app-node[data-app="${appKey}"]`);
+            if (!node) return;
+            const statusEl = node.querySelector('.node-status');
+            statusEl.textContent = statusText;
+
+            if (state === 'executing') {
+                node.className = 'app-node bg-[#090d16] p-4 rounded-xl border border-neonBlue text-center shadow-lg shadow-cyan-500/10';
+                statusEl.className = 'node-status text-[10px] font-mono text-neonBlue font-bold mt-1 block animate-pulse';
+            } else if (state === 'completed') {
+                node.className = 'app-node bg-[#090d16] p-4 rounded-xl border border-neonGreen text-center';
+                statusEl.className = 'node-status text-[10px] font-mono text-neonGreen font-bold mt-1 block';
             }
         }
 
-        function startVoiceCapture() {
+        function executeMultiAxisScroll() {
+            logTelemetry('[AUTOMATION ENGINE] Executing Multi-Axis Scroll Protocol (Vertical Y: 800px, Horizontal X: 400px)...', 'warn');
+            const container = document.getElementById('captureViewportArea');
+            container.scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(() => {
+                logTelemetry('[SCROLL Y] Page explored vertically to bypass lazy-loading dynamic assets.', 'info');
+            }, 600);
+            
+            setTimeout(() => {
+                logTelemetry('[SCROLL X] Horizontal product carousels scrolled.', 'info');
+            }, 1200);
+        }
+
+        // Web Speech API Voice Recognition & Trigger Phrase Detection ("Okay")
+        function startVoiceParser() {
             if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-                alert('Speech Recognition API is not supported in this browser. Please type your requirement.');
+                alert('Speech Recognition API is not supported in this browser. Please type your query in the input field.');
                 return;
             }
 
@@ -239,126 +305,141 @@
             recognition.continuous = false;
             recognition.interimResults = false;
 
-            const badge = document.getElementById('voiceBadge');
-            badge.textContent = "LISTENING TO VOICE INPUT...";
+            const badge = document.getElementById('aiParserBadge');
+            badge.textContent = "LISTENING LIVE...";
             badge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-neonBlue/20 text-neonBlue border border-neonBlue/40 animate-pulse font-semibold";
 
-            logTelemetry('[VOICE ENGINE] Acoustic stream opened. Listening for application targets and product queries...', 'info');
+            logTelemetry('[VOICE ENGINE] Microphone active. Listening for app targets and search phrases...', 'info');
 
             recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                document.getElementById('voiceCommandInput').value = transcript;
-                logTelemetry(`[VOICE TRANSCRIBED] "${transcript}"`, 'success');
-                badge.textContent = "COMMAND PARSED";
+                const speechResult = event.results[0][0].transcript;
+                document.getElementById('voiceCommandInput').value = speechResult;
+                logTelemetry(`[SPEECH PARSED] "${speechResult}"`, 'success');
+                badge.textContent = "INTENT PARSED";
                 badge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-emerald-500/10 text-neonGreen border border-emerald-500/30 font-semibold";
 
-                // Trigger execution pipeline automatically
-                executeSequentialAutomation();
+                // Check for confirmation trigger word "Okay"
+                if (speechResult.toLowerCase().includes("okay")) {
+                    logTelemetry('[TRIGGER DETECTED] Confirmation token "Okay" recognized in voice stream!', 'warn');
+                    captureCanvasScreenshot('Voice Command ("Okay")');
+                } else {
+                    runSequentialOrchestrator();
+                }
             };
 
             recognition.onerror = () => {
-                logTelemetry('[ERROR] Voice recognition hardware timeout or permission denied.', 'error');
-                badge.textContent = "VOICE ERROR";
+                logTelemetry('[VOICE ERROR] Speech input timed out or microphone permission denied.', 'error');
+                badge.textContent = "ERROR";
                 badge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-rose-500/10 text-neonRose border border-rose-500/30 font-semibold";
             };
 
             recognition.start();
         }
 
-        function addScreenshotCard(appName, query, price) {
-            captureCounter++;
-            const gallery = document.getElementById('screenshotGallery');
-            if (captureCounter === 1) {
-                gallery.innerHTML = '';
-            }
+        // Real Screenshot Engine: Uses html2canvas to capture DOM Viewport and Serialize to PNG
+        function captureCanvasScreenshot(labelTag) {
+            logTelemetry('[SCREENSHOT ENGINE] Trigger phrase verified. Locking viewport state & rendering graphics context...', 'warn');
+            const captureArea = document.getElementById('captureViewportArea');
 
-            document.getElementById('screenshotCount').textContent = `${captureCounter} Screens Captured`;
+            html2canvas(captureArea, { backgroundColor: '#090d16' }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                screenshotCounter++;
+                document.getElementById('archiveBadge').textContent = `${screenshotCounter} Screens Saved`;
 
-            const card = document.createElement('div');
-            card.className = "bg-[#141b2d] border border-slate-700 rounded-lg p-2.5 flex flex-col justify-between text-xs font-mono";
-            card.innerHTML = `
-                <div>
-                    <div class="flex items-center justify-between text-[10px] text-neonBlue font-bold border-b border-slate-800 pb-1 mb-1">
-                        <span>${appName.toUpperCase()}</span>
-                        <span class="text-neonGreen">ORDER VERIFIED</span>
+                const gallery = document.getElementById('screenshotGallery');
+                if (screenshotCounter === 1) gallery.innerHTML = '';
+
+                const card = document.createElement('div');
+                card.className = "bg-[#141b2d] border border-slate-700 rounded-lg p-2.5 flex flex-col justify-between text-xs font-mono";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between text-[10px] text-neonBlue font-bold border-b border-slate-800 pb-1 mb-1">
+                            <span>${labelTag.toUpperCase()}</span>
+                            <span class="text-neonGreen">SERIALIZED</span>
+                        </div>
+                        <img src="${imgData}" class="w-full h-20 object-cover rounded my-1 border border-slate-800" alt="Captured DOM Proof">
+                        <div class="text-[9px] text-slate-400">Captured: ${new Date().toLocaleTimeString()}</div>
                     </div>
-                    <div class="text-white font-semibold text-xs truncate">${query}</div>
-                    <div class="text-[10px] text-slate-400">Captured: ${new Date().toLocaleTimeString()}</div>
-                </div>
-                <div class="mt-2 pt-1 border-t border-slate-800 flex items-center justify-between text-[10px]">
-                    <span class="text-neonAmber">${price}</span>
-                    <span class="text-slate-400">PNG Captured</span>
-                </div>
-            `;
-            gallery.appendChild(card);
-            gallery.scrollTop = gallery.scrollHeight;
+                    <div class="mt-1.5 pt-1 border-t border-slate-800 flex items-center justify-between text-[10px]">
+                        <a href="${imgData}" download="omni_search_${screenshotCounter}.png" class="text-neonBlue hover:underline font-bold">Download .png</a>
+                        <span class="text-slate-500">HTML5 Canvas</span>
+                    </div>
+                `;
+                gallery.appendChild(card);
+                gallery.scrollTop = gallery.scrollHeight;
+
+                logTelemetry(`[FILE SERIALIZATION] Raw graphics buffer serialized to PNG and stored in local archive.`, 'success');
+            });
         }
 
-        function executeSequentialAutomation() {
-            if (isProcessing) return;
-            const inputVal = document.getElementById('voiceCommandInput').value.trim();
-            const command = inputVal || "Order OnePlus phone on Amazon and Biryani on Swiggy";
+        // Sequential Multi-App Automation Orchestrator
+        function runSequentialOrchestrator() {
+            if (isExecuting) return;
+            const query = document.getElementById('voiceCommandInput').value.trim() || "OnePlus phone on Amazon and Biryani on Swiggy";
+            isExecuting = true;
 
-            isProcessing = true;
-            document.getElementById('btnExecute').disabled = true;
-            document.getElementById('btnExecute').classList.add('opacity-50');
+            const btn = document.getElementById('btnExecute');
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
 
-            logTelemetry(`[PIPELINE START] Parsing instructions: "${command}"`, 'info');
+            logTelemetry(`[PIPELINE START] Processing multi-app instructions: "${query}"`, 'info');
 
             // Reset Nodes
-            ['amazon', 'flipkart', 'meesho', 'swiggy', 'zomato', 'playstore'].forEach(n => {
-                setNodeStatus(n, 'IDLE');
-            });
+            ['amazon', 'flipkart', 'meesho', 'zomato', 'swiggy'].forEach(app => updateNodeStatus(app, 'IDLE'));
 
-            // Sequence Step 1: Open Amazon
+            const specs = document.getElementById('specsContainer');
+            specs.innerHTML = `
+                <div class="bg-[#141b2d] p-3.5 rounded-xl border border-slate-800">
+                    <div class="text-xs font-mono text-neonBlue font-bold mb-1">Amazon / Flipkart</div>
+                    <div class="text-sm text-white font-semibold">${query}</div>
+                    <div class="text-xs text-slate-400 mt-1">Specs: 12GB RAM, 256GB Storage, 108MP Camera</div>
+                    <div class="text-xs font-mono text-neonGreen mt-1">Price: ₹19,999 (In Stock)</div>
+                </div>
+                <div class="bg-[#141b2d] p-3.5 rounded-xl border border-slate-800">
+                    <div class="text-xs font-mono text-neonAmber font-bold mb-1">Meesho Wholesale</div>
+                    <div class="text-sm text-white font-semibold">${query} Accessories</div>
+                    <div class="text-xs text-slate-400 mt-1">Specs: Case + Tempered Glass Combo</div>
+                    <div class="text-xs font-mono text-neonGreen mt-1">Price: ₹499</div>
+                </div>
+                <div class="bg-[#141b2d] p-3.5 rounded-xl border border-slate-800">
+                    <div class="text-xs font-mono text-neonRose font-bold mb-1">Swiggy / Zomato</div>
+                    <div class="text-sm text-white font-semibold">Special Biryani Meal</div>
+                    <div class="text-xs text-slate-400 mt-1">Specs: Top Rated (4.6★) • 25 Mins</div>
+                    <div class="text-xs font-mono text-neonGreen mt-1">Status: Order Confirmed</div>
+                </div>
+            `;
+
+            // Step 1: Open Amazon
             setTimeout(() => {
-                logTelemetry('[NODE 1] Launching Amazon application via native deep-link & web automation...', 'info');
-                setNodeStatus('amazon', 'EXECUTING');
-            }, 800);
+                updateNodeStatus('amazon', 'OPENING APP', 'executing');
+                logTelemetry('[NODE 1: AMAZON] Deep-linking Amazon India app. Ingesting query parameters...', 'info');
+            }, 600);
 
             setTimeout(() => {
-                logTelemetry('[NODE 1] Amazon opened. Searching requirement: "OnePlus phone"...', 'info');
-                logTelemetry('[NODE 1] Scrolling specifications DOM into view. Placing item in cart/order queue...', 'info');
+                updateNodeStatus('amazon', 'ORDER PLACED', 'completed');
+                logTelemetry('[NODE 1: AMAZON] Specification aggregation complete. Order checkout simulated.', 'success');
             }, 2000);
 
+            // Step 2: Open Swiggy
             setTimeout(() => {
-                logTelemetry('[NODE 1] Order placed successfully. Triggering screenshot capture utility...', 'warn');
-                addScreenshotCard('Amazon', 'OnePlus Nord CE 3 Lite', '₹17,499.00');
-                setNodeStatus('amazon', 'COMPLETED & CAPTURED');
-            }, 3400);
-
-            // Sequence Step 2: Open Swiggy
-            setTimeout(() => {
-                logTelemetry('[NODE 2] Launching Swiggy Food Delivery app...', 'info');
-                setNodeStatus('swiggy', 'EXECUTING');
-            }, 4500);
+                updateNodeStatus('swiggy', 'OPENING APP', 'executing');
+                logTelemetry('[NODE 2: SWIGGY] Switching context to Swiggy food delivery node...', 'info');
+            }, 3000);
 
             setTimeout(() => {
-                logTelemetry('[NODE 2] Swiggy active. Searching item: "Special Chicken Biryani"...', 'info');
-                logTelemetry('[NODE 2] Selecting top-rated restaurant, configuring delivery address, placing order...', 'info');
+                updateNodeStatus('swiggy', 'ORDER CONFIRMED', 'completed');
+                logTelemetry('[NODE 2: SWIGGY] Restaurant order confirmed and payment simulated.', 'success');
+                executeMultiAxisScroll();
+            }, 4400);
+
+            // Step 3: Trigger Screenshot Procedure
+            setTimeout(() => {
+                captureCanvasScreenshot('Sequential Pipeline Final');
+                logTelemetry('[PIPELINE COMPLETE] Sequential execution across apps complete. Proof screenshot saved.', 'success');
+                isExecuting = false;
+                btn.disabled = false;
+                btn.classList.remove('opacity-50');
             }, 5800);
-
-            setTimeout(() => {
-                logTelemetry('[NODE 2] Swiggy order confirmed. Capturing confirmation screen...', 'warn');
-                addScreenshotCard('Swiggy', 'Special Chicken Biryani', '₹340.00');
-                setNodeStatus('swiggy', 'COMPLETED & CAPTURED');
-            }, 7200);
-
-            // Sequence Step 3: Open Google Play Store for backup app check
-            setTimeout(() => {
-                logTelemetry('[NODE 3] Inspecting open-source repository & Google Play Store for secondary app sync...', 'info');
-                setNodeStatus('playstore', 'EXECUTING');
-            }, 8400);
-
-            setTimeout(() => {
-                logTelemetry('[NODE 3] All requested application sequences finished successfully.', 'success');
-                setNodeStatus('playstore', 'COMPLETED & CAPTURED');
-                logTelemetry('[PIPELINE COMPLETE] Sequential execution finished. Screenshots saved in local archive for demo purposes.', 'success');
-
-                isProcessing = false;
-                document.getElementById('btnExecute').disabled = false;
-                document.getElementById('btnExecute').classList.remove('opacity-50');
-            }, 9800);
         }
     </script>
 </body>
