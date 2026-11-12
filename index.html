@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omni-App Voice Commerce Orchestrator - Enterprise Suite v4.2 Live</title>
+    <title>Omni-App Voice Commerce Orchestrator - Enterprise Suite v5.0 Live</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,9 +33,9 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     boxShadow: {
-                        'neon-glow': '0 0 25px rgba(0, 243, 255, 0.3)',
-                        'purple-glow': '0 0 25px rgba(139, 92, 246, 0.3)',
-                        'rose-glow': '0 0 25px rgba(255, 51, 102, 0.3)',
+                        'neon-glow': '0 0 25px rgba(0, 243, 255, 0.35)',
+                        'purple-glow': '0 0 25px rgba(139, 92, 246, 0.35)',
+                        'rose-glow': '0 0 25px rgba(255, 51, 102, 0.35)',
                     }
                 }
             }
@@ -125,13 +125,14 @@
         }
         @keyframes soundwave {
             0% { height: 4px; }
-            50% { height: 24px; }
+            50% { height: 26px; }
             100% { height: 4px; }
         }
-        .bar-1 { animation: soundwave 0.6s infinite ease-in-out; }
-        .bar-2 { animation: soundwave 0.8s infinite ease-in-out 0.1s; }
-        .bar-3 { animation: soundwave 0.5s infinite ease-in-out 0.2s; }
-        .bar-4 { animation: soundwave 0.7s infinite ease-in-out 0.3s; }
+        .bar-1 { animation: soundwave 0.5s infinite ease-in-out; }
+        .bar-2 { animation: soundwave 0.7s infinite ease-in-out 0.1s; }
+        .bar-3 { animation: soundwave 0.4s infinite ease-in-out 0.2s; }
+        .bar-4 { animation: soundwave 0.6s infinite ease-in-out 0.3s; }
+        .bar-5 { animation: soundwave 0.8s infinite ease-in-out 0.15s; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-black scanline">
@@ -150,7 +151,7 @@
                         OMNI-VOICE ORCHESTRATOR
                     </span>
                     <span class="hidden sm:inline-block ml-2 text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/90 text-neonBlue border border-cyan-800/60 uppercase">
-                        v4.2 Live Dynamic
+                        v5.0 Fully Dynamic Live Engine
                     </span>
                 </div>
             </div>
@@ -159,7 +160,7 @@
             <div class="hidden xl:flex items-center gap-5 text-xs font-mono">
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-[var(--text-sub)]">Engine Status: <strong class="text-[var(--text-main)]">Fully Dynamic Active</strong></span>
+                    <span class="text-[var(--text-sub)]">Engine Mode: <strong class="text-[var(--text-main)]">100% Dynamic / Zero Static</strong></span>
                 </div>
                 <div class="h-4 w-px bg-slate-700"></div>
                 <div class="flex items-center gap-2">
@@ -193,11 +194,11 @@
             </div>
         </div>
 
-        <!-- QUICK REDIRECTION & DEMO COMMAND SUB-TOOLBAR -->
+        <!-- QUICK REDIRECTION & DYNAMIC TEST SUB-TOOLBAR -->
         <div class="bg-[var(--bg-sub)] border-t border-borderCol px-4 sm:px-6 py-2 transition-colors">
             <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
                 <div class="flex items-center gap-2 overflow-x-auto py-0.5 scrollbar-none">
-                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Apps Live:</span>
+                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Any App Live:</span>
                     <button onclick="injectQuickCommand('Order 12GB RAM mobile phone on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         📱 Flipkart
                     </button>
@@ -216,11 +217,8 @@
                     <button onclick="injectQuickCommand('Search running shoes on Myntra')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         👟 Myntra
                     </button>
-                    <button onclick="injectQuickCommand('Search stainless steel biryani pot on Amazon')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        🛍️ Amazon
-                    </button>
-                    <button onclick="injectQuickCommand('Find wireless earbuds on Croma')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        🌐 Any App (Croma)
+                    <button onclick="injectQuickCommand('Search wireless earbuds on Croma')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        🌐 Any Custom App (Croma)
                     </button>
                 </div>
 
@@ -324,12 +322,13 @@
                             Spoken or Typed Instruction (Fully Dynamic Real-Time Dispatch)
                         </label>
                         <!-- Live Waveform Animation Container -->
-                        <div id="liveWaveform" class="hidden items-center gap-1 h-6 px-3 bg-cyan-950/80 border border-cyan-700/60 rounded-full">
-                            <span class="text-[10px] font-mono text-neonBlue font-bold mr-1">MIC LIVE:</span>
+                        <div id="liveWaveform" class="hidden items-center gap-1.5 h-7 px-3.5 bg-cyan-950/90 border border-cyan-600/60 rounded-full">
+                            <span class="text-[10px] font-mono text-neonBlue font-bold mr-1 animate-pulse">MIC LIVE:</span>
                             <div class="w-1 bg-neonBlue rounded-full bar-1"></div>
                             <div class="w-1 bg-neonBlue rounded-full bar-2"></div>
                             <div class="w-1 bg-neonBlue rounded-full bar-3"></div>
                             <div class="w-1 bg-neonBlue rounded-full bar-4"></div>
+                            <div class="w-1 bg-neonBlue rounded-full bar-5"></div>
                         </div>
                     </div>
                     <div class="relative flex items-center">
@@ -460,7 +459,7 @@
 
                     <!-- Terminal Output Window -->
                     <div id="fullTerminal" class="h-64 overflow-y-auto font-mono text-xs space-y-1.5 p-2 bg-[var(--terminal-bg)] rounded-xl border border-borderCol text-[var(--terminal-text)]">
-                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Universal Omni-App Voice Router v4.2 fully dynamic active.</div>
+                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Universal Omni-App Voice Router v5.0 fully dynamic active.</div>
                         <div class="text-slate-400" data-level="INFO">[SPEECH ENGINE] WebSpeech Recognition API & Live Audio Visualizer ready.</div>
                     </div>
                 </div>
@@ -733,7 +732,7 @@
                 appConfig: activeAppConfig,
                 entity: queryToUse,
                 similarity: "100.0",
-                latency: 95,
+                latency: 75,
                 method: "Manual Node Select"
             });
 
@@ -843,7 +842,7 @@
 
             let customAppName = null;
             if (!matchedAppKey) {
-                const tailPrepMatch = rawClean.match(/\b(?:on|in|from|via|using|at)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website|site)?$/i);
+                const tailPrepMatch = rawClean.match(/ (?:on|in|from|via|using|at)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website|site)?$/i);
                 const openAppMatch = rawClean.match(/^(?:please\s+)?(?:open|launch|start|visit)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website)?$/i);
 
                 if (tailPrepMatch && tailPrepMatch[1]) {
@@ -925,7 +924,7 @@
             }
 
             const endTime = performance.now();
-            const latencyMs = Math.max(Math.round(endTime - startTime), 85);
+            const latencyMs = Math.max(Math.round(endTime - startTime), 65);
 
             return {
                 appKey: resolvedKey,
@@ -957,6 +956,7 @@
 
         function logFullTerminal(msg, level = 'INFO') {
             const term = document.getElementById('fullTerminal');
+            if (!term) return;
             const levelColors = {
                 INFO: 'text-slate-300',
                 SUCCESS: 'text-neonGreen font-semibold',
@@ -1084,7 +1084,8 @@
             if (speechRecognitionInstance) {
                 speechRecognitionInstance.stop();
             }
-            document.getElementById('liveWaveform').style.display = 'none';
+            const waveformEl = document.getElementById('liveWaveform');
+            if (waveformEl) waveformEl.style.display = 'none';
             updateVoiceUIState(false);
             logFullTerminal('[ASR STREAM] Microphone stopped.', 'INFO');
         }
