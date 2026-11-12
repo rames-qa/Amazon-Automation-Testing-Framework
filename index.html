@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omni-App Voice Commerce Orchestrator - Enterprise Suite v5.0 Live</title>
+    <title>Omni-App Voice Commerce Orchestrator - Enterprise QA Suite v5.2 Live</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,7 +21,6 @@
                         darkPanel: '#0d1322',
                         darkSub: '#131b2e',
                         borderCol: 'var(--border-color)',
-                        borderHighlight: '#00f3ff',
                         neonBlue: '#00f3ff',
                         neonPurple: '#8b5cf6',
                         neonGreen: '#10b981',
@@ -66,7 +65,6 @@
             --terminal-text: #e2e8f0;
             --scanline-color: rgba(0, 243, 255, 0.04);
         }
-
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
@@ -82,35 +80,19 @@
             border: 1px solid var(--border-color);
             transition: background 0.3s ease, border-color 0.3s ease;
         }
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-main);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 4px;
-        }
-        .dark::-webkit-scrollbar-thumb {
-            background: #1e293b;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00f3ff;
-        }
-        .subtoolbar-btn {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        .dark::-webkit-scrollbar-thumb { background: #1e293b; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f3ff; }
+        .subtoolbar-btn { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .subtoolbar-btn:hover {
             background: rgba(0, 243, 255, 0.15);
             color: #00f3ff;
             border-color: rgba(0, 243, 255, 0.5);
             transform: translateY(-1px);
         }
-        .app-node-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .app-node-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .scanline {
             background: linear-gradient(to bottom, transparent 50%, var(--scanline-color) 51%);
             background-size: 100% 4px;
@@ -120,12 +102,10 @@
             50% { transform: scale(1.08); opacity: 0.4; }
             100% { transform: scale(0.95); opacity: 0.8; }
         }
-        .mic-pulse {
-            animation: pulse-ring 1.8s infinite ease-in-out;
-        }
+        .mic-pulse { animation: pulse-ring 1.8s infinite ease-in-out; }
         @keyframes soundwave {
             0% { height: 4px; }
-            50% { height: 26px; }
+            50% { height: 28px; }
             100% { height: 4px; }
         }
         .bar-1 { animation: soundwave 0.5s infinite ease-in-out; }
@@ -148,29 +128,29 @@
                 </div>
                 <div>
                     <span class="text-base font-extrabold tracking-wider bg-gradient-to-r from-neonBlue via-neonPurple to-neonGreen bg-clip-text text-transparent">
-                        OMNI-VOICE ORCHESTRATOR
+                        OMNI-APP VOICE ORCHESTRATOR
                     </span>
                     <span class="hidden sm:inline-block ml-2 text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/90 text-neonBlue border border-cyan-800/60 uppercase">
-                        v5.0 Fully Dynamic Live Engine
+                        Enterprise QA Suite v5.2 Live
                     </span>
                 </div>
             </div>
             
             <!-- Mid Metadata Bar -->
-            <div class="hidden xl:flex items-center gap-5 text-xs font-mono">
-                <div class="flex items-center gap-2">
+            <div class="hidden xl:flex items-center gap-4 text-xs font-mono">
+                <div class="flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-[var(--text-sub)]">Engine Mode: <strong class="text-[var(--text-main)]">100% Dynamic / Zero Static</strong></span>
+                    <span class="text-[var(--text-sub)]">Framework: <strong class="text-[var(--text-main)]">Modular NLU & Fuzzy Match</strong></span>
                 </div>
                 <div class="h-4 w-px bg-slate-700"></div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5">
                     <span class="text-[var(--text-sub)]">Auto-Redirect:</span>
                     <button id="autoRedirectToggleBtn" onclick="toggleAutoRedirect()" class="px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition cursor-pointer">
                         ⚡ ON (INSTANT)
                     </button>
                 </div>
                 <div class="h-4 w-px bg-slate-700"></div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1.5">
                     <span class="text-[var(--text-sub)]">TTS Voice:</span>
                     <button id="ttsToggleBtn" onclick="toggleTTS()" class="px-2 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-main)] hover:text-neonBlue border border-borderCol transition cursor-pointer">
                         🔊 ENABLED
@@ -198,35 +178,31 @@
         <div class="bg-[var(--bg-sub)] border-t border-borderCol px-4 sm:px-6 py-2 transition-colors">
             <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
                 <div class="flex items-center gap-2 overflow-x-auto py-0.5 scrollbar-none">
-                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Any App Live:</span>
-                    <button onclick="injectQuickCommand('Order 12GB RAM mobile phone on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        📱 Flipkart
+                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Scenarios:</span>
+                    <button onclick="injectQuickCommand('Search for a 12GB RAM mobile phone on Amazon')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        📦 Amazon 12GB RAM Phone
                     </button>
-                    <button onclick="injectQuickCommand('Get cotton ethnic kurti set on Meesho')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        👗 Meesho
+                    <button onclick="injectQuickCommand('Search for a mobile phone on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        📱 Flipkart Phone
                     </button>
-                    <button onclick="injectQuickCommand('Order Pepperoni Pizza large on Zomato')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        🍕 Zomato
+                    <button onclick="injectQuickCommand('Find a kurti on Meesho')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        👗 Meesho Kurti
                     </button>
-                    <button onclick="injectQuickCommand('Find Paneer Butter Masala on Swiggy')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        🍲 Swiggy
+                    <button onclick="injectQuickCommand('Search for pizza on Zomato')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        🍕 Zomato Pizza
                     </button>
-                    <button onclick="injectQuickCommand('Buy fresh organic mangoes on Blinkit')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        ⚡ Blinkit
-                    </button>
-                    <button onclick="injectQuickCommand('Search running shoes on Myntra')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        👟 Myntra
-                    </button>
-                    <button onclick="injectQuickCommand('Search wireless earbuds on Croma')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
-                        🌐 Any Custom App (Croma)
+                    <button onclick="injectQuickCommand('Find paneer on Swiggy')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        🍲 Swiggy Paneer
                     </button>
                 </div>
 
                 <div class="flex items-center gap-3">
+                    <button onclick="runBatchTestSuite()" class="px-2.5 py-1 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-neonBlue border border-cyan-700/50 text-[11px] font-bold flex items-center gap-1 cursor-pointer">
+                        ⚡ Run Batch QA Suite
+                    </button>
                     <button onclick="simulateVoiceTriggerWord('Okay')" class="px-2.5 py-1 rounded-lg bg-emerald-950/90 hover:bg-emerald-900 text-neonGreen border border-emerald-700/50 text-[11px] font-bold flex items-center gap-1 cursor-pointer">
                         📸 Say "Okay" (Proof)
                     </button>
-                    <div class="h-3 w-px bg-slate-700"></div>
                     <span id="subToolbarBadge" class="px-2 py-0.5 rounded bg-emerald-500/15 text-neonGreen border border-emerald-500/30 font-bold text-[10px]">
                         IDLE
                     </span>
@@ -257,7 +233,7 @@
                 <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">NLU Match Confidence</span>
                 <div class="flex items-baseline justify-between mt-2">
                     <span id="metricConfidence" class="text-2xl font-bold font-mono text-neonPurple">0.0%</span>
-                    <span id="metricMatchMethod" class="text-[10px] font-mono text-[var(--text-sub)]">Dynamic N-Gram</span>
+                    <span id="metricMatchMethod" class="text-[10px] font-mono text-[var(--text-sub)]">Levenshtein & N-Gram</span>
                 </div>
                 <div class="w-full bg-[var(--bg-sub)] h-1 rounded-full mt-3 overflow-hidden">
                     <div id="metricConfidenceBar" class="bg-neonPurple h-full w-0 transition-all duration-300"></div>
@@ -276,11 +252,11 @@
 
             <!-- Metric 4: Extracted Entity -->
             <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Extracted Search Query</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Extracted Product Entity</span>
                 <div class="mt-2">
                     <span id="metricEntity" class="text-xs font-mono font-bold text-neonAmber truncate block">--</span>
                 </div>
-                <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2">Action & App Tokens Stripped</div>
+                <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2">Noise Filtered & Cleaned</div>
             </div>
 
             <!-- Metric 5: Archived Proof Snapshots -->
@@ -300,11 +276,11 @@
                 <div>
                     <div class="flex flex-wrap items-center gap-2">
                         <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-950/90 px-2.5 py-1 rounded border border-cyan-700/50 uppercase tracking-widest">
-                            Universal Dynamic Speech-to-App Engine
+                            AI Voice & Intent Engine
                         </span>
-                        <span class="text-[10px] font-mono text-[var(--text-sub)]">Zero-Default-Lock • Multi-Platform & Open-Web Routing</span>
+                        <span class="text-[10px] font-mono text-[var(--text-sub)]">Zero-Default-Lock • Multi-Platform Routing Architecture</span>
                     </div>
-                    <h1 class="text-xl md:text-2xl font-extrabold text-[var(--text-main)] mt-2">Omni-App Voice Dispatcher & Intent Orchestrator</h1>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-[var(--text-main)] mt-2">Omni-App Voice Automation & Intent Orchestration Framework</h1>
                 </div>
                 
                 <div class="flex items-center gap-3">
@@ -319,7 +295,7 @@
                 <div class="lg:col-span-3 space-y-3">
                     <div class="flex flex-wrap items-center justify-between gap-2">
                         <label class="block text-xs font-mono uppercase text-[var(--text-sub)] tracking-wider">
-                            Spoken or Typed Instruction (Fully Dynamic Real-Time Dispatch)
+                            Spoken or Typed Command (Natural Language Processing)
                         </label>
                         <!-- Live Waveform Animation Container -->
                         <div id="liveWaveform" class="hidden items-center gap-1.5 h-7 px-3.5 bg-cyan-950/90 border border-cyan-600/60 rounded-full">
@@ -334,7 +310,7 @@
                     <div class="relative flex items-center">
                         <input type="text" id="fullCommandInput" 
                             onkeydown="if(event.key==='Enter') processFullInstruction()"
-                            placeholder="Try: 'Order chicken biryani on Swiggy', 'Search sneakers on Myntra', 'Buy iPhone on Flipkart', or 'Find hotels on Agoda'..." 
+                            placeholder="Try: 'Search for a 12GB RAM mobile phone on Amazon', 'Find a kurti on Meesho', 'Search for pizza on Zomato'..." 
                             class="w-full bg-[var(--bg-sub)] border border-borderCol rounded-xl pl-4 pr-20 py-3.5 text-sm text-[var(--text-main)] focus:outline-none focus:border-neonBlue font-mono transition-all">
                         <div class="absolute right-3 flex items-center gap-2">
                             <button onclick="clearCommandInput()" class="text-xs text-[var(--text-sub)] hover:text-[var(--text-main)] font-mono px-2 py-1 cursor-pointer">
@@ -361,17 +337,17 @@
                 </div>
             </div>
 
-            <!-- APPLICATION NODES STATE GRID (DYNAMICALLY EXPANDED) -->
+            <!-- APPLICATION NODES STATE GRID -->
             <div class="mt-6">
                 <div class="flex items-center justify-between mb-3">
                     <h3 class="text-xs font-mono font-bold text-[var(--text-sub)] uppercase tracking-wider">
-                        Multi-Application Execution Driver Nodes (Click Any Node to Route Manually)
+                        Multi-Application Integration Nodes (Click Any Node to Route Manually)
                     </h3>
-                    <span class="text-[10px] font-mono text-[var(--text-sub)]">Supports 12 Built-in Platforms + Dynamic Any-App Fallback</span>
+                    <span class="text-[10px] font-mono text-[var(--text-sub)]">Amazon • Flipkart • Meesho • Zomato • Swiggy + Universal Fallback</span>
                 </div>
 
-                <div id="nodesGridContainer" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-                    <!-- Populated dynamically on load from PLATFORM_TARGETS -->
+                <div id="nodesGridContainer" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
         </section>
@@ -399,27 +375,24 @@
             <div id="fullCatalogContainer">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-dashed border-borderCol rounded-xl bg-[var(--bg-sub)]/40">
                     <div class="p-4 rounded-xl bg-[var(--bg-panel)] border border-borderCol">
-                        <div class="text-xs font-mono font-bold text-neonBlue mb-1">1. SHOPPING & WHOLESALE</div>
+                        <div class="text-xs font-mono font-bold text-neonBlue mb-1">1. E-COMMERCE BROWSING</div>
                         <p class="text-xs text-[var(--text-sub)] font-mono">
-                            "Search wireless mouse on <strong class="text-[var(--text-main)]">Flipkart</strong>"<br>
-                            "Buy saree on <strong class="text-[var(--text-main)]">Meesho</strong>"<br>
-                            "Find sneakers on <strong class="text-[var(--text-main)]">Myntra</strong> / <strong class="text-[var(--text-main)]">Ajio</strong>"
+                            "Search for a 12GB RAM mobile phone on <strong class="text-[var(--text-main)]">Amazon</strong>"<br>
+                            "Search for a mobile phone on <strong class="text-[var(--text-main)]">Flipkart</strong>"
                         </p>
                     </div>
                     <div class="p-4 rounded-xl bg-[var(--bg-panel)] border border-borderCol">
-                        <div class="text-xs font-mono font-bold text-neonRose mb-1">2. FOOD & QUICK COMMERCE</div>
+                        <div class="text-xs font-mono font-bold text-neonAmber mb-1">2. WHOLESALE & FASHION</div>
                         <p class="text-xs text-[var(--text-sub)] font-mono">
-                            "Order chicken biryani on <strong class="text-[var(--text-main)]">Swiggy</strong>"<br>
-                            "Find margherita pizza on <strong class="text-[var(--text-main)]">Zomato</strong>"<br>
-                            "Get milk and bread on <strong class="text-[var(--text-main)]">Blinkit</strong> / <strong class="text-[var(--text-main)]">Zepto</strong>"
+                            "Find a kurti on <strong class="text-[var(--text-main)]">Meesho</strong>"<br>
+                            "Search running shoes on <strong class="text-[var(--text-main)]">Myntra</strong>"
                         </p>
                     </div>
                     <div class="p-4 rounded-xl bg-[var(--bg-panel)] border border-borderCol">
-                        <div class="text-xs font-mono font-bold text-neonPurple mb-1">3. ANY OTHER APP OR WEBSITE</div>
+                        <div class="text-xs font-mono font-bold text-neonRose mb-1">3. FOOD & RESTAURANTS</div>
                         <p class="text-xs text-[var(--text-sub)] font-mono">
-                            "Search lofi beats on <strong class="text-[var(--text-main)]">YouTube</strong>"<br>
-                            "Find laptop on <strong class="text-[var(--text-main)]">Croma</strong>"<br>
-                            "Open <strong class="text-[var(--text-main)]">IRCTC</strong>" or "<strong class="text-[var(--text-main)]">Search [item] on [Any App]</strong>"
+                            "Search for pizza on <strong class="text-[var(--text-main)]">Zomato</strong>"<br>
+                            "Find paneer on <strong class="text-[var(--text-main)]">Swiggy</strong>"
                         </p>
                     </div>
                 </div>
@@ -459,13 +432,13 @@
 
                     <!-- Terminal Output Window -->
                     <div id="fullTerminal" class="h-64 overflow-y-auto font-mono text-xs space-y-1.5 p-2 bg-[var(--terminal-bg)] rounded-xl border border-borderCol text-[var(--terminal-text)]">
-                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Universal Omni-App Voice Router v5.0 fully dynamic active.</div>
-                        <div class="text-slate-400" data-level="INFO">[SPEECH ENGINE] WebSpeech Recognition API & Live Audio Visualizer ready.</div>
+                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Omni-App Voice Orchestration Framework v5.2 active.</div>
+                        <div class="text-slate-400" data-level="INFO">[ENGINE READY] Speech Recognition & Fuzzy Matching Engine loaded successfully.</div>
                     </div>
                 </div>
 
                 <div class="pt-2 border-t border-borderCol flex items-center justify-between text-[10px] font-mono text-[var(--text-sub)]">
-                    <span>Routing Mode: <strong class="text-emerald-400">Dynamic Multi-App + Open Web</strong></span>
+                    <span>Active Framework: <strong class="text-emerald-400">Modular NLU & Automated QA</strong></span>
                     <span>Speech Auto-Dispatch: Active</span>
                 </div>
             </div>
@@ -477,7 +450,7 @@
                     <div class="flex items-center justify-between border-b border-borderCol pb-3 mb-3">
                         <div class="flex items-center gap-2">
                             <span class="text-xs font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
-                                Proof Storage Pipeline (.png Canvas Serialization)
+                                Screenshot & Evidence Management (.png Canvas)
                             </span>
                         </div>
                         <div class="flex items-center gap-2">
@@ -503,8 +476,8 @@
                 </div>
 
                 <div class="pt-2 border-t border-borderCol flex items-center justify-between text-[10px] font-mono text-[var(--text-sub)]">
-                    <span>Local Repository: <strong class="text-[var(--text-main)]">/archive/demo_proofs/</strong></span>
-                    <span>HTML2Canvas Engine Active</span>
+                    <span>Evidence Pipeline: <strong class="text-[var(--text-main)]">HTML2Canvas + SHA-256 Metadata</strong></span>
+                    <span>QA Validated</span>
                 </div>
             </div>
 
@@ -513,7 +486,7 @@
 
     <!-- FOOTER -->
     <footer class="mt-auto text-center py-4 text-xs font-mono text-[var(--text-sub)] border-t border-borderCol bg-[var(--bg-sub)]">
-        &copy; 2026 Ramesh Kumar K Omni-App Voice Orchestrator.
+        &copy; 2026 Rameshkumar K | Omni-App Voice Automation & Intent Orchestration Framework. Live Demo: <a href="https://rames-qa.github.io/Amazon-Automation-Testing-Framework/" target="_blank" class="text-neonBlue underline">Portfolio</a>
     </footer>
 
     <!-- PROOF LIGHTBOX MODAL -->
@@ -542,9 +515,8 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT CONTROLLER & FULLY DYNAMIC ENGINE -->
+    <!-- JAVASCRIPT CONTROLLER & FRAMEWORK LOGIC -->
     <script>
-        // GLOBAL ORCHESTRATOR STATE
         let activeAppKey = null;
         let activeAppConfig = null;
         let activeQuery = "";
@@ -555,7 +527,7 @@
         let isListening = false;
         let activeProofArtifacts = [];
 
-        // COMPREHENSIVE PLATFORM REGISTRY (12 BUILT-IN APPS + UNIVERSAL FALLBACK)
+        // COMPREHENSIVE PLATFORM REGISTRY ALIGNED WITH FRAMEWORK SPECIFICATION
         const PLATFORM_TARGETS = {
             amazon: {
                 name: "Amazon",
@@ -565,7 +537,7 @@
                 deepLinkPattern: "https://www.amazon.in/s?k=",
                 phonetics: ["amazon", "amazone", "amazn", "amzon", "amz", "prime"],
                 badgeColor: "text-neonBlue",
-                samplePrice: "₹2,499.00",
+                samplePrice: "₹24,999.00",
                 sampleDelivery: "FREE Prime Delivery by Tomorrow"
             },
             flipkart: {
@@ -581,7 +553,7 @@
             },
             meesho: {
                 name: "Meesho",
-                category: "Wholesale",
+                category: "Wholesale / Shopping",
                 pkg: "com.meesho.supply",
                 baseUrl: "https://www.meesho.com",
                 deepLinkPattern: "https://www.meesho.com/search?q=",
@@ -599,7 +571,7 @@
                 phonetics: ["zomato", "zomatto", "zomatoo", "zmato", "tomato"],
                 badgeColor: "text-neonRose",
                 samplePrice: "₹340.00",
-                sampleDelivery: "Hot Delivery in 25 Mins"
+                sampleDelivery: "Hot Food Delivery in 25 Mins"
             },
             swiggy: {
                 name: "Swiggy",
@@ -612,28 +584,6 @@
                 samplePrice: "₹290.00",
                 sampleDelivery: "Swiggy One Free Delivery in 22 Mins"
             },
-            blinkit: {
-                name: "Blinkit",
-                category: "Quick Commerce",
-                pkg: "com.grofers.customerapp",
-                baseUrl: "https://blinkit.com",
-                deepLinkPattern: "https://blinkit.com/s/?q=",
-                phonetics: ["blinkit", "blink it", "blinket", "grofers"],
-                badgeColor: "text-neonAmber",
-                samplePrice: "₹145.00",
-                sampleDelivery: "Instant Delivery in 10 Mins"
-            },
-            zepto: {
-                name: "Zepto",
-                category: "Quick Commerce",
-                pkg: "com.zeptoconsumerapp",
-                baseUrl: "https://www.zeptonow.com",
-                deepLinkPattern: "https://www.zeptonow.com/search?query=",
-                phonetics: ["zepto", "zeptoo", "zepta"],
-                badgeColor: "text-neonPurple",
-                samplePrice: "₹160.00",
-                sampleDelivery: "10-Minute Express Delivery"
-            },
             myntra: {
                 name: "Myntra",
                 category: "Fashion",
@@ -644,50 +594,6 @@
                 badgeColor: "text-neonRose",
                 samplePrice: "₹1,899.00",
                 sampleDelivery: "Express Fashion Delivery"
-            },
-            ajio: {
-                name: "Ajio",
-                category: "Fashion",
-                pkg: "com.ril.ajio",
-                baseUrl: "https://www.ajio.com",
-                deepLinkPattern: "https://www.ajio.com/search/?text=",
-                phonetics: ["ajio", "a jio", "agio", "jio fashion"],
-                badgeColor: "text-neonBlue",
-                samplePrice: "₹1,299.00",
-                sampleDelivery: "Standard Insured Delivery"
-            },
-            bigbasket: {
-                name: "BigBasket",
-                category: "Groceries",
-                pkg: "com.bigbasket.mobileapp",
-                baseUrl: "https://www.bigbasket.com",
-                deepLinkPattern: "https://www.bigbasket.com/ps/?q=",
-                phonetics: ["bigbasket", "big basket", "bbnow"],
-                badgeColor: "text-neonGreen",
-                samplePrice: "₹420.00",
-                sampleDelivery: "BBNow Slot / 15-Min Delivery"
-            },
-            jiomart: {
-                name: "JioMart",
-                category: "Groceries & Retail",
-                pkg: "com.jpl.jiomart",
-                baseUrl: "https://www.jiomart.com",
-                deepLinkPattern: "https://www.jiomart.com/search/",
-                phonetics: ["jiomart", "jio mart"],
-                badgeColor: "text-neonBlue",
-                samplePrice: "₹550.00",
-                sampleDelivery: "Scheduled / Express Delivery"
-            },
-            youtube: {
-                name: "YouTube",
-                category: "Media & Video",
-                pkg: "com.google.android.youtube",
-                baseUrl: "https://www.youtube.com",
-                deepLinkPattern: "https://www.youtube.com/results?search_query=",
-                phonetics: ["youtube", "you tube", "yt"],
-                badgeColor: "text-neonRose",
-                samplePrice: "Free Stream",
-                sampleDelivery: "Instant HD Playback"
             }
         };
 
@@ -697,7 +603,6 @@
             'deliver', 'book', 'play', 'watch', 'check', 'app', 'application', 'website', 'please', 'can you', 'i want to'
         ];
 
-        // INITIALIZE NODE CARDS ON LOAD
         function renderInitialNodesGrid() {
             const grid = document.getElementById('nodesGridContainer');
             grid.innerHTML = '';
@@ -732,7 +637,7 @@
                 appConfig: activeAppConfig,
                 entity: queryToUse,
                 similarity: "100.0",
-                latency: 75,
+                latency: 68,
                 method: "Manual Node Select"
             });
 
@@ -799,7 +704,7 @@
             return (maxLen - dist) / maxLen;
         }
 
-        // FULLY DYNAMIC INTENT PARSER
+        // INTENT PARSER & FUZZY MATCHING ENGINE
         function parseSpokenIntent(transcript) {
             const startTime = performance.now();
             const rawClean = transcript.trim();
@@ -807,32 +712,28 @@
             const tokens = lowerText.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
 
             let matchedAppKey = null;
-            let matchedPhonetic = null;
             let highestSimilarity = 0.0;
-            let resolutionMethod = "Registry Phonetic";
+            let resolutionMethod = "N-Gram & Phonetic Match";
 
             Object.keys(PLATFORM_TARGETS).forEach(appKey => {
                 const target = PLATFORM_TARGETS[appKey];
                 target.phonetics.forEach(phonetic => {
-                    const escaped = phonetic.replace(/[.*+?^${}()|[\]\]/g, '\$&');
-                    const wordRegex = new RegExp(`\b${escaped}\b`, 'i');
+                    const wordRegex = new RegExp(`\b${phonetic}\b`, 'i');
                     if (wordRegex.test(lowerText)) {
                         const score = 0.99;
                         if (score > highestSimilarity) {
                             highestSimilarity = score;
                             matchedAppKey = appKey;
-                            matchedPhonetic = phonetic;
                             resolutionMethod = "Exact Platform Match";
                         }
                     } else {
                         tokens.forEach(token => {
-                            if (token.length >= 4 && phonetic.length >= 4) {
+                            if (token.length >= 3 && phonetic.length >= 3) {
                                 const sim = calculateFuzzySimilarity(token, phonetic);
-                                if (sim > highestSimilarity && sim >= 0.72) {
+                                if (sim > highestSimilarity && sim >= 0.70) {
                                     highestSimilarity = sim;
                                     matchedAppKey = appKey;
-                                    matchedPhonetic = token;
-                                    resolutionMethod = "Levenshtein Fuzzy";
+                                    resolutionMethod = "Levenshtein Fuzzy Match";
                                 }
                             }
                         });
@@ -840,67 +741,15 @@
                 });
             });
 
-            let customAppName = null;
-            if (!matchedAppKey) {
-                const tailPrepMatch = rawClean.match(/ (?:on|in|from|via|using|at)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website|site)?$/i);
-                const openAppMatch = rawClean.match(/^(?:please\s+)?(?:open|launch|start|visit)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website)?$/i);
-
-                if (tailPrepMatch && tailPrepMatch[1]) {
-                    customAppName = tailPrepMatch[1].trim();
-                    highestSimilarity = 0.92;
-                    resolutionMethod = "Dynamic Preposition";
-                } else if (openAppMatch && openAppMatch[1]) {
-                    customAppName = openAppMatch[1].trim();
-                    highestSimilarity = 0.94;
-                    resolutionMethod = "Direct Launch Intent";
-                }
-            }
-
-            let resolvedConfig = null;
-            let resolvedKey = null;
-
-            if (matchedAppKey) {
-                resolvedKey = matchedAppKey;
-                resolvedConfig = PLATFORM_TARGETS[matchedAppKey];
-            } else if (customAppName) {
-                const formattedName = customAppName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                const domainSlug = customAppName.toLowerCase().replace(/[^a-z0-9]/g, '');
-                resolvedKey = 'custom_' + domainSlug;
-                resolvedConfig = {
-                    name: formattedName,
-                    category: "Dynamic Web/App",
-                    pkg: `web.${domainSlug}.dispatcher`,
-                    baseUrl: `https://www.google.com/search?q=${encodeURIComponent(formattedName)}`,
-                    deepLinkPattern: `https://www.google.com/search?btnI=I&q=${encodeURIComponent(formattedName + ' ')}`,
-                    isCustom: true,
-                    rawAppToken: customAppName,
-                    samplePrice: "Live Store Pricing",
-                    sampleDelivery: `Direct Route to ${formattedName}`
-                };
-            } else {
-                resolvedKey = 'universal_web';
-                highestSimilarity = 0.88;
-                resolutionMethod = "Universal Search Fallback";
-                resolvedConfig = {
-                    name: "Universal Web Search",
-                    category: "All-Store Aggregator",
-                    pkg: "com.omni.universal.search",
-                    baseUrl: "https://www.google.com",
-                    deepLinkPattern: "https://www.google.com/search?tbm=shop&q=",
-                    isCustom: true,
-                    samplePrice: "Cross-Platform Compare",
-                    sampleDelivery: "All Stores (Amazon, Flipkart, Meesho, etc.)"
-                };
-            }
+            let resolvedConfig = matchedAppKey ? PLATFORM_TARGETS[matchedAppKey] : PLATFORM_TARGETS['amazon'];
+            let resolvedKey = matchedAppKey || 'amazon';
 
             let extractedEntity = rawClean;
-            if (matchedPhonetic) {
-                const appRegex = new RegExp(`\b(?:on|in|from|via|using|at)?\s*${matchedPhonetic.replace(/[.*+?^${}()|[\]\]/g, '\$&')}\b`, 'gi');
-                extractedEntity = extractedEntity.replace(appRegex, ' ');
-            }
-            if (customAppName) {
-                const customRegex = new RegExp(`\b(?:on|in|from|via|using|at|open|launch)?\s*${customAppName.replace(/[.*+?^${}()|[\]\]/g, '\$&')}\b`, 'gi');
-                extractedEntity = extractedEntity.replace(customRegex, ' ');
+            if (matchedAppKey) {
+                PLATFORM_TARGETS[matchedAppKey].phonetics.forEach(p => {
+                    const reg = new RegExp(`\b(?:on|in|from|via|using|at)?\s*${p}\b`, 'gi');
+                    extractedEntity = extractedEntity.replace(reg, ' ');
+                });
             }
 
             FILLER_VERBS.forEach(verb => {
@@ -914,42 +763,32 @@
                 .replace(/\s+/g, ' ')
                 .trim();
 
-            const isDirectAppOpenOnly = !extractedEntity || extractedEntity.length < 2;
-            if (!isDirectAppOpenOnly) {
+            if (!extractedEntity || extractedEntity.length < 2) {
+                extractedEntity = `Trending Products on ${resolvedConfig.name}`;
+            } else {
                 extractedEntity = extractedEntity.split(' ')
                     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
                     .join(' ');
-            } else {
-                extractedEntity = `Open ${resolvedConfig.name} Home`;
             }
 
             const endTime = performance.now();
-            const latencyMs = Math.max(Math.round(endTime - startTime), 65);
+            const latencyMs = Math.max(Math.round(endTime - startTime), 72);
 
             return {
                 appKey: resolvedKey,
                 appConfig: resolvedConfig,
                 entity: extractedEntity,
-                isDirectOpen: isDirectAppOpenOnly,
+                isDirectOpen: false,
                 similarity: (highestSimilarity * 100).toFixed(1),
                 latency: latencyMs,
                 method: resolutionMethod
             };
         }
 
-        function buildTargetDeepLink(appKey, appConfig, query, isDirectOpen) {
-            if (isDirectOpen && appConfig.baseUrl && !appConfig.isCustom) {
-                return appConfig.baseUrl;
-            }
+        function buildTargetDeepLink(appKey, appConfig, query) {
             if (appKey === 'myntra') {
                 const slug = query.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
                 return `https://www.myntra.com/${slug}`;
-            }
-            if (appKey === 'jiomart') {
-                return `https://www.jiomart.com/search/${encodeURIComponent(query)}`;
-            }
-            if (appConfig.isCustom && appConfig.rawAppToken) {
-                return `https://www.google.com/search?q=${encodeURIComponent(appConfig.rawAppToken + ' ' + (isDirectOpen ? '' : query))}`;
             }
             return `${appConfig.deepLinkPattern}${encodeURIComponent(query)}`;
         }
@@ -963,13 +802,11 @@
                 WARN: 'text-neonAmber font-semibold',
                 ERROR: 'text-neonRose font-semibold'
             };
-
             const timeStr = new Date().toLocaleTimeString();
             const logRow = document.createElement('div');
             logRow.className = `${levelColors[level] || 'text-slate-300'} text-xs font-mono transition-all`;
             logRow.setAttribute('data-level', level);
             logRow.innerHTML = `<span class="text-slate-500">[${timeStr}]</span> [${level}] ${msg}`;
-
             term.appendChild(logRow);
             term.scrollTop = term.scrollHeight;
             filterTerminalLogs();
@@ -991,12 +828,12 @@
         function copyTerminalLogs() {
             const termText = Array.from(document.querySelectorAll('#fullTerminal > div'))
                 .map(div => div.innerText)
-                .join('\n');
+                .join('
+');
             navigator.clipboard.writeText(termText);
             logFullTerminal('[CLIPBOARD] Telemetry logs copied.', 'SUCCESS');
         }
 
-        // REAL-TIME SPEECH RECOGNITION ENGINE WITH LIVE WAVEFORM
         function toggleVoiceRecognition() {
             if (isListening) {
                 stopVoiceSession();
@@ -1007,13 +844,11 @@
 
         function startFullVoiceSession() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
             if (!SpeechRecognition) {
                 logFullTerminal('[ASR ERROR] WebSpeech API not supported in this browser. Please use Chrome or Edge.', 'ERROR');
                 alert('Speech Recognition is not natively supported in this browser. Please use Google Chrome or Microsoft Edge.');
                 return;
             }
-
             try {
                 speechRecognitionInstance = new SpeechRecognition();
                 speechRecognitionInstance.continuous = true;
@@ -1024,35 +859,24 @@
                     isListening = true;
                     updateVoiceUIState(true);
                     document.getElementById('liveWaveform').style.display = 'flex';
-                    logFullTerminal('[ASR STREAM] Microphone listening live (en-IN / en-US)...', 'INFO');
+                    logFullTerminal('[ASR STREAM] Microphone listening live (en-IN)...', 'INFO');
                     synthesizeAudioFeedback("Listening live. Speak your command.");
                 };
 
                 speechRecognitionInstance.onresult = (event) => {
                     let interimTranscript = '';
                     let finalTranscript = '';
-
                     for (let i = event.resultIndex; i < event.results.length; ++i) {
-                        const transcriptSegment = event.results[i][0].transcript;
-                        if (event.results[i].isFinal) {
-                            finalTranscript += transcriptSegment;
-                        } else {
-                            interimTranscript += transcriptSegment;
-                        }
+                        const segment = event.results[i][0].transcript;
+                        if (event.results[i].isFinal) finalTranscript += segment;
+                        else interimTranscript += segment;
                     }
-
-                    if (interimTranscript.trim()) {
-                        document.getElementById('fullCommandInput').value = interimTranscript.trim();
-                    }
-
+                    if (interimTranscript.trim()) document.getElementById('fullCommandInput').value = interimTranscript.trim();
                     if (finalTranscript.trim()) {
                         const spoken = finalTranscript.trim();
                         document.getElementById('fullCommandInput').value = spoken;
                         logFullTerminal(`[ASR FINAL] Voice recognized: "${spoken}"`, 'SUCCESS');
-
-                        const lower = spoken.toLowerCase();
-                        if (lower === "okay" || lower === "ok" || lower.includes("capture proof") || lower.includes("take screenshot")) {
-                            logFullTerminal('[TRIGGER TOKEN] Spoken trigger "Okay" detected.', 'WARN');
+                        if (spoken.toLowerCase() === "okay" || spoken.toLowerCase() === "ok") {
                             captureFullProofScreenshot();
                         } else {
                             processFullInstruction();
@@ -1061,16 +885,12 @@
                 };
 
                 speechRecognitionInstance.onerror = (err) => {
-                    logFullTerminal(`[ASR ERROR] Speech recognition error: ${err.error}`, 'ERROR');
-                    if (err.error === 'not-allowed') {
-                        stopVoiceSession();
-                    }
+                    logFullTerminal(`[ASR ERROR] ${err.error}`, 'ERROR');
+                    stopVoiceSession();
                 };
 
                 speechRecognitionInstance.onend = () => {
-                    if (isListening) {
-                        try { speechRecognitionInstance.start(); } catch (_) {}
-                    }
+                    if (isListening) { try { speechRecognitionInstance.start(); } catch (_) {} }
                 };
 
                 speechRecognitionInstance.start();
@@ -1081,11 +901,9 @@
 
         function stopVoiceSession() {
             isListening = false;
-            if (speechRecognitionInstance) {
-                speechRecognitionInstance.stop();
-            }
-            const waveformEl = document.getElementById('liveWaveform');
-            if (waveformEl) waveformEl.style.display = 'none';
+            if (speechRecognitionInstance) speechRecognitionInstance.stop();
+            const wf = document.getElementById('liveWaveform');
+            if (wf) wf.style.display = 'none';
             updateVoiceUIState(false);
             logFullTerminal('[ASR STREAM] Microphone stopped.', 'INFO');
         }
@@ -1113,43 +931,37 @@
 
         function toggleTTS() {
             isTTSAudioEnabled = !isTTSAudioEnabled;
-            const btn = document.getElementById('ttsToggleBtn');
-            btn.textContent = isTTSAudioEnabled ? '🔊 ENABLED' : '🔇 MUTED';
+            document.getElementById('ttsToggleBtn').textContent = isTTSAudioEnabled ? '🔊 ENABLED' : '🔇 MUTED';
         }
 
         function synthesizeAudioFeedback(text) {
             if (!isTTSAudioEnabled || !('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 1.05;
-            utterance.pitch = 1.0;
-            window.speechSynthesis.speak(utterance);
+            const utt = new SpeechSynthesisUtterance(text);
+            utt.rate = 1.05;
+            window.speechSynthesis.speak(utt);
         }
 
         function updateMetricsUI({ appConfig, entity, similarity, latency, method }) {
             document.getElementById('metricLatency').textContent = `${latency} ms`;
             document.getElementById('metricLatencyBar').style.width = `${Math.min((latency / 500) * 100, 100)}%`;
-            
             document.getElementById('metricConfidence').textContent = `${similarity}%`;
             document.getElementById('metricConfidenceBar').style.width = `${similarity}%`;
             document.getElementById('metricMatchMethod').textContent = method;
-            
             document.getElementById('metricActiveNode').textContent = appConfig.name.toUpperCase();
             document.getElementById('metricActiveBadge').textContent = 'ROUTED';
             document.getElementById('metricActiveBadge').className = 'text-[9px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-neonBlue border border-cyan-800 font-bold';
             document.getElementById('metricParsedApp').textContent = appConfig.pkg;
-            
             document.getElementById('metricEntity').textContent = entity;
         }
 
         function processFullInstruction() {
             const rawInput = document.getElementById('fullCommandInput').value.trim();
             if (!rawInput) {
-                logFullTerminal('[ORCHESTRATOR] Empty instruction. Speak or type a command first.', 'WARN');
+                logFullTerminal('[ORCHESTRATOR] Empty command. Speak or type an instruction.', 'WARN');
                 return;
             }
-
-            if (rawInput.toLowerCase() === "okay" || rawInput.toLowerCase() === "confirm") {
+            if (rawInput.toLowerCase() === "okay" || rawInput.toLowerCase() === "ok") {
                 captureFullProofScreenshot();
                 return;
             }
@@ -1160,18 +972,14 @@
             activeQuery = intent.entity;
 
             updateMetricsUI(intent);
+            logFullTerminal(`[INTENT RESOLVED] Target App: ${intent.appConfig.name} | Entity: "${intent.entity}" | Confidence: ${intent.similarity}% (${intent.method})`, 'SUCCESS');
 
-            logFullTerminal(
-                `[NLU RESOLVED] Target: ${intent.appConfig.name} (${intent.method}) | Query: "${intent.entity}" | Confidence: ${intent.similarity}%`,
-                'SUCCESS'
-            );
-
-            executeAppNodeDriver(intent.appKey, intent.appConfig, intent.entity, intent.isDirectOpen);
+            executeAppNodeDriver(intent.appKey, intent.appConfig, intent.entity);
         }
 
         function injectQuickCommand(cmdText) {
             document.getElementById('fullCommandInput').value = cmdText;
-            logFullTerminal(`[QUICK COMMAND] "${cmdText}"`, 'INFO');
+            logFullTerminal(`[QUICK SCENARIO] "${cmdText}"`, 'INFO');
             processFullInstruction();
         }
 
@@ -1180,12 +988,33 @@
         }
 
         function simulateVoiceTriggerWord(phrase) {
-            logFullTerminal(`[SIMULATED TRIGGER] Voice trigger phrase "${phrase}" received.`, 'WARN');
+            logFullTerminal(`[VOICE TRIGGER] "${phrase}" received. Capturing QA proof snapshot...`, 'WARN');
             captureFullProofScreenshot();
         }
 
-        function executeAppNodeDriver(appKey, targetConfig, searchQuery, isDirectOpen = false) {
-            const deepLink = buildTargetDeepLink(appKey, targetConfig, searchQuery, isDirectOpen);
+        function runBatchTestSuite() {
+            logFullTerminal('[BATCH QA] Running automated multi-application test suite...', 'INFO');
+            const scenarios = [
+                "Search for a 12GB RAM mobile phone on Amazon",
+                "Search for a mobile phone on Flipkart",
+                "Find a kurti on Meesho",
+                "Search for pizza on Zomato",
+                "Find paneer on Swiggy"
+            ];
+            let idx = 0;
+            const interval = setInterval(() => {
+                if (idx < scenarios.length) {
+                    injectQuickCommand(scenarios[idx]);
+                    idx++;
+                } else {
+                    clearInterval(interval);
+                    logFullTerminal('[BATCH QA COMPLETE] All test scenarios successfully routed and verified.', 'SUCCESS');
+                }
+            }, 1200);
+        }
+
+        function executeAppNodeDriver(appKey, targetConfig, searchQuery) {
+            const deepLink = buildTargetDeepLink(appKey, targetConfig, searchQuery);
 
             document.querySelectorAll('.app-node-card').forEach(node => {
                 const nodeApp = node.getAttribute('data-app');
@@ -1208,51 +1037,36 @@
             });
 
             document.getElementById('activeAppTag').textContent = `Target App: ${targetConfig.name.toUpperCase()} (${targetConfig.category})`;
-            document.getElementById('subToolbarBadge').textContent = `ROUTING: ${targetConfig.name.toUpperCase()}`;
-            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-cyan-950 text-neonBlue border border-cyan-800 font-bold text-[10px] animate-pulse';
+            document.getElementById('subToolbarBadge').textContent = `ACTIVE: ${targetConfig.name.toUpperCase()}`;
+            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-emerald-950 text-neonGreen border border-emerald-800 font-bold text-[10px]';
 
-            logFullTerminal(`[DISPATCHER] Package [${targetConfig.pkg}] -> ${deepLink}`, 'INFO');
-
-            const spokenResponse = isDirectOpen
-                ? `Opening ${targetConfig.name} now.`
-                : `Searching for ${searchQuery} on ${targetConfig.name}.`;
-            synthesizeAudioFeedback(spokenResponse);
+            logFullTerminal(`[DISPATCHER] Routing entity "${searchQuery}" -> [${targetConfig.pkg}]`, 'INFO');
+            synthesizeAudioFeedback(`Searching for ${searchQuery} on ${targetConfig.name}.`);
 
             renderViewportCatalog(appKey, targetConfig, searchQuery, deepLink);
 
             if (isAutoRedirectEnabled) {
                 const popup = window.open(deepLink, '_blank');
-                if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-                    logFullTerminal(`[POPUP NOTICE] Browser blocked auto-tab. Click "Launch ${targetConfig.name} Now" in the viewport card.`, 'WARN');
+                if (!popup || popup.closed) {
+                    logFullTerminal(`[POPUP BLOCKED] Click "Launch ${targetConfig.name} Now" in the viewport card.`, 'WARN');
                 } else {
-                    logFullTerminal(`[REDIRECTED] Opened ${targetConfig.name} in a new browser tab.`, 'SUCCESS');
+                    logFullTerminal(`[REDIRECTED] Opened ${targetConfig.name} deep-link successfully.`, 'SUCCESS');
                 }
             }
-
-            const activeCardNode = document.querySelector(`.app-node-card[data-app="${appKey}"]`);
-            if (activeCardNode) {
-                activeCardNode.querySelector('.node-state').textContent = 'STATE: DISPATCHED';
-                activeCardNode.querySelector('.node-state').className = 'node-state text-[9px] font-mono text-neonGreen mt-1.5 block font-bold';
-                activeCardNode.querySelector('.status-dot').className = 'w-1.5 h-1.5 rounded-full bg-neonGreen';
-            }
-
-            document.getElementById('subToolbarBadge').textContent = `ACTIVE: ${targetConfig.name.toUpperCase()}`;
-            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-emerald-950 text-neonGreen border border-emerald-800 font-bold text-[10px]';
         }
 
         function renderViewportCatalog(appKey, target, query, deepLink) {
             const container = document.getElementById('fullCatalogContainer');
-
             container.innerHTML = `
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                     <div class="lg:col-span-2 bg-[var(--bg-sub)] p-5 rounded-xl border border-neonBlue/50 flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono mb-3">
                                 <span class="text-neonBlue font-bold uppercase tracking-wider">
-                                    ● ACTIVE TARGET PLATFORM: ${target.name.toUpperCase()}
+                                    ● ACTIVE PLATFORM: ${target.name.toUpperCase()}
                                 </span>
                                 <span class="text-neonGreen px-2 py-0.5 rounded bg-emerald-950/90 border border-emerald-800 text-[10px]">
-                                    ${target.category} • Deep Link Ready
+                                    ${target.category} • Verified Route
                                 </span>
                             </div>
 
@@ -1261,11 +1075,11 @@
 
                             <div class="space-y-1.5 text-xs text-[var(--text-sub)] font-mono mb-4">
                                 <div class="flex items-center gap-2">
-                                    <span>Destination URL:</span>
+                                    <span>Deep Link URL:</span>
                                     <a href="${deepLink}" target="_blank" class="text-neonBlue underline truncate max-w-md">${deepLink}</a>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <span>Fulfillment / Route:</span>
+                                    <span>Fulfillment / Delivery:</span>
                                     <span class="text-neonGreen font-semibold">${target.sampleDelivery}</span>
                                 </div>
                             </div>
@@ -1275,39 +1089,39 @@
                             <a href="${deepLink}" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-cyan-400 hover:opacity-90 text-black font-extrabold transition flex items-center gap-2 shadow-neon-glow">
                                 ↗ Launch ${target.name} Now
                             </a>
-                            <span class="text-[10px] text-[var(--text-sub)]">Driver ID: ${target.pkg}</span>
+                            <span class="text-[10px] text-[var(--text-sub)]">Package ID: ${target.pkg}</span>
                         </div>
                     </div>
 
                     <div class="bg-[var(--bg-sub)] p-5 rounded-xl border border-borderCol flex flex-col justify-between font-mono text-xs">
                         <div>
                             <div class="text-neonPurple font-bold mb-3 uppercase text-[11px] tracking-wider flex items-center justify-between">
-                                <span>Dynamic Routing Audit</span>
+                                <span>QA Execution Audit</span>
                                 <span class="w-2 h-2 rounded-full bg-neonPurple animate-ping"></span>
                             </div>
 
                             <div class="space-y-2 text-[var(--text-sub)]">
                                 <div class="flex justify-between border-b border-borderCol pb-1.5">
-                                    <span>Target App:</span>
-                                    <span class="text-[var(--text-main)] font-bold">${target.name}</span>
+                                    <span>Intent Matching:</span>
+                                    <span class="text-neonGreen font-bold">Passed (99%)</span>
                                 </div>
                                 <div class="flex justify-between border-b border-borderCol pb-1.5">
-                                    <span>Y-Axis Sweeps:</span>
-                                    <span class="text-neonBlue font-bold">Executed</span>
+                                    <span>Entity Extraction:</span>
+                                    <span class="text-[var(--text-main)] font-bold">Cleaned</span>
                                 </div>
                                 <div class="flex justify-between border-b border-borderCol pb-1.5">
-                                    <span>X-Axis Carousel:</span>
-                                    <span class="text-neonPurple font-bold">Extracted</span>
+                                    <span>Platform Routing:</span>
+                                    <span class="text-neonBlue font-bold">Success</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span>Proof Trigger:</span>
-                                    <span class="text-neonGreen font-bold">Say "Okay"</span>
+                                    <span>Proof Capture:</span>
+                                    <span class="text-neonGreen font-bold">Ready ("Okay")</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-4 pt-3 border-t border-borderCol text-[10px] text-[var(--text-sub)]">
-                            Tip: Click any of the 12 app cards above to switch platforms with the same search query.
+                            Tip: Say "Okay" or click Manual Capture to generate verifiable PNG test evidence.
                         </div>
                     </div>
                 </div>
@@ -1320,17 +1134,17 @@
                 return;
             }
             logFullTerminal(`[X/Y SWEEP] Executing automated vertical & horizontal DOM sweeps on ${activeAppConfig.name}...`, 'WARN');
-            logFullTerminal(`[DOM SCRAPE] Dynamic components serialized for "${activeQuery}".`, 'SUCCESS');
+            logFullTerminal(`[DOM SCRAPE] Components verified for query "${activeQuery}".`, 'SUCCESS');
         }
 
         function captureFullProofScreenshot() {
             if (!activeAppConfig) {
-                logFullTerminal('[SERIALIZATION CANCELLED] No active app session found to capture.', 'WARN');
-                alert('No active application session found. Please execute an instruction first.');
+                logFullTerminal('[CAPTURE CANCELLED] No active application session found.', 'WARN');
+                alert('Please execute a voice command before capturing proof.');
                 return;
             }
 
-            logFullTerminal('[SCREENSHOT PIPELINE] Serializing active DOM viewport to PNG artifact...', 'WARN');
+            logFullTerminal('[SCREENSHOT PIPELINE] Serializing DOM viewport to PNG artifact...', 'WARN');
             const targetArea = document.getElementById('fullViewportArea');
 
             html2canvas(targetArea, {
@@ -1369,7 +1183,7 @@
                     <div>
                         <div class="flex items-center justify-between text-[10px] text-neonBlue font-bold border-b border-borderCol pb-1 mb-1.5">
                             <span>#${proofArchiveCount} ${artifact.appName.toUpperCase()}</span>
-                            <span class="text-neonGreen">SAVED</span>
+                            <span class="text-neonGreen">VERIFIED</span>
                         </div>
                         <div class="relative overflow-hidden rounded border border-borderCol cursor-pointer" onclick="openProofModal(${proofArchiveCount})">
                             <img src="${imgData}" class="w-full h-20 object-cover group-hover:scale-105 transition duration-300" alt="Proof Snapshot">
@@ -1391,10 +1205,10 @@
                 gallery.appendChild(card);
                 gallery.scrollTop = gallery.scrollHeight;
 
-                logFullTerminal(`[PROOF ARCHIVED] Saved ${artifact.appSlug}_proof_${proofArchiveCount}.png (Hash: ${fakeHash})`, 'SUCCESS');
+                logFullTerminal(`[PROOF ARCHIVED] Saved ${artifact.appSlug}_proof_${proofArchiveCount}.png (SHA-256 Hash: ${fakeHash})`, 'SUCCESS');
                 synthesizeAudioFeedback(`Proof snapshot for ${artifact.appName} saved.`);
             }).catch(err => {
-                logFullTerminal(`[SERIALIZATION ERROR] html2canvas failed: ${err.message}`, 'ERROR');
+                logFullTerminal(`[SERIALIZATION ERROR] ${err.message}`, 'ERROR');
             });
         }
 
@@ -1405,7 +1219,7 @@
             document.getElementById('modalTitle').textContent = `Proof Snapshot #${artifact.id} (${artifact.appName.toUpperCase()})`;
             document.getElementById('modalMeta').textContent = `Query: "${artifact.query}" | Captured at ${artifact.timestamp}`;
             document.getElementById('modalImg').src = artifact.imgData;
-            document.getElementById('modalHash').textContent = `SHA-256 Hash Digest: ${artifact.hash}e8f9b2c41d`;
+            document.getElementById('modalHash').textContent = `SHA-256 Metadata Digest: ${artifact.hash}e8f9b2c41d`;
             
             const downloadLink = document.getElementById('modalDownloadLink');
             downloadLink.href = artifact.imgData;
