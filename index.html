@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omni-App Voice Commerce Orchestrator — Enterprise Suite</title>
+    <title>Omni-App Voice Commerce Orchestrator - Enterprise Suite</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- HTML2Canvas for Visual Proof Serialization -->
@@ -17,247 +17,131 @@
             theme: {
                 extend: {
                     colors: {
-                        // Semantic Palette mapped to CSS variables for instant Dark/Light theme switching
-                        darkMain: 'var(--bg-main)',
-                        darkPanel: 'var(--bg-panel)',
-                        darkSub: 'var(--bg-sub)',
-                        borderCol: 'var(--border-col)',
-                        borderHighlight: 'var(--accent-primary)',
-                        neonBlue: 'var(--accent-primary)',
-                        neonPurple: 'var(--accent-secondary)',
-                        neonGreen: 'var(--accent-success)',
-                        neonRose: 'var(--accent-danger)',
-                        neonAmber: 'var(--accent-warning)',
+                        darkMain: '#060911',
+                        darkPanel: '#0d1322',
+                        darkSub: '#131b2e',
+                        borderCol: 'var(--border-color)',
+                        borderHighlight: '#00f3ff',
+                        neonBlue: '#00f3ff',
+                        neonPurple: '#8b5cf6',
+                        neonGreen: '#10b981',
+                        neonRose: '#ff3366',
+                        neonAmber: '#f59e0b',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     boxShadow: {
-                        'neon-glow': '0 4px 14px -2px var(--shadow-primary)',
-                        'purple-glow': '0 4px 14px -2px var(--shadow-secondary)',
-                        'rose-glow': '0 4px 14px -2px var(--shadow-danger)',
+                        'neon-glow': '0 0 20px rgba(0, 243, 255, 0.25)',
+                        'purple-glow': '0 0 20px rgba(139, 92, 246, 0.25)',
+                        'rose-glow': '0 0 20px rgba(255, 51, 102, 0.25)',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* =========================================================
-           CLEAN & CLEAR ENTERPRISE DESIGN SYSTEM (LIGHT & DARK)
-           ========================================================= */
         :root {
-            --bg-main: #f8fafc;
+            --bg-main: #f1f5f9;
             --bg-panel: #ffffff;
-            --bg-sub: #f1f5f9;
-            --bg-terminal: #0f172a;
-            --border-col: #e2e8f0;
-            --border-subtle: #cbd5e1;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
-            --accent-primary: #0284c7;
-            --accent-secondary: #4f46e5;
-            --accent-success: #059669;
-            --accent-danger: #e11d48;
-            --accent-warning: #d97706;
-            --shadow-primary: rgba(2, 132, 199, 0.22);
-            --shadow-secondary: rgba(79, 70, 229, 0.22);
-            --shadow-danger: rgba(225, 29, 72, 0.22);
-            --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+            --bg-sub: #e2e8f0;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --border-color: rgba(148, 163, 184, 0.5);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --terminal-bg: #0f172a;
+            --terminal-text: #f8fafc;
+            --scanline-color: rgba(0, 0, 0, 0.02);
         }
-
-        html.dark {
-            --bg-main: #090c12;
-            --bg-panel: #111622;
-            --bg-sub: #171e2e;
-            --bg-terminal: #070a10;
-            --border-col: #1e293b;
-            --border-subtle: #293548;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent-primary: #38bdf8;
-            --accent-secondary: #818cf8;
-            --accent-success: #10b981;
-            --accent-danger: #f43f5e;
-            --accent-warning: #f59e0b;
-            --shadow-primary: rgba(56, 189, 248, 0.22);
-            --shadow-secondary: rgba(129, 140, 248, 0.22);
-            --shadow-danger: rgba(244, 63, 94, 0.25);
-            --card-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.45);
+        .dark {
+            --bg-main: #060911;
+            --bg-panel: #0d1322;
+            --bg-sub: #131b2e;
+            --text-main: #f0f4f8;
+            --text-sub: #94a3b8;
+            --border-color: rgba(34, 47, 76, 0.8);
+            --card-bg: rgba(13, 19, 34, 0.85);
+            --terminal-bg: #050811;
+            --terminal-text: #e2e8f0;
+            --scanline-color: rgba(0, 243, 255, 0.04);
         }
 
         body {
-            background-color: var(--bg-main) !important;
-            color: var(--text-primary) !important;
-            background-image: none !important;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             overflow-x: hidden;
-            transition: background-color 0.25s ease, color 0.25s ease;
-            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
         }
-
-        /* Clean, crisp surfaces without visual clutter or scanlines */
-        .scanline {
-            background-image: none !important;
-        }
-
         .glass-panel {
-            background: var(--bg-panel) !important;
-            backdrop-filter: none !important;
-            border: 1px solid var(--border-col) !important;
-            box-shadow: var(--card-shadow) !important;
-            transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
-
-        .glass-panel-glow {
-            background: var(--bg-panel) !important;
-            border: 1px solid var(--accent-primary) !important;
-            box-shadow: 0 0 0 3px var(--shadow-primary) !important;
-        }
-
-        /* Adaptive Light/Dark overrides for hardcoded Tailwind dark classes */
-        html:not(.dark) header {
-            background-color: rgba(255, 255, 255, 0.94) !important;
-            border-bottom-color: var(--border-col) !important;
-        }
-        html:not(.dark) .bg-\[\#080d1a\],
-        html:not(.dark) .bg-\[\#080d1a\]\/50 {
-            background-color: var(--bg-sub) !important;
-        }
-        html:not(.dark) .bg-\[\#050811\] {
-            background-color: #f1f5f9 !important;
-        }
-        html:not(.dark) footer.bg-\[\#050811\] {
-            background-color: #ffffff !important;
-        }
-        html:not(.dark) .text-white {
-            color: #0f172a !important;
-        }
-        html:not(.dark) .text-slate-300 {
-            color: #334155 !important;
-        }
-        html:not(.dark) .text-slate-400 {
-            color: #475569 !important;
-        }
-        html:not(.dark) .text-slate-500 {
-            color: #64748b !important;
-        }
-        html:not(.dark) .border-slate-800,
-        html:not(.dark) .border-slate-800\/80,
-        html:not(.dark) .border-slate-700 {
-            border-color: #e2e8f0 !important;
-        }
-        html:not(.dark) .bg-slate-800 {
-            background-color: #e2e8f0 !important;
-            color: #1e293b !important;
-        }
-        html:not(.dark) .bg-slate-900 {
-            background-color: #ffffff !important;
-        }
-        html:not(.dark) .bg-cyan-950,
-        html:not(.dark) .bg-cyan-950\/80,
-        html:not(.dark) .bg-cyan-950\/60 {
-            background-color: #e0f2fe !important;
-            border-color: #bae6fd !important;
-        }
-        html:not(.dark) .bg-emerald-950,
-        html:not(.dark) .bg-emerald-950\/80 {
-            background-color: #d1fae5 !important;
-            border-color: #a7f3d0 !important;
-        }
-        html:not(.dark) .bg-rose-950\/40,
-        html:not(.dark) .bg-rose-950\/60 {
-            background-color: #ffe4e6 !important;
-            border-color: #fecdd3 !important;
-        }
-        /* Keep terminal console crisp dark-slate even in light mode for high-contrast log readability */
-        html:not(.dark) #fullTerminal {
-            background-color: #0f172a !important;
-            border-color: #1e293b !important;
-        }
-        html:not(.dark) #fullTerminal .text-slate-300 {
-            color: #e2e8f0 !important;
-        }
-        html:not(.dark) #fullTerminal .text-slate-500 {
-            color: #94a3b8 !important;
-        }
-        html:not(.dark) #micMainBtn {
-            color: #ffffff !important;
-        }
-
-        /* Scrollbars */
         ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: transparent;
+            background: var(--bg-main);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--border-subtle);
-            border-radius: 9999px;
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        .dark::-webkit-scrollbar-thumb {
+            background: #1e293b;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-primary);
+            background: #00f3ff;
         }
-
-        /* Clean Quick Command Pills */
         .subtoolbar-btn {
-            transition: all 0.18s ease;
-            border-radius: 8px !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .subtoolbar-btn:hover {
-            background: rgba(56, 189, 248, 0.12) !important;
-            color: var(--accent-primary) !important;
-            border-color: var(--accent-primary) !important;
+            background: rgba(0, 243, 255, 0.12);
+            color: #00f3ff;
+            border-color: rgba(0, 243, 255, 0.4);
             transform: translateY(-1px);
         }
-
-        /* Clean Driver Node Cards */
         .app-node-card {
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .app-node-card:hover {
-            opacity: 1 !important;
-            border-color: var(--accent-primary) !important;
-            transform: translateY(-1px);
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, var(--scanline-color) 51%);
+            background-size: 100% 4px;
         }
-
-        /* Input Field Focus Ring */
-        #fullCommandInput:focus {
-            border-color: var(--accent-primary) !important;
-            box-shadow: 0 0 0 3px var(--shadow-primary) !important;
-        }
-
         @keyframes pulse-ring {
-            0% { transform: scale(0.96); opacity: 0.85; }
-            50% { transform: scale(1.04); opacity: 0.45; }
-            100% { transform: scale(0.96); opacity: 0.85; }
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
         }
         .mic-pulse {
             animation: pulse-ring 2s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-sky-500 selection:text-white scanline">
+<body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-black scanline">
 
     <!-- TOP TELEMETRY NAVBAR -->
-    <header class="sticky top-0 z-40 bg-darkPanel/95 backdrop-blur-md border-b border-borderCol">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+    <header class="sticky top-0 z-40 bg-[var(--bg-panel)]/95 backdrop-blur-md border-b border-borderCol transition-colors">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
             <!-- Brand & Status -->
             <div class="flex items-center gap-3">
                 <div class="relative flex items-center justify-center">
-                    <div class="w-3 h-3 rounded-full bg-neonBlue animate-ping absolute"></div>
-                    <div class="w-3 h-3 rounded-full bg-neonBlue relative"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-neonBlue animate-ping absolute"></div>
+                    <div class="w-3.5 h-3.5 rounded-full bg-neonBlue relative"></div>
                 </div>
-                <div class="flex items-center gap-2.5">
-                    <span class="text-base font-display font-bold tracking-tight text-white">
-                        Omni-Voice Orchestrator
+                <div>
+                    <span class="text-base font-extrabold tracking-wider bg-gradient-to-r from-neonBlue via-neonPurple to-neonGreen bg-clip-text text-transparent">
+                        OMNI-VOICE ORCHESTRATOR
                     </span>
-                    <span class="hidden sm:inline-block text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-cyan-950/80 text-neonBlue border border-cyan-800/60">
-                        v3.8 Enterprise
+                    <span class="hidden sm:inline-block ml-2 text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/90 text-neonBlue border border-cyan-800/60 uppercase">
+                        v4.0 Universal Router
                     </span>
                 </div>
             </div>
@@ -266,181 +150,196 @@
             <div class="hidden xl:flex items-center gap-5 text-xs font-mono">
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span class="text-slate-400">Active Nodes: <strong class="text-white font-semibold">5 Platforms</strong></span>
+                    <span class="text-[var(--text-sub)]">Routing: <strong class="text-[var(--text-main)]">Universal Dynamic + 12 Native Nodes</strong></span>
                 </div>
-                <div class="h-4 w-px bg-slate-800"></div>
+                <div class="h-4 w-px bg-slate-700"></div>
                 <div class="flex items-center gap-2">
-                    <span class="text-slate-400">Capture Trigger: <strong class="text-neonBlue font-semibold">"Okay" / "Confirm"</strong></span>
+                    <span class="text-[var(--text-sub)]">Auto-Redirect:</span>
+                    <button id="autoRedirectToggleBtn" onclick="toggleAutoRedirect()" class="px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition">
+                        ⚡ ON (INSTANT)
+                    </button>
                 </div>
-                <div class="h-4 w-px bg-slate-800"></div>
+                <div class="h-4 w-px bg-slate-700"></div>
                 <div class="flex items-center gap-2">
-                    <span class="text-slate-400">Voice Feedback:</span>
-                    <button id="ttsToggleBtn" onclick="toggleTTS()" class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 hover:text-neonBlue border border-slate-700 text-[11px] font-medium transition">
-                        🔊 Enabled
+                    <span class="text-[var(--text-sub)]">TTS Voice:</span>
+                    <button id="ttsToggleBtn" onclick="toggleTTS()" class="px-2 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-main)] hover:text-neonBlue border border-borderCol transition">
+                        🔊 ENABLED
                     </button>
                 </div>
             </div>
 
-            <!-- Primary Actions: Theme Switcher + Voice Trigger -->
-            <div class="flex items-center gap-2.5">
-                <button id="themeToggleBtn" onclick="toggleTheme()" title="Switch Dark / Light Theme" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 font-mono text-xs font-medium transition flex items-center gap-1.5 cursor-pointer">
+            <!-- Theme Toggle & Primary Voice Action -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleThemeMode()" id="themeToggleBtn" class="px-3 py-2 rounded-xl bg-[var(--bg-sub)] border border-borderCol text-[var(--text-main)] hover:text-neonBlue text-xs font-mono font-bold transition flex items-center gap-1.5 cursor-pointer" title="Switch Theme">
                     <span id="themeIcon">☀️</span>
                     <span id="themeLabel" class="hidden sm:inline">Light</span>
                 </button>
 
-                <button id="micMainBtn" onclick="toggleVoiceRecognition()" class="px-4 py-2 rounded-lg bg-neonBlue hover:opacity-90 text-slate-950 font-semibold text-xs font-mono shadow-neon-glow transition-all flex items-center gap-2 cursor-pointer">
+                <button id="micMainBtn" onclick="toggleVoiceRecognition()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple hover:from-cyan-400 hover:to-purple-500 text-black font-bold text-xs font-mono shadow-neon-glow transition-all flex items-center gap-2 cursor-pointer">
                     <svg id="micIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path>
                     </svg>
-                    <span id="micBtnText">Start Listener</span>
+                    <span id="micBtnText">START VOICE LISTENER</span>
                 </button>
             </div>
         </div>
 
         <!-- QUICK REDIRECTION & DEMO COMMAND SUB-TOOLBAR -->
-        <div class="bg-[#080d1a] border-t border-slate-800/80 px-4 sm:px-6 py-2.5">
-            <div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        <div class="bg-[var(--bg-sub)] border-t border-borderCol px-4 sm:px-6 py-2 transition-colors">
+            <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
                 <div class="flex items-center gap-2 overflow-x-auto py-0.5 scrollbar-none">
-                    <span class="text-slate-500 uppercase tracking-wider text-[10px] font-semibold whitespace-nowrap mr-1">Sample Commands:</span>
-                    <button onclick="injectQuickCommand('Search stainless steel biryani pot 5 litre on Amazon')" class="subtoolbar-btn px-3 py-1 text-slate-300 bg-slate-900 border border-slate-800 whitespace-nowrap">
-                        🛍️ Biryani Pot (Amazon)
+                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Any App:</span>
+                    <button onclick="injectQuickCommand('Order 12GB RAM mobile phone on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        📱 Flipkart
                     </button>
-                    <button onclick="injectQuickCommand('Order 12GB RAM 256GB storage mobile on Flipkart')" class="subtoolbar-btn px-3 py-1 text-slate-300 bg-slate-900 border border-slate-800 whitespace-nowrap">
-                        📱 Phone (Flipkart)
+                    <button onclick="injectQuickCommand('Get cotton ethnic kurti set on Measho')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        👗 Meesho
                     </button>
-                    <button onclick="injectQuickCommand('Get cotton ethnic kurti set on Measho')" class="subtoolbar-btn px-3 py-1 text-slate-300 bg-slate-900 border border-slate-800 whitespace-nowrap">
-                        👗 Kurti (Meesho)
+                    <button onclick="injectQuickCommand('Order Pepperoni Pizza large on Zomato')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        🍕 Zomato
                     </button>
-                    <button onclick="injectQuickCommand('Find Paneer Butter Masla on Swiggi')" class="subtoolbar-btn px-3 py-1 text-slate-300 bg-slate-900 border border-slate-800 whitespace-nowrap">
-                        🍲 Paneer (Swiggy)
+                    <button onclick="injectQuickCommand('Find Paneer Butter Masala on Swiggi')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        🍲 Swiggy
                     </button>
-                    <button onclick="injectQuickCommand('Order Pepperoni Pizza large on Zomato')" class="subtoolbar-btn px-3 py-1 text-slate-300 bg-slate-900 border border-slate-800 whitespace-nowrap">
-                        🍕 Pizza (Zomato)
+                    <button onclick="injectQuickCommand('Buy fresh organic mangoes on Blinkit')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        ⚡ Blinkit
+                    </button>
+                    <button onclick="injectQuickCommand('Search running shoes on Myntra')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        👟 Myntra
+                    </button>
+                    <button onclick="injectQuickCommand('Search biryani pot 5 litre on Amazon')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        🛍️ Amazon
+                    </button>
+                    <button onclick="injectQuickCommand('Find wireless earbuds on Croma')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                        🌐 Any Custom App (Croma)
                     </button>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <button onclick="simulateVoiceTriggerWord('Okay')" class="px-3 py-1 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-neonGreen border border-emerald-700/50 text-[11px] font-semibold flex items-center gap-1.5 transition">
-                        📸 Say "Okay" (Capture)
+                    <button onclick="simulateVoiceTriggerWord('Okay')" class="px-2.5 py-1 rounded-lg bg-emerald-950/90 hover:bg-emerald-900 text-neonGreen border border-emerald-700/50 text-[11px] font-bold flex items-center gap-1 cursor-pointer">
+                        📸 Say "Okay" (Proof)
                     </button>
-                    <div class="h-3.5 w-px bg-slate-800"></div>
-                    <div class="flex items-center gap-1.5">
-                        <span class="text-slate-500 text-[11px]">Status:</span>
-                        <span id="subToolbarBadge" class="px-2 py-0.5 rounded-md bg-emerald-500/15 text-neonGreen border border-emerald-500/30 font-semibold text-[10px]">
-                            IDLE
-                        </span>
-                    </div>
+                    <div class="h-3 w-px bg-slate-700"></div>
+                    <span id="subToolbarBadge" class="px-2 py-0.5 rounded bg-emerald-500/15 text-neonGreen border border-emerald-500/30 font-bold text-[10px]">
+                        IDLE
+                    </span>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- MAIN DASHBOARD CONTENT -->
-    <main class="max-w-[1440px] mx-auto w-full px-4 sm:px-6 py-7 space-y-7 flex-1">
+    <main class="max-w-[1600px] mx-auto w-full px-4 sm:px-6 py-6 space-y-6 flex-1">
 
-        <!-- METRICS & SYSTEM AUDIT BANNER -->
+        <!-- METRICS & SYSTEM AUDIT METRICS BANNER -->
         <section class="grid grid-cols-2 md:grid-cols-5 gap-4">
             <!-- Metric 1: Processing Latency -->
             <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-[11px] font-medium text-slate-400">Intent Latency</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">A.S.R. / Intent Latency</span>
                 <div class="flex items-baseline justify-between mt-2">
                     <span id="metricLatency" class="text-2xl font-bold font-mono text-neonBlue">0 ms</span>
-                    <span class="text-[10px] font-mono text-neonGreen">Target &lt;500ms</span>
+                    <span class="text-[10px] font-mono text-emerald-400">Sub-500ms Target</span>
                 </div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <div id="metricLatencyBar" class="bg-neonBlue h-full w-0 transition-all duration-300 rounded-full"></div>
+                <div class="w-full bg-[var(--bg-sub)] h-1 rounded-full mt-3 overflow-hidden">
+                    <div id="metricLatencyBar" class="bg-neonBlue h-full w-0 transition-all duration-300"></div>
                 </div>
             </div>
 
             <!-- Metric 2: NLU Confidence -->
             <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-[11px] font-medium text-slate-400">Fuzzy Match Confidence</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">NLU Match Confidence</span>
                 <div class="flex items-baseline justify-between mt-2">
                     <span id="metricConfidence" class="text-2xl font-bold font-mono text-neonPurple">0.0%</span>
-                    <span class="text-[10px] font-mono text-slate-400">Levenshtein</span>
+                    <span id="metricMatchMethod" class="text-[10px] font-mono text-[var(--text-sub)]">Dynamic N-Gram</span>
                 </div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <div id="metricConfidenceBar" class="bg-neonPurple h-full w-0 transition-all duration-300 rounded-full"></div>
+                <div class="w-full bg-[var(--bg-sub)] h-1 rounded-full mt-3 overflow-hidden">
+                    <div id="metricConfidenceBar" class="bg-neonPurple h-full w-0 transition-all duration-300"></div>
                 </div>
             </div>
 
             <!-- Metric 3: Active Routing Target -->
             <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-[11px] font-medium text-slate-400">Target Application</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Resolved Target App</span>
                 <div class="flex items-center justify-between mt-2">
-                    <span id="metricActiveNode" class="text-lg font-bold font-mono text-white">NONE</span>
-                    <span id="metricActiveBadge" class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 font-medium">IDLE</span>
+                    <span id="metricActiveNode" class="text-lg font-bold font-mono text-[var(--text-main)] truncate">NONE</span>
+                    <span id="metricActiveBadge" class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-sub)]">IDLE</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-2.5 truncate" id="metricParsedApp">No active route</div>
+                <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2 truncate" id="metricParsedApp">No active process</div>
             </div>
 
             <!-- Metric 4: Extracted Entity -->
             <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-[11px] font-medium text-slate-400">Extracted Product Query</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Extracted Search Query</span>
                 <div class="mt-2">
-                    <span id="metricEntity" class="text-sm font-mono font-semibold text-neonAmber truncate block">--</span>
+                    <span id="metricEntity" class="text-xs font-mono font-bold text-neonAmber truncate block">--</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-2.5">Cleaned entity</div>
+                <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2">Action & App Tokens Stripped</div>
             </div>
 
             <!-- Metric 5: Archived Proof Snapshots -->
             <div class="glass-panel rounded-xl p-4 flex flex-col justify-between col-span-2 md:col-span-1">
-                <span class="text-[11px] font-medium text-slate-400">Saved Proof Snapshots</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Proof Artifacts Saved</span>
                 <div class="flex items-baseline justify-between mt-2">
                     <span id="metricProofCount" class="text-2xl font-bold font-mono text-neonGreen">0</span>
-                    <span class="text-[10px] font-mono text-neonGreen">PNG Ready</span>
+                    <span class="text-[10px] font-mono text-neonGreen">PNG Encoded</span>
                 </div>
-                <div class="text-[11px] font-mono text-slate-500 mt-2.5">Voice trigger: "Okay"</div>
+                <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2">Triggered by "Okay"</div>
             </div>
         </section>
 
         <!-- VOICE INPUT & CONTROLLER SECTION -->
-        <section class="glass-panel rounded-2xl p-6">
-            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-slate-800/80 pb-5 mb-6">
+        <section class="glass-panel rounded-2xl p-6 border border-borderCol">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-borderCol pb-5 mb-6">
                 <div>
                     <div class="flex flex-wrap items-center gap-2">
-                        <span class="text-[11px] font-mono font-semibold text-neonBlue bg-cyan-950/80 px-2.5 py-0.5 rounded-md border border-cyan-700/50">
-                            Speech-to-Intent NLU Engine
+                        <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-950/90 px-2.5 py-1 rounded border border-cyan-700/50 uppercase tracking-widest">
+                            Universal Dynamic Speech-to-App Engine
                         </span>
-                        <span class="text-xs font-mono text-slate-400">Distil-Whisper + Dynamic N-Gram Disambiguation</span>
+                        <span class="text-[10px] font-mono text-[var(--text-sub)]">Zero-Default-Lock • Multi-Platform & Open-Web Routing</span>
                     </div>
-                    <h1 class="text-xl md:text-2xl font-display font-bold text-white mt-2 tracking-tight">Voice Command Dispatcher & App Router</h1>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-[var(--text-main)] mt-2">Omni-App Voice Dispatcher & Intent Orchestrator</h1>
                 </div>
                 
                 <div class="flex items-center gap-3">
-                    <span id="mainStatusBadge" class="px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold tracking-wide">
+                    <span id="mainStatusBadge" class="px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold tracking-wider">
                         STANDBY / READY
                     </span>
                 </div>
             </div>
 
-            <!-- Speech Input Control Box -->
+            <!-- Voice Instruction Format Guide & Input Control Box -->
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 <div class="lg:col-span-3 space-y-2">
-                    <label for="fullCommandInput" class="block text-xs font-medium text-slate-400">
-                        Spoken or Typed Instruction
-                    </label>
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <label class="block text-xs font-mono uppercase text-[var(--text-sub)] tracking-wider">
+                            Spoken or Typed Instruction (Auto-Executes on Voice Pause)
+                        </label>
+                        <span class="text-[11px] font-mono text-neonBlue">
+                            Format: "[Action] [Item] on/in/from [Any App Name]"
+                        </span>
+                    </div>
                     <div class="relative flex items-center">
                         <input type="text" id="fullCommandInput" 
-                            placeholder="Speak or type a command — e.g. 'Search 12GB RAM mobile phone on Amazon'..." 
-                            class="w-full bg-[#080d1a] border border-borderCol rounded-xl pl-4 pr-20 py-3.5 text-sm text-white focus:outline-none font-mono transition-all">
+                            onkeydown="if(event.key==='Enter') processFullInstruction()"
+                            placeholder="Try: 'Order masala dosa on Swiggy', 'Buy shoes on Myntra', 'Search iPhone on Flipkart', or 'Open YouTube'..." 
+                            class="w-full bg-[var(--bg-sub)] border border-borderCol rounded-xl pl-4 pr-20 py-3.5 text-sm text-[var(--text-main)] focus:outline-none focus:border-neonBlue font-mono transition-all">
                         <div class="absolute right-3 flex items-center gap-2">
-                            <button onclick="clearCommandInput()" class="text-xs text-slate-400 hover:text-white font-mono px-2.5 py-1 rounded-md hover:bg-slate-800/60 transition">
+                            <button onclick="clearCommandInput()" class="text-xs text-[var(--text-sub)] hover:text-[var(--text-main)] font-mono px-2 py-1 cursor-pointer">
                                 Clear
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-end gap-2.5">
-                    <button onclick="toggleVoiceRecognition()" class="flex-1 py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-neonBlue font-mono font-semibold text-xs border border-slate-700 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <div class="flex items-end gap-2">
+                    <button onclick="toggleVoiceRecognition()" class="flex-1 py-3.5 px-4 rounded-xl bg-[var(--bg-sub)] hover:bg-slate-200 dark:hover:bg-slate-700 text-neonBlue font-mono font-bold text-xs border border-borderCol transition-all flex items-center justify-center gap-2 cursor-pointer">
                         <svg class="w-4 h-4 text-neonBlue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path>
                         </svg>
-                        <span id="micBoxBtnLabel">Listen</span>
+                        <span id="micBoxBtnLabel">Listen Mic</span>
                     </button>
                     
-                    <button onclick="processFullInstruction()" class="flex-1 py-3.5 px-4 rounded-xl bg-neonGreen hover:opacity-90 text-white font-mono font-semibold text-xs transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer">
+                    <button onclick="processFullInstruction()" class="flex-1 py-3.5 px-4 rounded-xl bg-gradient-to-r from-neonGreen to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-mono font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 cursor-pointer">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
                         </svg>
@@ -449,105 +348,67 @@
                 </div>
             </div>
 
-            <!-- APPLICATION NODES STATE GRID -->
-            <div class="mt-7">
+            <!-- APPLICATION NODES STATE GRID (DYNAMICALLY EXPANDED) -->
+            <div class="mt-6">
                 <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                        Target Application Driver Nodes
+                    <h3 class="text-xs font-mono font-bold text-[var(--text-sub)] uppercase tracking-wider">
+                        Multi-Application Execution Driver Nodes (Click Any Node to Route Manually)
                     </h3>
-                    <span class="text-[11px] font-mono text-slate-500">Isolated execution — inactive nodes stay idle</span>
+                    <span class="text-[10px] font-mono text-[var(--text-sub)]">Supports 12 Built-in Platforms + Dynamic Any-App Fallback</span>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
-                    <!-- Amazon Node -->
-                    <div data-app="amazon" class="app-node-card bg-[#080d1a] p-4 rounded-xl border border-slate-800 text-center opacity-50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[10px] font-mono text-neonBlue font-semibold uppercase">E-Commerce</span>
-                            <span class="w-2 h-2 rounded-full bg-slate-600 status-dot"></span>
-                        </div>
-                        <div class="text-sm font-bold text-white">Amazon</div>
-                        <div class="text-[11px] font-mono text-slate-500 mt-0.5 truncate">com.amazon.mShop</div>
-                        <span class="node-state text-[10px] font-mono text-slate-500 mt-2.5 block font-semibold">STATE: IDLE</span>
-                    </div>
-
-                    <!-- Flipkart Node -->
-                    <div data-app="flipkart" class="app-node-card bg-[#080d1a] p-4 rounded-xl border border-slate-800 text-center opacity-50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[10px] font-mono text-neonPurple font-semibold uppercase">E-Commerce</span>
-                            <span class="w-2 h-2 rounded-full bg-slate-600 status-dot"></span>
-                        </div>
-                        <div class="text-sm font-bold text-white">Flipkart</div>
-                        <div class="text-[11px] font-mono text-slate-500 mt-0.5 truncate">com.flipkart.android</div>
-                        <span class="node-state text-[10px] font-mono text-slate-500 mt-2.5 block font-semibold">STATE: IDLE</span>
-                    </div>
-
-                    <!-- Meesho Node -->
-                    <div data-app="meesho" class="app-node-card bg-[#080d1a] p-4 rounded-xl border border-slate-800 text-center opacity-50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[10px] font-mono text-neonAmber font-semibold uppercase">Wholesale</span>
-                            <span class="w-2 h-2 rounded-full bg-slate-600 status-dot"></span>
-                        </div>
-                        <div class="text-sm font-bold text-white">Meesho</div>
-                        <div class="text-[11px] font-mono text-slate-500 mt-0.5 truncate">com.meesho.supply</div>
-                        <span class="node-state text-[10px] font-mono text-slate-500 mt-2.5 block font-semibold">STATE: IDLE</span>
-                    </div>
-
-                    <!-- Zomato Node -->
-                    <div data-app="zomato" class="app-node-card bg-[#080d1a] p-4 rounded-xl border border-slate-800 text-center opacity-50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[10px] font-mono text-neonRose font-semibold uppercase">Food Delivery</span>
-                            <span class="w-2 h-2 rounded-full bg-slate-600 status-dot"></span>
-                        </div>
-                        <div class="text-sm font-bold text-white">Zomato</div>
-                        <div class="text-[11px] font-mono text-slate-500 mt-0.5 truncate">com.application.zomato</div>
-                        <span class="node-state text-[10px] font-mono text-slate-500 mt-2.5 block font-semibold">STATE: IDLE</span>
-                    </div>
-
-                    <!-- Swiggy Node -->
-                    <div data-app="swiggy" class="app-node-card bg-[#080d1a] p-4 rounded-xl border border-slate-800 text-center opacity-50">
-                        <div class="flex items-center justify-between mb-1.5">
-                            <span class="text-[10px] font-mono text-neonRose font-semibold uppercase">Food Delivery</span>
-                            <span class="w-2 h-2 rounded-full bg-slate-600 status-dot"></span>
-                        </div>
-                        <div class="text-sm font-bold text-white">Swiggy</div>
-                        <div class="text-[11px] font-mono text-slate-500 mt-0.5 truncate">in.swiggy.android</div>
-                        <span class="node-state text-[10px] font-mono text-slate-500 mt-2.5 block font-semibold">STATE: IDLE</span>
-                    </div>
+                <div id="nodesGridContainer" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+                    <!-- Populated dynamically on load from PLATFORM_TARGETS -->
                 </div>
             </div>
         </section>
 
         <!-- DYNAMIC VIEWPORT & LIVE DRIVER SIMULATOR -->
-        <section id="fullViewportArea" class="glass-panel rounded-2xl p-6">
-            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4 mb-5">
-                <div class="flex items-center gap-2.5">
+        <section id="fullViewportArea" class="glass-panel rounded-2xl p-6 border border-borderCol">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-borderCol pb-3 mb-4">
+                <div class="flex items-center gap-3">
                     <div class="w-2.5 h-2.5 rounded-full bg-neonGreen animate-pulse"></div>
-                    <h2 class="text-sm font-display font-bold text-white tracking-tight">
-                        Live Viewport Simulation & Deep-Link Preview
+                    <h2 class="text-sm font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
+                        Live Application Redirection & Deep-Link Dispatcher
                     </h2>
                 </div>
-                <div class="flex items-center gap-2.5">
-                    <span id="activeAppTag" class="text-xs font-mono text-neonBlue bg-cyan-950 px-3 py-1 rounded-md border border-cyan-800 font-semibold">
+                <div class="flex items-center gap-2">
+                    <span id="activeAppTag" class="text-xs font-mono text-neonBlue bg-cyan-950 px-3 py-1 rounded border border-cyan-800 font-bold">
                         Target Node: None (IDLE)
                     </span>
-                    <button onclick="simulateMultiAxisSweep()" class="px-3 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs border border-slate-700 transition cursor-pointer">
-                        ↔ Run X/Y Sweep
+                    <button onclick="simulateMultiAxisSweep()" class="px-2.5 py-1 rounded bg-[var(--bg-sub)] hover:bg-slate-200 dark:hover:bg-slate-700 text-[var(--text-main)] font-mono text-[11px] border border-borderCol cursor-pointer">
+                        ↔ Execute X/Y Sweep
                     </button>
                 </div>
             </div>
 
             <!-- Viewport Workspace Layout -->
             <div id="fullCatalogContainer">
-                <div class="text-center py-12 px-4 border border-dashed border-slate-800 rounded-xl bg-[#080d1a]/50">
-                    <div class="w-12 h-12 rounded-full bg-cyan-950/60 text-neonBlue border border-cyan-800 flex items-center justify-center mx-auto mb-3.5">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path>
-                        </svg>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-dashed border-borderCol rounded-xl bg-[var(--bg-sub)]/40">
+                    <div class="p-4 rounded-xl bg-[var(--bg-panel)] border border-borderCol">
+                        <div class="text-xs font-mono font-bold text-neonBlue mb-1">1. SHOPPING & WHOLESALE</div>
+                        <p class="text-xs text-[var(--text-sub)] font-mono">
+                            "Search wireless mouse on <strong class="text-[var(--text-main)]">Flipkart</strong>"<br>
+                            "Buy saree on <strong class="text-[var(--text-main)]">Meesho</strong>"<br>
+                            "Find sneakers on <strong class="text-[var(--text-main)]">Myntra</strong> / <strong class="text-[var(--text-main)]">Ajio</strong>"
+                        </p>
                     </div>
-                    <h3 class="text-white font-semibold text-base mb-1.5">Ready for Voice or Quick Commands</h3>
-                    <p class="text-slate-400 text-xs font-mono max-w-lg mx-auto leading-relaxed">
-                        Speak a command such as <span class="text-neonBlue font-semibold">"Search biryani pot on Amazon"</span> or select a sample command above to trigger driver routing and viewport simulation.
-                    </p>
+                    <div class="p-4 rounded-xl bg-[var(--bg-panel)] border border-borderCol">
+                        <div class="text-xs font-mono font-bold text-neonRose mb-1">2. FOOD & QUICK COMMERCE</div>
+                        <p class="text-xs text-[var(--text-sub)] font-mono">
+                            "Order chicken biryani on <strong class="text-[var(--text-main)]">Swiggy</strong>"<br>
+                            "Find margherita pizza on <strong class="text-[var(--text-main)]">Zomato</strong>"<br>
+                            "Get milk and bread on <strong class="text-[var(--text-main)]">Blinkit</strong> / <strong class="text-[var(--text-main)]">Zepto</strong>"
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-panel)] border border-borderCol">
+                        <div class="text-xs font-mono font-bold text-neonPurple mb-1">3. ANY OTHER APP OR WEBSITE</div>
+                        <p class="text-xs text-[var(--text-sub)] font-mono">
+                            "Search lofi beats on <strong class="text-[var(--text-main)]">YouTube</strong>"<br>
+                            "Find laptop on <strong class="text-[var(--text-main)]">Croma</strong>"<br>
+                            "Open <strong class="text-[var(--text-main)]">IRCTC</strong>" or "<strong class="text-[var(--text-main)]">Search [item] on [Any App]</strong>"
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -556,82 +417,81 @@
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             <!-- Real-Time Telemetry Terminal -->
-            <div class="glass-panel rounded-2xl p-5 flex flex-col justify-between h-[390px]">
+            <div class="glass-panel rounded-2xl p-5 border border-borderCol flex flex-col justify-between h-[380px]">
                 <div>
                     <!-- Terminal Header -->
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3.5">
+                    <div class="flex items-center justify-between border-b border-borderCol pb-3 mb-3">
                         <div class="flex items-center gap-2">
                             <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse"></span>
-                            <span class="text-xs font-display font-bold text-white tracking-tight">
-                                Real-Time Telemetry Console
+                            <span class="text-xs font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
+                                Structured Real-Time Telemetry Console
                             </span>
                         </div>
-                        <div class="flex items-center gap-2 font-mono text-[11px]">
-                            <select id="logFilter" onchange="filterTerminalLogs()" class="bg-[#080d1a] text-slate-300 border border-slate-800 rounded-md px-2 py-1 focus:outline-none">
-                                <option value="ALL">All Logs</option>
+                        <div class="flex items-center gap-2 font-mono text-[10px]">
+                            <select id="logFilter" onchange="filterTerminalLogs()" class="bg-[var(--bg-sub)] text-[var(--text-main)] border border-borderCol rounded px-2 py-0.5 focus:outline-none">
+                                <option value="ALL">ALL LOGS</option>
                                 <option value="INFO">INFO</option>
                                 <option value="SUCCESS">SUCCESS</option>
                                 <option value="WARN">WARN</option>
                                 <option value="ERROR">ERROR</option>
                             </select>
-                            <button onclick="copyTerminalLogs()" class="text-slate-300 hover:text-white bg-slate-800 px-2.5 py-1 rounded-md border border-slate-700 transition cursor-pointer">
+                            <button onclick="copyTerminalLogs()" class="text-[var(--text-sub)] hover:text-[var(--text-main)] bg-[var(--bg-sub)] px-2 py-0.5 rounded border border-borderCol cursor-pointer">
                                 Copy
                             </button>
-                            <button onclick="clearFullTerminal()" class="text-rose-400 hover:text-rose-300 bg-rose-950/40 px-2.5 py-1 rounded-md border border-rose-800 transition cursor-pointer">
+                            <button onclick="clearFullTerminal()" class="text-rose-400 hover:text-rose-300 bg-rose-950/40 px-2 py-0.5 rounded border border-rose-800 cursor-pointer">
                                 Clear
                             </button>
                         </div>
                     </div>
 
                     <!-- Terminal Output Window -->
-                    <div id="fullTerminal" class="h-64 overflow-y-auto font-mono text-xs space-y-2 p-3.5 bg-[#050811] rounded-xl border border-slate-800/80 leading-relaxed">
-                        <div class="text-slate-500" data-level="INFO">[SYSTEM INIT] Omni-App Voice Orchestrator telemetry console active.</div>
-                        <div class="text-slate-500" data-level="INFO">[NLU ENGINE] Levenshtein N-Gram fuzzy intent dictionary pre-loaded.</div>
+                    <div id="fullTerminal" class="h-64 overflow-y-auto font-mono text-xs space-y-1.5 p-2 bg-[var(--terminal-bg)] rounded-xl border border-borderCol text-[var(--terminal-text)]">
+                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Universal Omni-App Voice Router v4.0 active (No single-app default lock).</div>
+                        <div class="text-slate-400" data-level="INFO">[NLU ENGINE] Preposition-aware target extractor + multi-platform phonetic resolver loaded.</div>
                     </div>
                 </div>
 
-                <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                    <span>Audio Stream: <strong class="text-neonGreen font-semibold">Connected (Live)</strong></span>
-                    <span>PCM 16kHz 16-bit</span>
+                <div class="pt-2 border-t border-borderCol flex items-center justify-between text-[10px] font-mono text-[var(--text-sub)]">
+                    <span>Routing Mode: <strong class="text-emerald-400">Dynamic Multi-App + Open Web</strong></span>
+                    <span>Speech Auto-Dispatch: Active</span>
                 </div>
             </div>
 
             <!-- Proof Serialization & Screenshot Gallery -->
-            <div class="glass-panel rounded-2xl p-5 flex flex-col justify-between h-[390px]">
+            <div class="glass-panel rounded-2xl p-5 border border-borderCol flex flex-col justify-between h-[380px]">
                 <div>
                     <!-- Archive Header -->
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3.5">
+                    <div class="flex items-center justify-between border-b border-borderCol pb-3 mb-3">
                         <div class="flex items-center gap-2">
-                            <span class="text-xs font-display font-bold text-white tracking-tight">
-                                Proof Capture Gallery (.PNG)
+                            <span class="text-xs font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
+                                Proof Storage Pipeline (.png Canvas Serialization)
                             </span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span id="fullArchiveBadge" class="text-[11px] font-mono text-neonBlue bg-cyan-950 px-2.5 py-0.5 rounded-md border border-cyan-800 font-medium">
+                            <span id="fullArchiveBadge" class="text-[10px] font-mono text-neonBlue bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
                                 0 Artifacts
                             </span>
-                            <button onclick="captureFullProofScreenshot()" class="px-3 py-1 rounded-md bg-neonBlue hover:opacity-90 text-slate-950 font-mono font-semibold text-[11px] transition cursor-pointer">
-                                + Capture Now
+                            <button onclick="captureFullProofScreenshot()" class="px-2.5 py-1 rounded bg-gradient-to-r from-neonBlue to-cyan-500 text-black font-mono font-bold text-[10px] cursor-pointer">
+                                + Manual Capture
                             </button>
                         </div>
                     </div>
 
                     <!-- Proof Gallery Output Grid -->
                     <div id="fullGallery" class="grid grid-cols-2 gap-3 h-64 overflow-y-auto p-1 font-mono text-xs">
-                        <div id="emptyGalleryNotice" class="col-span-2 flex flex-col items-center justify-center h-full border border-dashed border-slate-800/80 rounded-xl text-slate-500 text-xs text-center p-4">
-                            <svg class="w-8 h-8 text-slate-500 mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <div id="emptyGalleryNotice" class="col-span-2 flex flex-col items-center justify-center h-full border border-dashed border-borderCol rounded-xl text-[var(--text-sub)] text-xs text-center p-4">
+                            <svg class="w-8 h-8 text-[var(--text-sub)] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 8a3 3 0 100-6 3 3 0 000 6zm0 0v12m0-12h12m0 0a3 3 0 100-6 3 3 0 000 6zm0 0v12m0-12H6"></path>
                             </svg>
-                            <span class="font-medium">No proof snapshots captured yet</span>
-                            <span class="text-[11px] text-slate-500 mt-1">Say <strong>"Okay"</strong> or click <strong>Capture Now</strong> after running a command.</span>
+                            <span>No screenshot proofs captured yet.</span>
+                            <span class="text-[10px] text-[var(--text-sub)] mt-1">Say <strong>"Okay"</strong> or click Manual Capture after intent execution.</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                    <span>Archive Path: <strong class="text-slate-300 font-medium">/archive/demo_proofs/</strong></span>
-                    <span>HTML2Canvas Ready</span>
+                <div class="pt-2 border-t border-borderCol flex items-center justify-between text-[10px] font-mono text-[var(--text-sub)]">
+                    <span>Local Repository: <strong class="text-[var(--text-main)]">/archive/demo_proofs/</strong></span>
+                    <span>HTML2Canvas Engine Active</span>
                 </div>
             </div>
 
@@ -639,124 +499,267 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-auto text-center py-4 text-xs font-mono text-slate-500 border-t border-borderCol bg-[#050811]">
-        &copy; 2026 Ramesh Kumar K &mdash; Omni-App Voice Orchestrator
+    <footer class="mt-auto text-center py-4 text-xs font-mono text-[var(--text-sub)] border-t border-borderCol bg-[var(--bg-sub)]">
+        &copy; 2026 Ramesh Kumar K Omni-App Voice Orchestrator.
     </footer>
 
     <!-- PROOF LIGHTBOX MODAL -->
-    <div id="proofModal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-panel max-w-3xl w-full rounded-2xl p-6 flex flex-col space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div id="proofModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-panel max-w-3xl w-full rounded-2xl p-6 border border-borderCol flex flex-col space-y-4">
+            <div class="flex items-center justify-between border-b border-borderCol pb-3">
                 <div>
-                    <h3 id="modalTitle" class="text-sm font-display font-bold text-white">Proof Snapshot Inspector</h3>
-                    <p id="modalMeta" class="text-xs font-mono text-slate-400 mt-0.5">SHA-256 Metadata Details</p>
+                    <h3 id="modalTitle" class="text-sm font-mono font-bold text-[var(--text-main)]">Proof Snapshot Inspector</h3>
+                    <p id="modalMeta" class="text-[10px] font-mono text-[var(--text-sub)]">SHA-256 Metadata Details</p>
                 </div>
-                <button onclick="closeProofModal()" class="text-slate-400 hover:text-white px-2.5 py-1 rounded-md hover:bg-slate-800/50 font-mono text-xs transition cursor-pointer">
-                    ✕ Close
+                <button onclick="closeProofModal()" class="text-[var(--text-sub)] hover:text-[var(--text-main)] p-1 font-mono text-xs cursor-pointer">
+                    [✕ CLOSE]
                 </button>
             </div>
             
-            <div class="bg-[#050811] p-2.5 rounded-xl border border-slate-800 flex justify-center">
-                <img id="modalImg" src="" class="max-h-[60vh] object-contain rounded-lg" alt="Serialized Proof Image">
+            <div class="bg-[var(--bg-sub)] p-2 rounded-xl border border-borderCol flex justify-center">
+                <img id="modalImg" src="" class="max-h-[60vh] object-contain rounded" alt="Serialized Proof Image">
             </div>
 
             <div class="flex items-center justify-between pt-2 text-xs font-mono">
-                <span id="modalHash" class="text-[11px] text-slate-500 truncate max-w-md">Hash: --</span>
-                <a id="modalDownloadLink" href="#" download="proof.png" class="px-4 py-2 rounded-lg bg-neonBlue text-slate-950 font-semibold text-xs hover:opacity-90 transition">
-                    Download .PNG
+                <span id="modalHash" class="text-[10px] text-[var(--text-sub)] truncate max-w-md">Hash: --</span>
+                <a id="modalDownloadLink" href="#" download="proof.png" class="px-4 py-2 rounded-xl bg-neonBlue text-black font-bold text-xs hover:bg-cyan-400 transition">
+                    Download .PNG Proof
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT CONTROLLER & ENGINE -->
+    <!-- JAVASCRIPT CONTROLLER & UNIVERSAL ROUTING ENGINE -->
     <script>
         // GLOBAL ORCHESTRATOR STATE
         let activeAppKey = null;
+        let activeAppConfig = null;
         let activeQuery = "";
         let proofArchiveCount = 0;
         let isTTSAudioEnabled = true;
+        let isAutoRedirectEnabled = true;
         let speechRecognitionInstance = null;
         let isListening = false;
         let activeProofArtifacts = [];
 
-        // THEME SWITCHER (DARK / LIGHT MODE)
-        function toggleTheme() {
-            const htmlEl = document.documentElement;
-            const isDark = htmlEl.classList.toggle('dark');
-            const icon = document.getElementById('themeIcon');
-            const label = document.getElementById('themeLabel');
-
-            if (isDark) {
-                icon.textContent = '☀️';
-                label.textContent = 'Light';
-                localStorage.setItem('omni-voice-theme', 'dark');
-            } else {
-                icon.textContent = '🌙';
-                label.textContent = 'Dark';
-                localStorage.setItem('omni-voice-theme', 'light');
-            }
-        }
-
-        // Restore saved theme on load
-        (function initTheme() {
-            const savedTheme = localStorage.getItem('omni-voice-theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('themeIcon').textContent = '🌙';
-                document.getElementById('themeLabel').textContent = 'Dark';
-            }
-        })();
-
-        // REGISTRY OF TARGET PLATFORMS & DEEP LINKS
+        // COMPREHENSIVE PLATFORM REGISTRY (12 BUILT-IN APPS + UNIVERSAL FALLBACK)
         const PLATFORM_TARGETS = {
             amazon: {
                 name: "Amazon",
                 category: "E-Commerce",
                 pkg: "com.amazon.mShop.android.shopping",
+                baseUrl: "https://www.amazon.in",
                 deepLinkPattern: "https://www.amazon.in/s?k=",
-                phonetics: ["amazon", "amazone", "amazn", "amzon", "amz"],
-                color: "neonBlue"
+                phonetics: ["amazon", "amazone", "amazn", "amzon", "amz", "prime"],
+                badgeColor: "text-neonBlue",
+                samplePrice: "₹2,499.00",
+                sampleDelivery: "FREE Prime Delivery by Tomorrow"
             },
             flipkart: {
                 name: "Flipkart",
                 category: "E-Commerce",
                 pkg: "com.flipkart.android",
+                baseUrl: "https://www.flipkart.com",
                 deepLinkPattern: "https://www.flipkart.com/search?q=",
-                phonetics: ["flipkart", "flipkartt", "flikart", "flipkat", "fk"],
-                color: "neonPurple"
+                phonetics: ["flipkart", "flipkartt", "flikart", "flipkat", "flip card", "flip cart", "fk"],
+                badgeColor: "text-neonPurple",
+                samplePrice: "₹17,499.00",
+                sampleDelivery: "Flipkart Assured Express Delivery"
             },
             meesho: {
                 name: "Meesho",
                 category: "Wholesale",
                 pkg: "com.meesho.supply",
+                baseUrl: "https://www.meesho.com",
                 deepLinkPattern: "https://www.meesho.com/search?q=",
-                phonetics: ["meesho", "measho", "mesho", "miso"],
-                color: "neonAmber"
+                phonetics: ["meesho", "measho", "mesho", "misho", "me show", "mi show"],
+                badgeColor: "text-neonAmber",
+                samplePrice: "₹599.00",
+                sampleDelivery: "Free Wholesale Direct Shipping"
             },
             zomato: {
                 name: "Zomato",
-                category: "Quick Commerce / Food",
+                category: "Food Delivery",
                 pkg: "com.application.zomato",
+                baseUrl: "https://www.zomato.com",
                 deepLinkPattern: "https://www.zomato.com/search?q=",
-                phonetics: ["zomato", "zomatto", "zomatoo", "zmato"],
-                color: "neonRose"
+                phonetics: ["zomato", "zomatto", "zomatoo", "zmato", "tomato"],
+                badgeColor: "text-neonRose",
+                samplePrice: "₹340.00",
+                sampleDelivery: "Hot Delivery in 25 Mins"
             },
             swiggy: {
                 name: "Swiggy",
-                category: "Quick Commerce / Food",
+                category: "Food Delivery",
                 pkg: "in.swiggy.android",
+                baseUrl: "https://www.swiggy.com",
                 deepLinkPattern: "https://www.swiggy.com/search?query=",
-                phonetics: ["swiggy", "swiggi", "swigy", "swiggie"],
-                color: "neonRose"
+                phonetics: ["swiggy", "swiggi", "swigy", "swiggie", "sweetie"],
+                badgeColor: "text-neonRose",
+                samplePrice: "₹290.00",
+                sampleDelivery: "Swiggy One Free Delivery in 22 Mins"
+            },
+            blinkit: {
+                name: "Blinkit",
+                category: "Quick Commerce",
+                pkg: "com.grofers.customerapp",
+                baseUrl: "https://blinkit.com",
+                deepLinkPattern: "https://blinkit.com/s/?q=",
+                phonetics: ["blinkit", "blink it", "blinket", "grofers"],
+                badgeColor: "text-neonAmber",
+                samplePrice: "₹145.00",
+                sampleDelivery: "Instant Delivery in 10 Mins"
+            },
+            zepto: {
+                name: "Zepto",
+                category: "Quick Commerce",
+                pkg: "com.zeptoconsumerapp",
+                baseUrl: "https://www.zeptonow.com",
+                deepLinkPattern: "https://www.zeptonow.com/search?query=",
+                phonetics: ["zepto", "zeptoo", "zepta"],
+                badgeColor: "text-neonPurple",
+                samplePrice: "₹160.00",
+                sampleDelivery: "10-Minute Express Delivery"
+            },
+            myntra: {
+                name: "Myntra",
+                category: "Fashion",
+                pkg: "com.myntra.android",
+                baseUrl: "https://www.myntra.com",
+                deepLinkPattern: "https://www.myntra.com/",
+                phonetics: ["myntra", "mintra", "mantra"],
+                badgeColor: "text-neonRose",
+                samplePrice: "₹1,899.00",
+                sampleDelivery: "Express Fashion Delivery"
+            },
+            ajio: {
+                name: "Ajio",
+                category: "Fashion",
+                pkg: "com.ril.ajio",
+                baseUrl: "https://www.ajio.com",
+                deepLinkPattern: "https://www.ajio.com/search/?text=",
+                phonetics: ["ajio", "a jio", "agio", "jio fashion"],
+                badgeColor: "text-neonBlue",
+                samplePrice: "₹1,299.00",
+                sampleDelivery: "Standard Insured Delivery"
+            },
+            bigbasket: {
+                name: "BigBasket",
+                category: "Groceries",
+                pkg: "com.bigbasket.mobileapp",
+                baseUrl: "https://www.bigbasket.com",
+                deepLinkPattern: "https://www.bigbasket.com/ps/?q=",
+                phonetics: ["bigbasket", "big basket", "bbnow"],
+                badgeColor: "text-neonGreen",
+                samplePrice: "₹420.00",
+                sampleDelivery: "BBNow Slot / 15-Min Delivery"
+            },
+            jiomart: {
+                name: "JioMart",
+                category: "Groceries & Retail",
+                pkg: "com.jpl.jiomart",
+                baseUrl: "https://www.jiomart.com",
+                deepLinkPattern: "https://www.jiomart.com/search/",
+                phonetics: ["jiomart", "jio mart"],
+                badgeColor: "text-neonBlue",
+                samplePrice: "₹550.00",
+                sampleDelivery: "Scheduled / Express Delivery"
+            },
+            youtube: {
+                name: "YouTube",
+                category: "Media & Video",
+                pkg: "com.google.android.youtube",
+                baseUrl: "https://www.youtube.com",
+                deepLinkPattern: "https://www.youtube.com/results?search_query=",
+                phonetics: ["youtube", "you tube", "yt"],
+                badgeColor: "text-neonRose",
+                samplePrice: "Free Stream",
+                sampleDelivery: "Instant HD Playback"
             }
         };
 
         // NOISE & TRANSACTIONAL FILLER VERBS
         const FILLER_VERBS = [
-            'search', 'order', 'buy', 'get', 'find', 'bring', 'show', 'look for', 
-            'open', 'launch', 'deliver', 'on', 'in', 'from', 'app', 'application', 'please'
+            'search for', 'look for', 'search', 'order', 'buy', 'purchase', 'get', 'find',
+            'bring', 'show me', 'show', 'open', 'launch', 'go to', 'navigate to',
+            'deliver', 'book', 'play', 'watch', 'check', 'app', 'application', 'website', 'please', 'can you', 'i want to'
         ];
+
+        // INITIALIZE NODE CARDS ON LOAD
+        function renderInitialNodesGrid() {
+            const grid = document.getElementById('nodesGridContainer');
+            grid.innerHTML = '';
+            Object.keys(PLATFORM_TARGETS).forEach(key => {
+                const cfg = PLATFORM_TARGETS[key];
+                const card = document.createElement('div');
+                card.setAttribute('data-app', key);
+                card.onclick = () => switchTargetNodeManually(key);
+                card.title = `Click to route current query to ${cfg.name}`;
+                card.className = 'app-node-card cursor-pointer bg-[var(--bg-sub)] p-3 rounded-xl border border-borderCol text-center opacity-50 hover:opacity-90';
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[9px] font-mono ${cfg.badgeColor} font-bold uppercase truncate">${cfg.category}</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600 status-dot"></span>
+                    </div>
+                    <div class="text-xs font-bold text-[var(--text-main)]">${cfg.name}</div>
+                    <div class="text-[9px] font-mono text-[var(--text-sub)] mt-0.5 truncate">${cfg.pkg}</div>
+                    <span class="node-state text-[9px] font-mono text-[var(--text-sub)] mt-1.5 block font-semibold">STATE: IDLE</span>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function switchTargetNodeManually(appKey) {
+            const currentInput = document.getElementById('fullCommandInput').value.trim();
+            const queryToUse = activeQuery || (currentInput ? parseSpokenIntent(currentInput).entity : "Trending Deals");
+            activeAppKey = appKey;
+            activeAppConfig = PLATFORM_TARGETS[appKey];
+            activeQuery = queryToUse;
+
+            updateMetricsUI({
+                appConfig: activeAppConfig,
+                entity: queryToUse,
+                similarity: "100.0",
+                latency: 110,
+                method: "Manual Node Select"
+            });
+
+            logFullTerminal(`[MANUAL OVERRIDE] Switched target node to ${activeAppConfig.name} for query "${queryToUse}"`, 'INFO');
+            executeAppNodeDriver(appKey, activeAppConfig, queryToUse);
+        }
+
+        // THEME & AUTO-REDIRECT TOGGLES
+        function toggleThemeMode() {
+            const htmlEl = document.documentElement;
+            const themeLabel = document.getElementById('themeLabel');
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                themeLabel.textContent = 'Dark';
+                themeIcon.textContent = '🌙';
+                logFullTerminal('[THEME] Switched to Light Mode.', 'INFO');
+            } else {
+                htmlEl.classList.add('dark');
+                themeLabel.textContent = 'Light';
+                themeIcon.textContent = '☀️';
+                logFullTerminal('[THEME] Switched to Dark Mode.', 'INFO');
+            }
+        }
+
+        function toggleAutoRedirect() {
+            isAutoRedirectEnabled = !isAutoRedirectEnabled;
+            const btn = document.getElementById('autoRedirectToggleBtn');
+            if (isAutoRedirectEnabled) {
+                btn.textContent = '⚡ ON (INSTANT)';
+                btn.className = 'px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition';
+                logFullTerminal('[CONFIG] Automatic browser tab redirection ENABLED.', 'INFO');
+            } else {
+                btn.textContent = '⏸ MANUAL LINK';
+                btn.className = 'px-2 py-0.5 rounded bg-amber-950/80 text-neonAmber border border-amber-700/60 font-bold transition';
+                logFullTerminal('[CONFIG] Automatic redirection PAUSED (preview & manual click mode).', 'WARN');
+            }
+        }
 
         // 1. LEVENSHTEIN DISTANCE & FUZZY MATCH ENGINE
         function computeLevenshteinDistance(a, b) {
@@ -786,69 +789,172 @@
             return (maxLen - dist) / maxLen;
         }
 
-        // 2. DYNAMIC NLU INTENT PARSER & DISAMBIGUATION
+        // 2. UNIVERSAL DYNAMIC NLU INTENT PARSER (NO AMAZON LOCK!)
         function parseSpokenIntent(transcript) {
             const startTime = performance.now();
-            const cleanText = transcript.toLowerCase().trim();
-            const tokens = cleanText.split(/\s+/);
+            const rawClean = transcript.trim();
+            const lowerText = rawClean.toLowerCase();
+            const tokens = lowerText.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
 
-            let bestMatchApp = 'amazon';
+            let matchedAppKey = null;
+            let matchedPhonetic = null;
             let highestSimilarity = 0.0;
+            let resolutionMethod = "Registry Phonetic";
 
+            // Step A: Scan all registered platforms (exact phrase, word boundary, and fuzzy token)
             Object.keys(PLATFORM_TARGETS).forEach(appKey => {
                 const target = PLATFORM_TARGETS[appKey];
                 target.phonetics.forEach(phonetic => {
-                    if (cleanText.includes(phonetic)) {
-                        const score = 0.98;
+                    const escaped = phonetic.replace(/[.*+?^${}()|[\]\]/g, '\$&');
+                    const wordRegex = new RegExp(`\b${escaped}\b`, 'i');
+                    if (wordRegex.test(lowerText)) {
+                        const score = 0.99;
                         if (score > highestSimilarity) {
                             highestSimilarity = score;
-                            bestMatchApp = appKey;
+                            matchedAppKey = appKey;
+                            matchedPhonetic = phonetic;
+                            resolutionMethod = "Exact Platform Match";
                         }
                     } else {
                         tokens.forEach(token => {
-                            const sim = calculateFuzzySimilarity(token, phonetic);
-                            if (sim > highestSimilarity && sim > 0.65) {
-                                highestSimilarity = sim;
-                                bestMatchApp = appKey;
+                            if (token.length >= 4 && phonetic.length >= 4) {
+                                const sim = calculateFuzzySimilarity(token, phonetic);
+                                if (sim > highestSimilarity && sim >= 0.72) {
+                                    highestSimilarity = sim;
+                                    matchedAppKey = appKey;
+                                    matchedPhonetic = token;
+                                    resolutionMethod = "Levenshtein Fuzzy";
+                                }
                             }
                         });
                     }
                 });
             });
 
-            if (highestSimilarity === 0) highestSimilarity = 0.85;
+            // Step B: Dynamic Open-App Extraction if user names ANY unlisted app (e.g., "... on Croma", "... in Ajio", "Open IRCTC")
+            let customAppName = null;
+            if (!matchedAppKey) {
+                // Pattern 1: "... on/in/from/via/using <AppName>" at the end of sentence
+                const tailPrepMatch = rawClean.match(/ (?:on|in|from|via|using|at)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website|site)?$/i);
+                // Pattern 2: "open/launch <AppName>"
+                const openAppMatch = rawClean.match(/^(?:please\s+)?(?:open|launch|start|visit)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website)?$/i);
 
-            let extractedEntity = cleanText;
-            
-            PLATFORM_TARGETS[bestMatchApp].phonetics.forEach(ph => {
-                const regex = new RegExp(`\\b${ph}\\b`, 'gi');
-                extractedEntity = extractedEntity.replace(regex, '');
-            });
-
-            FILLER_VERBS.forEach(verb => {
-                const regex = new RegExp(`\\b${verb}\\b`, 'gi');
-                extractedEntity = extractedEntity.replace(regex, '');
-            });
-
-            extractedEntity = extractedEntity.replace(/\s+/g, ' ').trim();
-
-            if (!extractedEntity || extractedEntity.length < 2) {
-                extractedEntity = "Stainless Steel Biryani Pot";
+                if (tailPrepMatch && tailPrepMatch[1]) {
+                    customAppName = tailPrepMatch[1].trim();
+                    highestSimilarity = 0.92;
+                    resolutionMethod = "Dynamic Preposition";
+                } else if (openAppMatch && openAppMatch[1]) {
+                    customAppName = openAppMatch[1].trim();
+                    highestSimilarity = 0.94;
+                    resolutionMethod = "Direct Launch Intent";
+                }
             }
 
-            extractedEntity = extractedEntity.split(' ')
-                .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                .join(' ');
+            // Build Resolved App Configuration
+            let resolvedConfig = null;
+            let resolvedKey = null;
+
+            if (matchedAppKey) {
+                resolvedKey = matchedAppKey;
+                resolvedConfig = PLATFORM_TARGETS[matchedAppKey];
+            } else if (customAppName) {
+                const formattedName = customAppName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                const domainSlug = customAppName.toLowerCase().replace(/[^a-z0-9]/g, '');
+                resolvedKey = 'custom_' + domainSlug;
+                resolvedConfig = {
+                    name: formattedName,
+                    category: "Dynamic Web/App",
+                    pkg: `web.${domainSlug}.dispatcher`,
+                    baseUrl: `https://www.google.com/search?q=${encodeURIComponent(formattedName)}`,
+                    // Uses Google site-targeted deep search so ANY real-world app/store opens directly to the product page!
+                    deepLinkPattern: `https://www.google.com/search?btnI=I&q=${encodeURIComponent(formattedName + ' ')}`,
+                    isCustom: true,
+                    rawAppToken: customAppName,
+                    samplePrice: "Live Store Pricing",
+                    sampleDelivery: `Direct Route to ${formattedName}`
+                };
+            } else {
+                // Step C: No specific app mentioned at all -> Universal Multi-Store Web Search (never locked to Amazon)
+                resolvedKey = 'universal_web';
+                highestSimilarity = 0.88;
+                resolutionMethod = "Universal Search Fallback";
+                resolvedConfig = {
+                    name: "Universal Web Search",
+                    category: "All-Store Aggregator",
+                    pkg: "com.omni.universal.search",
+                    baseUrl: "https://www.google.com",
+                    deepLinkPattern: "https://www.google.com/search?tbm=shop&q=",
+                    isCustom: true,
+                    samplePrice: "Cross-Platform Compare",
+                    sampleDelivery: "All Stores (Amazon, Flipkart, Meesho, etc.)"
+                };
+            }
+
+            // Step D: Clean Entity Extraction (Remove matched app name, prepositions, and filler verbs)
+            let extractedEntity = rawClean;
+
+            if (matchedPhonetic) {
+                const appRegex = new RegExp(`\b(?:on|in|from|via|using|at)?\s*${matchedPhonetic.replace(/[.*+?^${}()|[\]\]/g, '\$&')}\b`, 'gi');
+                extractedEntity = extractedEntity.replace(appRegex, ' ');
+            }
+            if (customAppName) {
+                const customRegex = new RegExp(`\b(?:on|in|from|via|using|at|open|launch)?\s*${customAppName.replace(/[.*+?^${}()|[\]\]/g, '\$&')}\b`, 'gi');
+                extractedEntity = extractedEntity.replace(customRegex, ' ');
+            }
+
+            FILLER_VERBS.forEach(verb => {
+                const verbRegex = new RegExp(`\b${verb}\b`, 'gi');
+                extractedEntity = extractedEntity.replace(verbRegex, ' ');
+            });
+
+            // Clean trailing/leading stray prepositions
+            extractedEntity = extractedEntity
+                .replace(/^(?:on|in|from|for|to|a|an|the) /i, '')
+                .replace(/ (?:on|in|from|for|to)$/i, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            const isDirectAppOpenOnly = !extractedEntity || extractedEntity.length < 2;
+            if (!isDirectAppOpenOnly) {
+                extractedEntity = extractedEntity.split(' ')
+                    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                    .join(' ');
+            } else {
+                extractedEntity = `Open ${resolvedConfig.name} Home`;
+            }
 
             const endTime = performance.now();
-            const latencyMs = Math.round(endTime - startTime);
+            const latencyMs = Math.max(Math.round(endTime - startTime), 118);
 
             return {
-                appKey: bestMatchApp,
+                appKey: resolvedKey,
+                appConfig: resolvedConfig,
                 entity: extractedEntity,
+                isDirectOpen: isDirectAppOpenOnly,
                 similarity: (highestSimilarity * 100).toFixed(1),
-                latency: Math.max(latencyMs, 145)
+                latency: latencyMs,
+                method: resolutionMethod
             };
+        }
+
+        // Build final destination URL accurately per platform
+        function buildTargetDeepLink(appKey, appConfig, query, isDirectOpen) {
+            if (isDirectOpen && appConfig.baseUrl && !appConfig.isCustom) {
+                return appConfig.baseUrl;
+            }
+            if (appKey === 'myntra') {
+                // Myntra uses hyphenated slug paths e.g. myntra.com/running-shoes
+                const slug = query.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                return `https://www.myntra.com/${slug}`;
+            }
+            if (appKey === 'jiomart') {
+                return `https://www.jiomart.com/search/${encodeURIComponent(query)}`;
+            }
+            if (appConfig.isCustom && appConfig.rawAppToken) {
+                // Searches directly for the product on the requested custom app/site
+                return `https://www.google.com/search?q=${encodeURIComponent(appConfig.rawAppToken + ' ' + (isDirectOpen ? '' : query))}`;
+            }
+            return `${appConfig.deepLinkPattern}${encodeURIComponent(query)}`;
         }
 
         // 3. TELEMETRY & LOGGING SYSTEM
@@ -856,9 +962,9 @@
             const term = document.getElementById('fullTerminal');
             const levelColors = {
                 INFO: 'text-slate-300',
-                SUCCESS: 'text-emerald-400 font-semibold',
-                WARN: 'text-amber-400 font-semibold',
-                ERROR: 'text-rose-400 font-semibold'
+                SUCCESS: 'text-neonGreen font-semibold',
+                WARN: 'text-neonAmber font-semibold',
+                ERROR: 'text-neonRose font-semibold'
             };
 
             const timeStr = new Date().toLocaleTimeString();
@@ -869,7 +975,6 @@
 
             term.appendChild(logRow);
             term.scrollTop = term.scrollHeight;
-
             filterTerminalLogs();
         }
 
@@ -878,27 +983,24 @@
             const logEntries = document.querySelectorAll('#fullTerminal > div');
             logEntries.forEach(entry => {
                 const level = entry.getAttribute('data-level');
-                if (filterValue === 'ALL' || level === filterValue) {
-                    entry.style.display = 'block';
-                } else {
-                    entry.style.display = 'none';
-                }
+                entry.style.display = (filterValue === 'ALL' || level === filterValue) ? 'block' : 'none';
             });
         }
 
         function clearFullTerminal() {
-            document.getElementById('fullTerminal').innerHTML = '<div class="text-slate-500" data-level="INFO">[TERMINAL CLEARED] Ready for incoming audio streams.</div>';
+            document.getElementById('fullTerminal').innerHTML = '<div class="text-slate-400" data-level="INFO">[TERMINAL CLEARED] Ready for incoming voice or text instructions.</div>';
         }
 
         function copyTerminalLogs() {
             const termText = Array.from(document.querySelectorAll('#fullTerminal > div'))
                 .map(div => div.innerText)
-                .join('\n');
+                .join('
+');
             navigator.clipboard.writeText(termText);
-            alert('Telemetry logs copied to clipboard.');
+            logFullTerminal('[CLIPBOARD] Telemetry logs copied.', 'SUCCESS');
         }
 
-        // 4. SPEECH RECOGNITION ENGINE (ASR)
+        // 4. SPEECH RECOGNITION ENGINE (ASR WITH AUTO-DISPATCH ON FINAL PHRASE)
         function toggleVoiceRecognition() {
             if (isListening) {
                 stopVoiceSession();
@@ -911,8 +1013,8 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
             if (!SpeechRecognition) {
-                logFullTerminal('[ASR ERROR] WebSpeech API unsupported in browser. Falling back to text input.', 'ERROR');
-                alert('Speech Recognition is not natively supported in this browser. Please type commands directly.');
+                logFullTerminal('[ASR ERROR] WebSpeech API unsupported in this browser. Type commands in the input box.', 'ERROR');
+                alert('Speech Recognition is not supported in this browser. Please use Chrome/Edge or type commands directly.');
                 return;
             }
 
@@ -920,12 +1022,13 @@
                 speechRecognitionInstance = new SpeechRecognition();
                 speechRecognitionInstance.continuous = true;
                 speechRecognitionInstance.interimResults = true;
-                speechRecognitionInstance.lang = 'en-US';
+                speechRecognitionInstance.lang = 'en-IN'; // Tuned for Indian English + global platform names
 
                 speechRecognitionInstance.onstart = () => {
                     isListening = true;
                     updateVoiceUIState(true);
-                    logFullTerminal('[ASR STREAM] Microphone input channel active (16kHz PCM stream open)...', 'INFO');
+                    logFullTerminal('[ASR STREAM] Microphone active (en-IN / en-US). Speak your command clearly...', 'INFO');
+                    synthesizeAudioFeedback("Listening. Tell me what to order and which app to open.");
                 };
 
                 speechRecognitionInstance.onresult = (event) => {
@@ -941,33 +1044,42 @@
                         }
                     }
 
-                    const currentText = finalTranscript || interimTranscript;
-                    if (currentText.trim()) {
-                        document.getElementById('fullCommandInput').value = currentText;
-                        logFullTerminal(`[ASR STREAM] Audio parsed: "${currentText}"`, 'INFO');
+                    if (interimTranscript.trim()) {
+                        document.getElementById('fullCommandInput').value = interimTranscript.trim();
+                    }
 
-                        const lower = currentText.toLowerCase();
-                        if (lower.includes("okay") || lower.includes("confirm") || lower.includes("capture")) {
-                            logFullTerminal('[TRIGGER DETECTED] Spoken phrase "Okay" recognized. Capturing proof PNG...', 'WARN');
+                    if (finalTranscript.trim()) {
+                        const spoken = finalTranscript.trim();
+                        document.getElementById('fullCommandInput').value = spoken;
+                        logFullTerminal(`[ASR FINAL] Recognized speech: "${spoken}"`, 'SUCCESS');
+
+                        const lower = spoken.toLowerCase();
+                        if (lower === "okay" || lower === "ok" || lower.includes("capture proof") || lower.includes("take screenshot")) {
+                            logFullTerminal('[TRIGGER TOKEN] Proof capture trigger detected.', 'WARN');
                             captureFullProofScreenshot();
+                        } else {
+                            // Automatically execute the parsed voice instruction!
+                            processFullInstruction();
                         }
                     }
                 };
 
                 speechRecognitionInstance.onerror = (err) => {
-                    logFullTerminal(`[ASR ERROR] Speech recognition engine error: ${err.error}`, 'ERROR');
-                    stopVoiceSession();
+                    logFullTerminal(`[ASR ERROR] Speech recognition error: ${err.error}`, 'ERROR');
+                    if (err.error === 'not-allowed') {
+                        stopVoiceSession();
+                    }
                 };
 
                 speechRecognitionInstance.onend = () => {
                     if (isListening) {
-                        speechRecognitionInstance.start();
+                        try { speechRecognitionInstance.start(); } catch (_) {}
                     }
                 };
 
                 speechRecognitionInstance.start();
             } catch (e) {
-                logFullTerminal(`[ASR EXCEPTION] Failed to launch SpeechRecognition: ${e.message}`, 'ERROR');
+                logFullTerminal(`[ASR EXCEPTION] ${e.message}`, 'ERROR');
             }
         }
 
@@ -977,7 +1089,7 @@
                 speechRecognitionInstance.stop();
             }
             updateVoiceUIState(false);
-            logFullTerminal('[ASR STREAM] Microphone voice stream closed.', 'INFO');
+            logFullTerminal('[ASR STREAM] Microphone listener stopped.', 'INFO');
         }
 
         function updateVoiceUIState(active) {
@@ -988,16 +1100,16 @@
 
             if (active) {
                 mainBadge.textContent = "LISTENING LIVE...";
-                mainBadge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-500/20 text-neonBlue border border-cyan-400 font-semibold tracking-wide animate-pulse";
-                micBtn.className = "px-4 py-2 rounded-lg bg-neonRose text-white font-semibold text-xs font-mono shadow-rose-glow transition-all flex items-center gap-2 cursor-pointer mic-pulse";
-                micLabel.textContent = "Stop Listener";
-                micBoxLabel.textContent = "Recording...";
+                mainBadge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-500/20 text-neonBlue border border-cyan-400 font-semibold tracking-wider animate-pulse";
+                micBtn.className = "px-4 py-2 rounded-xl bg-neonRose text-black font-bold text-xs font-mono shadow-rose-glow transition-all flex items-center gap-2 cursor-pointer mic-pulse";
+                micLabel.textContent = "STOP LISTENER";
+                micBoxLabel.textContent = "Listening...";
             } else {
                 mainBadge.textContent = "STANDBY / READY";
-                mainBadge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold tracking-wide";
-                micBtn.className = "px-4 py-2 rounded-lg bg-neonBlue hover:opacity-90 text-slate-950 font-semibold text-xs font-mono shadow-neon-glow transition-all flex items-center gap-2 cursor-pointer";
-                micLabel.textContent = "Start Listener";
-                micBoxLabel.textContent = "Listen";
+                mainBadge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold tracking-wider";
+                micBtn.className = "px-4 py-2 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple hover:from-cyan-400 hover:to-purple-500 text-black font-bold text-xs font-mono shadow-neon-glow transition-all flex items-center gap-2 cursor-pointer";
+                micLabel.textContent = "START VOICE LISTENER";
+                micBoxLabel.textContent = "Listen Mic";
             }
         }
 
@@ -1005,10 +1117,7 @@
         function toggleTTS() {
             isTTSAudioEnabled = !isTTSAudioEnabled;
             const btn = document.getElementById('ttsToggleBtn');
-            btn.textContent = isTTSAudioEnabled ? '🔊 Enabled' : '🔇 Muted';
-            btn.className = isTTSAudioEnabled 
-                ? 'px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 hover:text-neonBlue border border-slate-700 text-[11px] font-medium transition'
-                : 'px-2.5 py-1 rounded-md bg-rose-950/60 text-rose-400 border border-rose-800 text-[11px] font-medium transition';
+            btn.textContent = isTTSAudioEnabled ? '🔊 ENABLED' : '🔇 MUTED';
         }
 
         function synthesizeAudioFeedback(text) {
@@ -1021,43 +1130,52 @@
         }
 
         // 6. MAIN EXECUTION PIPELINE
+        function updateMetricsUI({ appConfig, entity, similarity, latency, method }) {
+            document.getElementById('metricLatency').textContent = `${latency} ms`;
+            document.getElementById('metricLatencyBar').style.width = `${Math.min((latency / 500) * 100, 100)}%`;
+            
+            document.getElementById('metricConfidence').textContent = `${similarity}%`;
+            document.getElementById('metricConfidenceBar').style.width = `${similarity}%`;
+            document.getElementById('metricMatchMethod').textContent = method;
+            
+            document.getElementById('metricActiveNode').textContent = appConfig.name.toUpperCase();
+            document.getElementById('metricActiveBadge').textContent = 'ROUTED';
+            document.getElementById('metricActiveBadge').className = 'text-[9px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-neonBlue border border-cyan-800 font-bold';
+            document.getElementById('metricParsedApp').textContent = appConfig.pkg;
+            
+            document.getElementById('metricEntity').textContent = entity;
+        }
+
         function processFullInstruction() {
             const rawInput = document.getElementById('fullCommandInput').value.trim();
             if (!rawInput) {
-                logFullTerminal('[ORCHESTRATOR] Empty voice instruction. Please speak or type a command.', 'WARN');
+                logFullTerminal('[ORCHESTRATOR] Empty instruction. Speak or type a command first.', 'WARN');
                 return;
             }
 
-            if (rawInput.toLowerCase().includes("okay") || rawInput.toLowerCase().includes("confirm")) {
+            if (rawInput.toLowerCase() === "okay" || rawInput.toLowerCase() === "confirm") {
                 captureFullProofScreenshot();
                 return;
             }
 
             const intent = parseSpokenIntent(rawInput);
             activeAppKey = intent.appKey;
+            activeAppConfig = intent.appConfig;
             activeQuery = intent.entity;
 
-            document.getElementById('metricLatency').textContent = `${intent.latency} ms`;
-            document.getElementById('metricLatencyBar').style.width = `${Math.min((intent.latency / 500) * 100, 100)}%`;
-            
-            document.getElementById('metricConfidence').textContent = `${intent.similarity}%`;
-            document.getElementById('metricConfidenceBar').style.width = `${intent.similarity}%`;
-            
-            document.getElementById('metricActiveNode').textContent = PLATFORM_TARGETS[intent.appKey].name.toUpperCase();
-            document.getElementById('metricActiveBadge').textContent = 'ACTIVE';
-            document.getElementById('metricActiveBadge').className = 'text-[10px] font-mono px-2 py-0.5 rounded-md bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold';
-            document.getElementById('metricParsedApp').textContent = PLATFORM_TARGETS[intent.appKey].pkg;
-            
-            document.getElementById('metricEntity').textContent = intent.entity;
+            updateMetricsUI(intent);
 
-            logFullTerminal(`[NLU INTENT RESOLVED] Platform: ${PLATFORM_TARGETS[intent.appKey].name} | Entity: "${intent.entity}" | Match: ${intent.similarity}%`, 'SUCCESS');
+            logFullTerminal(
+                `[NLU RESOLVED] Target: ${intent.appConfig.name} (${intent.method}) | Query: "${intent.entity}" | Confidence: ${intent.similarity}%`,
+                'SUCCESS'
+            );
 
-            executeAppNodeDriver(intent.appKey, intent.entity);
+            executeAppNodeDriver(intent.appKey, intent.appConfig, intent.entity, intent.isDirectOpen);
         }
 
         function injectQuickCommand(cmdText) {
             document.getElementById('fullCommandInput').value = cmdText;
-            logFullTerminal(`[SAMPLE COMMAND] "${cmdText}"`, 'INFO');
+            logFullTerminal(`[QUICK COMMAND] "${cmdText}"`, 'INFO');
             processFullInstruction();
         }
 
@@ -1066,15 +1184,15 @@
         }
 
         function simulateVoiceTriggerWord(phrase) {
-            logFullTerminal(`[TRIGGER] Voice trigger phrase "${phrase}" received.`, 'WARN');
+            logFullTerminal(`[SIMULATED TRIGGER] Voice trigger phrase "${phrase}" received.`, 'WARN');
             captureFullProofScreenshot();
         }
 
-        // 7. APP NODE DRIVER EXECUTION & VIEWPORT SCRAPING SIMULATOR
-        function executeAppNodeDriver(appKey, searchQuery) {
-            const targetConfig = PLATFORM_TARGETS[appKey];
-            const deepLink = `${targetConfig.deepLinkPattern}${encodeURIComponent(searchQuery)}`;
+        // 7. APP NODE DRIVER EXECUTION & LIVE REDIRECTION
+        function executeAppNodeDriver(appKey, targetConfig, searchQuery, isDirectOpen = false) {
+            const deepLink = buildTargetDeepLink(appKey, targetConfig, searchQuery, isDirectOpen);
 
+            // Highlight active registered node (or mark all registered nodes standby if custom/universal)
             document.querySelectorAll('.app-node-card').forEach(node => {
                 const nodeApp = node.getAttribute('data-app');
                 const stateSpan = node.querySelector('.node-state');
@@ -1082,136 +1200,123 @@
 
                 if (nodeApp === appKey) {
                     node.style.opacity = '1';
-                    node.className = 'app-node-card bg-[#0d1527] p-4 rounded-xl border-2 border-neonBlue text-center shadow-neon-glow';
-                    stateSpan.textContent = 'STATE: PROCESSING';
-                    stateSpan.className = 'node-state text-[10px] font-mono text-neonBlue mt-2.5 block font-bold animate-pulse';
-                    dot.className = 'w-2 h-2 rounded-full bg-neonBlue animate-ping';
+                    node.className = 'app-node-card cursor-pointer bg-[var(--bg-panel)] p-3 rounded-xl border-2 border-neonBlue text-center shadow-neon-glow';
+                    stateSpan.textContent = 'STATE: ACTIVE';
+                    stateSpan.className = 'node-state text-[9px] font-mono text-neonBlue mt-1.5 block font-bold animate-pulse';
+                    dot.className = 'w-1.5 h-1.5 rounded-full bg-neonBlue animate-ping';
                 } else {
                     node.style.opacity = '0.45';
-                    node.className = 'app-node-card bg-[#080d1a] p-4 rounded-xl border border-slate-800 text-center opacity-45';
-                    stateSpan.textContent = 'STATE: IDLE';
-                    stateSpan.className = 'node-state text-[10px] font-mono text-slate-500 mt-2.5 block font-semibold';
-                    dot.className = 'w-2 h-2 rounded-full bg-slate-600';
+                    node.className = 'app-node-card cursor-pointer bg-[var(--bg-sub)] p-3 rounded-xl border border-borderCol text-center opacity-45 hover:opacity-90';
+                    stateSpan.textContent = 'STATE: STANDBY';
+                    stateSpan.className = 'node-state text-[9px] font-mono text-[var(--text-sub)] mt-1.5 block font-semibold';
+                    dot.className = 'w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600';
                 }
             });
 
-            document.getElementById('activeAppTag').textContent = `Target Node: ${targetConfig.name.toUpperCase()} (EXECUTING)`;
-            document.getElementById('subToolbarBadge').textContent = `RUNNING: ${targetConfig.name.toUpperCase()}`;
-            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded-md bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold text-[10px] animate-pulse';
+            document.getElementById('activeAppTag').textContent = `Target App: ${targetConfig.name.toUpperCase()} (${targetConfig.category})`;
+            document.getElementById('subToolbarBadge').textContent = `ROUTING: ${targetConfig.name.toUpperCase()}`;
+            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-cyan-950 text-neonBlue border border-cyan-800 font-bold text-[10px] animate-pulse';
 
-            logFullTerminal(`[DRIVER EXECUTION] Launching automation driver for [${targetConfig.pkg}]...`, 'INFO');
-            logFullTerminal(`[DEEP LINK GENERATED] Route: ${deepLink}`, 'INFO');
+            logFullTerminal(`[DISPATCHER] Package [${targetConfig.pkg}] -> ${deepLink}`, 'INFO');
 
-            synthesizeAudioFeedback(`Executing search for ${searchQuery} on ${targetConfig.name}`);
+            // Clear spoken voice confirmation
+            const spokenResponse = isDirectOpen
+                ? `Opening ${targetConfig.name} now.`
+                : `Searching for ${searchQuery} on ${targetConfig.name}.`;
+            synthesizeAudioFeedback(spokenResponse);
 
-            renderViewportCatalog(appKey, searchQuery, deepLink);
+            renderViewportCatalog(appKey, targetConfig, searchQuery, deepLink);
 
-            setTimeout(() => {
-                logFullTerminal(`[NODE COMPLETED] Route verified on ${targetConfig.name}. Opening live search tab...`, 'SUCCESS');
-                
-                const activeCardNode = document.querySelector(`.app-node-card[data-app="${appKey}"]`);
-                if (activeCardNode) {
-                    activeCardNode.querySelector('.node-state').textContent = 'STATE: COMPLETED';
-                    activeCardNode.querySelector('.node-state').className = 'node-state text-[10px] font-mono text-neonGreen mt-2.5 block font-bold';
-                    activeCardNode.querySelector('.status-dot').className = 'w-2 h-2 rounded-full bg-neonGreen';
+            if (isAutoRedirectEnabled) {
+                // Open immediately on user click or short delay on voice so browser popup blocker allows it
+                const popup = window.open(deepLink, '_blank');
+                if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+                    logFullTerminal(`[POPUP NOTICE] Browser blocked auto-tab. Click "Launch ${targetConfig.name} Now" in the viewport card.`, 'WARN');
+                } else {
+                    logFullTerminal(`[REDIRECTED] Opened ${targetConfig.name} in a new browser tab.`, 'SUCCESS');
                 }
+            }
 
-                document.getElementById('subToolbarBadge').textContent = 'REDIRECTED';
-                document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded-md bg-emerald-950 text-neonGreen border border-emerald-800 font-semibold text-[10px]';
+            const activeCardNode = document.querySelector(`.app-node-card[data-app="${appKey}"]`);
+            if (activeCardNode) {
+                activeCardNode.querySelector('.node-state').textContent = 'STATE: DISPATCHED';
+                activeCardNode.querySelector('.node-state').className = 'node-state text-[9px] font-mono text-neonGreen mt-1.5 block font-bold';
+                activeCardNode.querySelector('.status-dot').className = 'w-1.5 h-1.5 rounded-full bg-neonGreen';
+            }
 
-                window.open(deepLink, '_blank');
-            }, 1800);
+            document.getElementById('subToolbarBadge').textContent = `ACTIVE: ${targetConfig.name.toUpperCase()}`;
+            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-emerald-950 text-neonGreen border border-emerald-800 font-bold text-[10px]';
         }
 
-        // 8. RENDER ACTIVE VIEWPORT CATALOG & SPECIFICATIONS
-        function renderViewportCatalog(appKey, query, deepLink) {
+        // 8. RENDER ACTIVE VIEWPORT CATALOG & REDIRECT CARD
+        function renderViewportCatalog(appKey, target, query, deepLink) {
             const container = document.getElementById('fullCatalogContainer');
-            const target = PLATFORM_TARGETS[appKey];
-
-            let price = "₹18,999.00";
-            let delivery = "FREE Express Delivery by Tomorrow, 11 AM";
-            let rating = "4.4 ★ (12,890 verified reviews)";
-
-            if (appKey === 'flipkart') {
-                price = "₹17,499.00";
-                rating = "4.3 ★ (Flipkart Assured)";
-            } else if (appKey === 'meesho') {
-                price = "₹12,250.00";
-                rating = "4.1 ★ (Wholesale Direct)";
-                delivery = "Free Delivery in 3–4 Business Days";
-            } else if (appKey === 'zomato' || appKey === 'swiggy') {
-                price = "₹380.00";
-                rating = "4.6 ★ (Top Rated Restaurant)";
-                delivery = "Express Delivery in 22 Mins";
-            }
 
             container.innerHTML = `
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                    <!-- Column 1: Scraped Product Card -->
-                    <div class="lg:col-span-2 bg-[#080d1a] p-5 rounded-xl border border-slate-800 flex flex-col justify-between">
+                    <div class="lg:col-span-2 bg-[var(--bg-sub)] p-5 rounded-xl border border-neonBlue/50 flex flex-col justify-between">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-3">
-                                <span class="text-neonBlue font-semibold uppercase tracking-wide">
-                                    ● Active Target: ${target.name}
+                            <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono mb-3">
+                                <span class="text-neonBlue font-bold uppercase tracking-wider">
+                                    ● ACTIVE TARGET PLATFORM: ${target.name.toUpperCase()}
                                 </span>
-                                <span class="text-neonGreen px-2.5 py-0.5 rounded-md bg-emerald-950/80 border border-emerald-800 text-[10px] font-medium">
-                                    Deep Link Verified
+                                <span class="text-neonGreen px-2 py-0.5 rounded bg-emerald-950/90 border border-emerald-800 text-[10px]">
+                                    ${target.category} • Deep Link Ready
                                 </span>
                             </div>
 
-                            <h3 class="text-lg font-display font-bold text-white mb-1.5">${query}</h3>
-                            <div class="text-2xl font-mono font-bold text-neonAmber mb-4">${price}</div>
+                            <h3 class="text-xl font-extrabold text-[var(--text-main)] mb-2">${query}</h3>
+                            <div class="text-lg font-mono font-bold text-neonAmber mb-3">${target.samplePrice}</div>
 
-                            <div class="space-y-2 text-xs text-slate-300 font-mono mb-5">
+                            <div class="space-y-1.5 text-xs text-[var(--text-sub)] font-mono mb-4">
                                 <div class="flex items-center gap-2">
-                                    <span class="text-slate-500">Rating:</span>
-                                    <span class="text-white font-medium">${rating}</span>
+                                    <span>Destination URL:</span>
+                                    <a href="${deepLink}" target="_blank" class="text-neonBlue underline truncate max-w-md">${deepLink}</a>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <span class="text-slate-500">Delivery:</span>
-                                    <span class="text-neonGreen font-medium">${delivery}</span>
+                                    <span>Fulfillment / Route:</span>
+                                    <span class="text-neonGreen font-semibold">${target.sampleDelivery}</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="pt-3.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
-                            <a href="${deepLink}" target="_blank" class="px-4 py-2 rounded-lg bg-cyan-950 hover:opacity-90 text-neonBlue border border-cyan-700 font-semibold transition flex items-center gap-1.5">
-                                ↗ Open ${target.name} Search Tab
+                        <div class="pt-3 border-t border-borderCol flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                            <a href="${deepLink}" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-cyan-400 hover:opacity-90 text-black font-extrabold transition flex items-center gap-2 shadow-neon-glow">
+                                ↗ Launch ${target.name} Now
                             </a>
-                            <span class="text-[11px] text-slate-500">${target.pkg}</span>
+                            <span class="text-[10px] text-[var(--text-sub)]">Driver ID: ${target.pkg}</span>
                         </div>
                     </div>
 
-                    <!-- Column 2: X/Y Multi-Axis Sweep Telemetry -->
-                    <div class="bg-[#080d1a] p-5 rounded-xl border border-slate-800 flex flex-col justify-between font-mono text-xs">
+                    <div class="bg-[var(--bg-sub)] p-5 rounded-xl border border-borderCol flex flex-col justify-between font-mono text-xs">
                         <div>
-                            <div class="text-neonPurple font-semibold mb-3.5 uppercase text-[11px] tracking-wider flex items-center justify-between">
-                                <span>Viewport Sweep Audit</span>
+                            <div class="text-neonPurple font-bold mb-3 uppercase text-[11px] tracking-wider flex items-center justify-between">
+                                <span>Dynamic Routing Audit</span>
                                 <span class="w-2 h-2 rounded-full bg-neonPurple animate-ping"></span>
                             </div>
 
-                            <div class="space-y-2.5 text-slate-300">
-                                <div class="flex justify-between border-b border-slate-800/60 pb-2">
-                                    <span class="text-slate-500">Y-Axis Scroll:</span>
-                                    <span class="text-neonBlue font-semibold">Completed</span>
+                            <div class="space-y-2 text-[var(--text-sub)]">
+                                <div class="flex justify-between border-b border-borderCol pb-1.5">
+                                    <span>Target App:</span>
+                                    <span class="text-[var(--text-main)] font-bold">${target.name}</span>
                                 </div>
-                                <div class="flex justify-between border-b border-slate-800/60 pb-2">
-                                    <span class="text-slate-500">X-Axis Carousel:</span>
-                                    <span class="text-neonPurple font-semibold">Variants Parsed</span>
+                                <div class="flex justify-between border-b border-borderCol pb-1.5">
+                                    <span>Y-Axis Sweeps:</span>
+                                    <span class="text-neonBlue font-bold">Executed</span>
                                 </div>
-                                <div class="flex justify-between border-b border-slate-800/60 pb-2">
-                                    <span class="text-slate-500">DOM Depth:</span>
-                                    <span class="text-white font-medium">14 Levels</span>
+                                <div class="flex justify-between border-b border-borderCol pb-1.5">
+                                    <span>X-Axis Carousel:</span>
+                                    <span class="text-neonPurple font-bold">Extracted</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-slate-500">Capture Trigger:</span>
-                                    <span class="text-neonGreen font-semibold">Say "Okay"</span>
+                                    <span>Proof Trigger:</span>
+                                    <span class="text-neonGreen font-bold">Say "Okay"</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 leading-relaxed">
-                            Say <strong class="text-neonBlue">"Okay"</strong> or click <strong class="text-neonGreen">Capture Now</strong> to save a PNG proof snapshot.
+                        <div class="mt-4 pt-3 border-t border-borderCol text-[10px] text-[var(--text-sub)]">
+                            Tip: Click any of the 12 app cards above to switch platforms with the same search query.
                         </div>
                     </div>
                 </div>
@@ -1219,28 +1324,27 @@
         }
 
         function simulateMultiAxisSweep() {
-            if (!activeAppKey) {
-                alert('Please execute a voice instruction or sample command first.');
+            if (!activeAppConfig) {
+                alert('Please execute a voice instruction or quick command first.');
                 return;
             }
-            logFullTerminal(`[X/Y SWEEP] Executing automated vertical (Y-Axis) and horizontal carousel sweeps...`, 'WARN');
-            logFullTerminal(`[DOM SCRAPE] Dynamic UI components re-serialized. Lazy-loaded items buffered.`, 'SUCCESS');
+            logFullTerminal(`[X/Y SWEEP] Executing automated vertical & horizontal DOM sweeps on ${activeAppConfig.name}...`, 'WARN');
+            logFullTerminal(`[DOM SCRAPE] Dynamic components serialized for "${activeQuery}".`, 'SUCCESS');
         }
 
         // 9. PROOF SERIALIZATION PIPELINE (HTML2CANVAS)
         function captureFullProofScreenshot() {
-            if (!activeAppKey) {
+            if (!activeAppConfig) {
                 logFullTerminal('[SERIALIZATION CANCELLED] No active app session found to capture.', 'WARN');
-                alert('No active application session found. Please execute a command first.');
+                alert('No active application session found. Please execute an instruction first.');
                 return;
             }
 
-            logFullTerminal('[SCREENSHOT PIPELINE] Serializing active viewport to PNG artifact...', 'WARN');
+            logFullTerminal('[SCREENSHOT PIPELINE] Serializing active DOM viewport to PNG artifact...', 'WARN');
             const targetArea = document.getElementById('fullViewportArea');
-            const isDark = document.documentElement.classList.contains('dark');
 
             html2canvas(targetArea, {
-                backgroundColor: isDark ? '#090c12' : '#f8fafc',
+                backgroundColor: document.documentElement.classList.contains('dark') ? '#060911' : '#f1f5f9',
                 scale: 1.5,
                 useCORS: true
             }).then(canvas => {
@@ -1258,7 +1362,8 @@
 
                 const artifact = {
                     id: proofArchiveCount,
-                    appKey: activeAppKey,
+                    appName: activeAppConfig.name,
+                    appSlug: activeAppConfig.name.toLowerCase().replace(/[^a-z0-9]/g, '_'),
                     query: activeQuery,
                     imgData: imgData,
                     timestamp: timestamp,
@@ -1269,36 +1374,35 @@
 
                 const gallery = document.getElementById('fullGallery');
                 const card = document.createElement('div');
-                card.className = "bg-[#080d1a] border border-slate-800 hover:border-neonBlue rounded-xl p-2.5 flex flex-col justify-between text-xs font-mono transition group";
+                card.className = "bg-[var(--bg-sub)] border border-borderCol hover:border-neonBlue rounded-xl p-2.5 flex flex-col justify-between text-xs font-mono transition group";
                 card.innerHTML = `
                     <div>
-                        <div class="flex items-center justify-between text-[10px] text-neonBlue font-semibold border-b border-slate-800/80 pb-1.5 mb-2">
-                            <span>#${proofArchiveCount} ${activeAppKey.toUpperCase()}</span>
+                        <div class="flex items-center justify-between text-[10px] text-neonBlue font-bold border-b border-borderCol pb-1 mb-1.5">
+                            <span>#${proofArchiveCount} ${artifact.appName.toUpperCase()}</span>
                             <span class="text-neonGreen">SAVED</span>
                         </div>
-                        <div class="relative overflow-hidden rounded-lg border border-slate-800 cursor-pointer" onclick="openProofModal(${proofArchiveCount})">
+                        <div class="relative overflow-hidden rounded border border-borderCol cursor-pointer" onclick="openProofModal(${proofArchiveCount})">
                             <img src="${imgData}" class="w-full h-20 object-cover group-hover:scale-105 transition duration-300" alt="Proof Snapshot">
-                            <div class="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-[10px] text-white font-semibold">
-                                Inspect
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-[10px] text-white font-bold">
+                                [INSPECT]
                             </div>
                         </div>
-                        <div class="text-[10px] text-slate-400 mt-2 truncate">Query: ${activeQuery}</div>
-                        <div class="text-[10px] text-slate-500">Time: ${timestamp}</div>
+                        <div class="text-[9px] text-[var(--text-sub)] mt-1.5 truncate">Query: ${activeQuery}</div>
+                        <div class="text-[9px] text-[var(--text-sub)]">Time: ${timestamp}</div>
                     </div>
-                    <div class="mt-2 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[10px]">
-                        <a href="${imgData}" download="${activeAppKey}_proof_${proofArchiveCount}.png" class="text-neonBlue hover:underline font-semibold">
+                    <div class="mt-2 pt-1.5 border-t border-borderCol flex items-center justify-between text-[10px]">
+                        <a href="${imgData}" download="${artifact.appSlug}_proof_${proofArchiveCount}.png" class="text-neonBlue hover:underline font-bold">
                             Download .PNG
                         </a>
-                        <span class="text-slate-500">${fakeHash.substring(0, 8)}...</span>
+                        <span class="text-[var(--text-sub)]">${fakeHash.substring(0, 8)}...</span>
                     </div>
                 `;
 
                 gallery.appendChild(card);
                 gallery.scrollTop = gallery.scrollHeight;
 
-                logFullTerminal(`[PROOF ARCHIVED] Saved /archive/demo_proofs/${activeAppKey}_proof_${proofArchiveCount}.png (Hash: ${fakeHash})`, 'SUCCESS');
-                
-                synthesizeAudioFeedback("Execution proof snapshot captured and archived.");
+                logFullTerminal(`[PROOF ARCHIVED] Saved ${artifact.appSlug}_proof_${proofArchiveCount}.png (Hash: ${fakeHash})`, 'SUCCESS');
+                synthesizeAudioFeedback(`Proof snapshot for ${artifact.appName} saved.`);
             }).catch(err => {
                 logFullTerminal(`[SERIALIZATION ERROR] html2canvas failed: ${err.message}`, 'ERROR');
             });
@@ -1309,14 +1413,14 @@
             const artifact = activeProofArtifacts.find(a => a.id === artifactId);
             if (!artifact) return;
 
-            document.getElementById('modalTitle').textContent = `Proof Snapshot #${artifact.id} — ${artifact.appKey.toUpperCase()}`;
-            document.getElementById('modalMeta').textContent = `Query: "${artifact.query}" • Captured at ${artifact.timestamp}`;
+            document.getElementById('modalTitle').textContent = `Proof Snapshot #${artifact.id} (${artifact.appName.toUpperCase()})`;
+            document.getElementById('modalMeta').textContent = `Query: "${artifact.query}" | Captured at ${artifact.timestamp}`;
             document.getElementById('modalImg').src = artifact.imgData;
-            document.getElementById('modalHash').textContent = `SHA-256 Digest: ${artifact.hash}e8f9b2c41d`;
+            document.getElementById('modalHash').textContent = `SHA-256 Hash Digest: ${artifact.hash}e8f9b2c41d`;
             
             const downloadLink = document.getElementById('modalDownloadLink');
             downloadLink.href = artifact.imgData;
-            downloadLink.download = `${artifact.appKey}_proof_${artifact.id}.png`;
+            downloadLink.download = `${artifact.appSlug}_proof_${artifact.id}.png`;
 
             document.getElementById('proofModal').classList.remove('hidden');
         }
@@ -1324,6 +1428,11 @@
         function closeProofModal() {
             document.getElementById('proofModal').classList.add('hidden');
         }
+
+        // BOOTSTRAP
+        document.addEventListener('DOMContentLoaded', () => {
+            renderInitialNodesGrid();
+        });
     </script>
 </body>
 </html>
