@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omni-App Voice Commerce Orchestrator - Enterprise Suite</title>
+    <title>Omni-App Voice Commerce Orchestrator - Enterprise Suite v4.2 Live</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,9 +33,9 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     boxShadow: {
-                        'neon-glow': '0 0 20px rgba(0, 243, 255, 0.25)',
-                        'purple-glow': '0 0 20px rgba(139, 92, 246, 0.25)',
-                        'rose-glow': '0 0 20px rgba(255, 51, 102, 0.25)',
+                        'neon-glow': '0 0 25px rgba(0, 243, 255, 0.3)',
+                        'purple-glow': '0 0 25px rgba(139, 92, 246, 0.3)',
+                        'rose-glow': '0 0 25px rgba(255, 51, 102, 0.3)',
                     }
                 }
             }
@@ -49,7 +49,7 @@
             --text-main: #0f172a;
             --text-sub: #475569;
             --border-color: rgba(148, 163, 184, 0.5);
-            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.95);
             --terminal-bg: #0f172a;
             --terminal-text: #f8fafc;
             --scanline-color: rgba(0, 0, 0, 0.02);
@@ -61,7 +61,7 @@
             --text-main: #f0f4f8;
             --text-sub: #94a3b8;
             --border-color: rgba(34, 47, 76, 0.8);
-            --card-bg: rgba(13, 19, 34, 0.85);
+            --card-bg: rgba(13, 19, 34, 0.9);
             --terminal-bg: #050811;
             --terminal-text: #e2e8f0;
             --scanline-color: rgba(0, 243, 255, 0.04);
@@ -73,8 +73,8 @@
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.04) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.05) 0%, transparent 45%);
         }
         .glass-panel {
             background: var(--card-bg);
@@ -103,9 +103,9 @@
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .subtoolbar-btn:hover {
-            background: rgba(0, 243, 255, 0.12);
+            background: rgba(0, 243, 255, 0.15);
             color: #00f3ff;
-            border-color: rgba(0, 243, 255, 0.4);
+            border-color: rgba(0, 243, 255, 0.5);
             transform: translateY(-1px);
         }
         .app-node-card {
@@ -121,8 +121,17 @@
             100% { transform: scale(0.95); opacity: 0.8; }
         }
         .mic-pulse {
-            animation: pulse-ring 2s infinite ease-in-out;
+            animation: pulse-ring 1.8s infinite ease-in-out;
         }
+        @keyframes soundwave {
+            0% { height: 4px; }
+            50% { height: 24px; }
+            100% { height: 4px; }
+        }
+        .bar-1 { animation: soundwave 0.6s infinite ease-in-out; }
+        .bar-2 { animation: soundwave 0.8s infinite ease-in-out 0.1s; }
+        .bar-3 { animation: soundwave 0.5s infinite ease-in-out 0.2s; }
+        .bar-4 { animation: soundwave 0.7s infinite ease-in-out 0.3s; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-cyan-500 selection:text-black scanline">
@@ -141,7 +150,7 @@
                         OMNI-VOICE ORCHESTRATOR
                     </span>
                     <span class="hidden sm:inline-block ml-2 text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/90 text-neonBlue border border-cyan-800/60 uppercase">
-                        v4.0 Universal Router
+                        v4.2 Live Dynamic
                     </span>
                 </div>
             </div>
@@ -149,20 +158,20 @@
             <!-- Mid Metadata Bar -->
             <div class="hidden xl:flex items-center gap-5 text-xs font-mono">
                 <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span class="text-[var(--text-sub)]">Routing: <strong class="text-[var(--text-main)]">Universal Dynamic + 12 Native Nodes</strong></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-[var(--text-sub)]">Engine Status: <strong class="text-[var(--text-main)]">Fully Dynamic Active</strong></span>
                 </div>
                 <div class="h-4 w-px bg-slate-700"></div>
                 <div class="flex items-center gap-2">
                     <span class="text-[var(--text-sub)]">Auto-Redirect:</span>
-                    <button id="autoRedirectToggleBtn" onclick="toggleAutoRedirect()" class="px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition">
+                    <button id="autoRedirectToggleBtn" onclick="toggleAutoRedirect()" class="px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition cursor-pointer">
                         ⚡ ON (INSTANT)
                     </button>
                 </div>
                 <div class="h-4 w-px bg-slate-700"></div>
                 <div class="flex items-center gap-2">
                     <span class="text-[var(--text-sub)]">TTS Voice:</span>
-                    <button id="ttsToggleBtn" onclick="toggleTTS()" class="px-2 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-main)] hover:text-neonBlue border border-borderCol transition">
+                    <button id="ttsToggleBtn" onclick="toggleTTS()" class="px-2 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-main)] hover:text-neonBlue border border-borderCol transition cursor-pointer">
                         🔊 ENABLED
                     </button>
                 </div>
@@ -188,30 +197,30 @@
         <div class="bg-[var(--bg-sub)] border-t border-borderCol px-4 sm:px-6 py-2 transition-colors">
             <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
                 <div class="flex items-center gap-2 overflow-x-auto py-0.5 scrollbar-none">
-                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Any App:</span>
-                    <button onclick="injectQuickCommand('Order 12GB RAM mobile phone on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Test Apps Live:</span>
+                    <button onclick="injectQuickCommand('Order 12GB RAM mobile phone on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         📱 Flipkart
                     </button>
-                    <button onclick="injectQuickCommand('Get cotton ethnic kurti set on Measho')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <button onclick="injectQuickCommand('Get cotton ethnic kurti set on Meesho')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         👗 Meesho
                     </button>
-                    <button onclick="injectQuickCommand('Order Pepperoni Pizza large on Zomato')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <button onclick="injectQuickCommand('Order Pepperoni Pizza large on Zomato')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         🍕 Zomato
                     </button>
-                    <button onclick="injectQuickCommand('Find Paneer Butter Masala on Swiggi')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <button onclick="injectQuickCommand('Find Paneer Butter Masala on Swiggy')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         🍲 Swiggy
                     </button>
-                    <button onclick="injectQuickCommand('Buy fresh organic mangoes on Blinkit')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <button onclick="injectQuickCommand('Buy fresh organic mangoes on Blinkit')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         ⚡ Blinkit
                     </button>
-                    <button onclick="injectQuickCommand('Search running shoes on Myntra')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <button onclick="injectQuickCommand('Search running shoes on Myntra')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         👟 Myntra
                     </button>
-                    <button onclick="injectQuickCommand('Search biryani pot 5 litre on Amazon')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    <button onclick="injectQuickCommand('Search stainless steel biryani pot on Amazon')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
                         🛍️ Amazon
                     </button>
-                    <button onclick="injectQuickCommand('Find wireless earbuds on Croma')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
-                        🌐 Any Custom App (Croma)
+                    <button onclick="injectQuickCommand('Find wireless earbuds on Croma')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap cursor-pointer">
+                        🌐 Any App (Croma)
                     </button>
                 </div>
 
@@ -307,21 +316,26 @@
                 </div>
             </div>
 
-            <!-- Voice Instruction Format Guide & Input Control Box -->
+            <!-- LIVE SPEECH WAVEFORM VISUALIZER & INPUT CONTROL BOX -->
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                <div class="lg:col-span-3 space-y-2">
+                <div class="lg:col-span-3 space-y-3">
                     <div class="flex flex-wrap items-center justify-between gap-2">
                         <label class="block text-xs font-mono uppercase text-[var(--text-sub)] tracking-wider">
-                            Spoken or Typed Instruction (Auto-Executes on Voice Pause)
+                            Spoken or Typed Instruction (Fully Dynamic Real-Time Dispatch)
                         </label>
-                        <span class="text-[11px] font-mono text-neonBlue">
-                            Format: "[Action] [Item] on/in/from [Any App Name]"
-                        </span>
+                        <!-- Live Waveform Animation Container -->
+                        <div id="liveWaveform" class="hidden items-center gap-1 h-6 px-3 bg-cyan-950/80 border border-cyan-700/60 rounded-full">
+                            <span class="text-[10px] font-mono text-neonBlue font-bold mr-1">MIC LIVE:</span>
+                            <div class="w-1 bg-neonBlue rounded-full bar-1"></div>
+                            <div class="w-1 bg-neonBlue rounded-full bar-2"></div>
+                            <div class="w-1 bg-neonBlue rounded-full bar-3"></div>
+                            <div class="w-1 bg-neonBlue rounded-full bar-4"></div>
+                        </div>
                     </div>
                     <div class="relative flex items-center">
                         <input type="text" id="fullCommandInput" 
                             onkeydown="if(event.key==='Enter') processFullInstruction()"
-                            placeholder="Try: 'Order masala dosa on Swiggy', 'Buy shoes on Myntra', 'Search iPhone on Flipkart', or 'Open YouTube'..." 
+                            placeholder="Try: 'Order chicken biryani on Swiggy', 'Search sneakers on Myntra', 'Buy iPhone on Flipkart', or 'Find hotels on Agoda'..." 
                             class="w-full bg-[var(--bg-sub)] border border-borderCol rounded-xl pl-4 pr-20 py-3.5 text-sm text-[var(--text-main)] focus:outline-none focus:border-neonBlue font-mono transition-all">
                         <div class="absolute right-3 flex items-center gap-2">
                             <button onclick="clearCommandInput()" class="text-xs text-[var(--text-sub)] hover:text-[var(--text-main)] font-mono px-2 py-1 cursor-pointer">
@@ -446,8 +460,8 @@
 
                     <!-- Terminal Output Window -->
                     <div id="fullTerminal" class="h-64 overflow-y-auto font-mono text-xs space-y-1.5 p-2 bg-[var(--terminal-bg)] rounded-xl border border-borderCol text-[var(--terminal-text)]">
-                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Universal Omni-App Voice Router v4.0 active (No single-app default lock).</div>
-                        <div class="text-slate-400" data-level="INFO">[NLU ENGINE] Preposition-aware target extractor + multi-platform phonetic resolver loaded.</div>
+                        <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Universal Omni-App Voice Router v4.2 fully dynamic active.</div>
+                        <div class="text-slate-400" data-level="INFO">[SPEECH ENGINE] WebSpeech Recognition API & Live Audio Visualizer ready.</div>
                     </div>
                 </div>
 
@@ -529,7 +543,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT CONTROLLER & UNIVERSAL ROUTING ENGINE -->
+    <!-- JAVASCRIPT CONTROLLER & FULLY DYNAMIC ENGINE -->
     <script>
         // GLOBAL ORCHESTRATOR STATE
         let activeAppKey = null;
@@ -678,7 +692,6 @@
             }
         };
 
-        // NOISE & TRANSACTIONAL FILLER VERBS
         const FILLER_VERBS = [
             'search for', 'look for', 'search', 'order', 'buy', 'purchase', 'get', 'find',
             'bring', 'show me', 'show', 'open', 'launch', 'go to', 'navigate to',
@@ -695,7 +708,7 @@
                 card.setAttribute('data-app', key);
                 card.onclick = () => switchTargetNodeManually(key);
                 card.title = `Click to route current query to ${cfg.name}`;
-                card.className = 'app-node-card cursor-pointer bg-[var(--bg-sub)] p-3 rounded-xl border border-borderCol text-center opacity-50 hover:opacity-90';
+                card.className = 'app-node-card cursor-pointer bg-[var(--bg-sub)] p-3 rounded-xl border border-borderCol text-center opacity-50 hover:opacity-95';
                 card.innerHTML = `
                     <div class="flex items-center justify-between mb-1">
                         <span class="text-[9px] font-mono ${cfg.badgeColor} font-bold uppercase truncate">${cfg.category}</span>
@@ -720,7 +733,7 @@
                 appConfig: activeAppConfig,
                 entity: queryToUse,
                 similarity: "100.0",
-                latency: 110,
+                latency: 95,
                 method: "Manual Node Select"
             });
 
@@ -728,7 +741,6 @@
             executeAppNodeDriver(appKey, activeAppConfig, queryToUse);
         }
 
-        // THEME & AUTO-REDIRECT TOGGLES
         function toggleThemeMode() {
             const htmlEl = document.documentElement;
             const themeLabel = document.getElementById('themeLabel');
@@ -752,16 +764,15 @@
             const btn = document.getElementById('autoRedirectToggleBtn');
             if (isAutoRedirectEnabled) {
                 btn.textContent = '⚡ ON (INSTANT)';
-                btn.className = 'px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition';
+                btn.className = 'px-2 py-0.5 rounded bg-emerald-950/80 text-neonGreen border border-emerald-700/60 font-bold transition cursor-pointer';
                 logFullTerminal('[CONFIG] Automatic browser tab redirection ENABLED.', 'INFO');
             } else {
                 btn.textContent = '⏸ MANUAL LINK';
-                btn.className = 'px-2 py-0.5 rounded bg-amber-950/80 text-neonAmber border border-amber-700/60 font-bold transition';
+                btn.className = 'px-2 py-0.5 rounded bg-amber-950/80 text-neonAmber border border-amber-700/60 font-bold transition cursor-pointer';
                 logFullTerminal('[CONFIG] Automatic redirection PAUSED (preview & manual click mode).', 'WARN');
             }
         }
 
-        // 1. LEVENSHTEIN DISTANCE & FUZZY MATCH ENGINE
         function computeLevenshteinDistance(a, b) {
             const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
             for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
@@ -789,7 +800,7 @@
             return (maxLen - dist) / maxLen;
         }
 
-        // 2. UNIVERSAL DYNAMIC NLU INTENT PARSER (NO AMAZON LOCK!)
+        // FULLY DYNAMIC INTENT PARSER
         function parseSpokenIntent(transcript) {
             const startTime = performance.now();
             const rawClean = transcript.trim();
@@ -801,7 +812,6 @@
             let highestSimilarity = 0.0;
             let resolutionMethod = "Registry Phonetic";
 
-            // Step A: Scan all registered platforms (exact phrase, word boundary, and fuzzy token)
             Object.keys(PLATFORM_TARGETS).forEach(appKey => {
                 const target = PLATFORM_TARGETS[appKey];
                 target.phonetics.forEach(phonetic => {
@@ -831,12 +841,9 @@
                 });
             });
 
-            // Step B: Dynamic Open-App Extraction if user names ANY unlisted app (e.g., "... on Croma", "... in Ajio", "Open IRCTC")
             let customAppName = null;
             if (!matchedAppKey) {
-                // Pattern 1: "... on/in/from/via/using <AppName>" at the end of sentence
-                const tailPrepMatch = rawClean.match(/ (?:on|in|from|via|using|at)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website|site)?$/i);
-                // Pattern 2: "open/launch <AppName>"
+                const tailPrepMatch = rawClean.match(/\b(?:on|in|from|via|using|at)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website|site)?$/i);
                 const openAppMatch = rawClean.match(/^(?:please\s+)?(?:open|launch|start|visit)\s+([a-zA-Z0-9._-]+(?:\s+[a-zA-Z0-9._-]+)?)\s*(?:app|application|website)?$/i);
 
                 if (tailPrepMatch && tailPrepMatch[1]) {
@@ -850,7 +857,6 @@
                 }
             }
 
-            // Build Resolved App Configuration
             let resolvedConfig = null;
             let resolvedKey = null;
 
@@ -866,7 +872,6 @@
                     category: "Dynamic Web/App",
                     pkg: `web.${domainSlug}.dispatcher`,
                     baseUrl: `https://www.google.com/search?q=${encodeURIComponent(formattedName)}`,
-                    // Uses Google site-targeted deep search so ANY real-world app/store opens directly to the product page!
                     deepLinkPattern: `https://www.google.com/search?btnI=I&q=${encodeURIComponent(formattedName + ' ')}`,
                     isCustom: true,
                     rawAppToken: customAppName,
@@ -874,7 +879,6 @@
                     sampleDelivery: `Direct Route to ${formattedName}`
                 };
             } else {
-                // Step C: No specific app mentioned at all -> Universal Multi-Store Web Search (never locked to Amazon)
                 resolvedKey = 'universal_web';
                 highestSimilarity = 0.88;
                 resolutionMethod = "Universal Search Fallback";
@@ -890,9 +894,7 @@
                 };
             }
 
-            // Step D: Clean Entity Extraction (Remove matched app name, prepositions, and filler verbs)
             let extractedEntity = rawClean;
-
             if (matchedPhonetic) {
                 const appRegex = new RegExp(`\b(?:on|in|from|via|using|at)?\s*${matchedPhonetic.replace(/[.*+?^${}()|[\]\]/g, '\$&')}\b`, 'gi');
                 extractedEntity = extractedEntity.replace(appRegex, ' ');
@@ -907,7 +909,6 @@
                 extractedEntity = extractedEntity.replace(verbRegex, ' ');
             });
 
-            // Clean trailing/leading stray prepositions
             extractedEntity = extractedEntity
                 .replace(/^(?:on|in|from|for|to|a|an|the) /i, '')
                 .replace(/ (?:on|in|from|for|to)$/i, '')
@@ -924,7 +925,7 @@
             }
 
             const endTime = performance.now();
-            const latencyMs = Math.max(Math.round(endTime - startTime), 118);
+            const latencyMs = Math.max(Math.round(endTime - startTime), 85);
 
             return {
                 appKey: resolvedKey,
@@ -937,13 +938,11 @@
             };
         }
 
-        // Build final destination URL accurately per platform
         function buildTargetDeepLink(appKey, appConfig, query, isDirectOpen) {
             if (isDirectOpen && appConfig.baseUrl && !appConfig.isCustom) {
                 return appConfig.baseUrl;
             }
             if (appKey === 'myntra') {
-                // Myntra uses hyphenated slug paths e.g. myntra.com/running-shoes
                 const slug = query.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
                 return `https://www.myntra.com/${slug}`;
             }
@@ -951,13 +950,11 @@
                 return `https://www.jiomart.com/search/${encodeURIComponent(query)}`;
             }
             if (appConfig.isCustom && appConfig.rawAppToken) {
-                // Searches directly for the product on the requested custom app/site
                 return `https://www.google.com/search?q=${encodeURIComponent(appConfig.rawAppToken + ' ' + (isDirectOpen ? '' : query))}`;
             }
             return `${appConfig.deepLinkPattern}${encodeURIComponent(query)}`;
         }
 
-        // 3. TELEMETRY & LOGGING SYSTEM
         function logFullTerminal(msg, level = 'INFO') {
             const term = document.getElementById('fullTerminal');
             const levelColors = {
@@ -988,19 +985,18 @@
         }
 
         function clearFullTerminal() {
-            document.getElementById('fullTerminal').innerHTML = '<div class="text-slate-400" data-level="INFO">[TERMINAL CLEARED] Ready for incoming voice or text instructions.</div>';
+            document.getElementById('fullTerminal').innerHTML = '<div class="text-slate-400" data-level="INFO">[TERMINAL CLEARED] Ready for live voice or text instructions.</div>';
         }
 
         function copyTerminalLogs() {
             const termText = Array.from(document.querySelectorAll('#fullTerminal > div'))
                 .map(div => div.innerText)
-                .join('
-');
+                .join('\n');
             navigator.clipboard.writeText(termText);
             logFullTerminal('[CLIPBOARD] Telemetry logs copied.', 'SUCCESS');
         }
 
-        // 4. SPEECH RECOGNITION ENGINE (ASR WITH AUTO-DISPATCH ON FINAL PHRASE)
+        // REAL-TIME SPEECH RECOGNITION ENGINE WITH LIVE WAVEFORM
         function toggleVoiceRecognition() {
             if (isListening) {
                 stopVoiceSession();
@@ -1013,8 +1009,8 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
             if (!SpeechRecognition) {
-                logFullTerminal('[ASR ERROR] WebSpeech API unsupported in this browser. Type commands in the input box.', 'ERROR');
-                alert('Speech Recognition is not supported in this browser. Please use Chrome/Edge or type commands directly.');
+                logFullTerminal('[ASR ERROR] WebSpeech API not supported in this browser. Please use Chrome or Edge.', 'ERROR');
+                alert('Speech Recognition is not natively supported in this browser. Please use Google Chrome or Microsoft Edge.');
                 return;
             }
 
@@ -1022,13 +1018,14 @@
                 speechRecognitionInstance = new SpeechRecognition();
                 speechRecognitionInstance.continuous = true;
                 speechRecognitionInstance.interimResults = true;
-                speechRecognitionInstance.lang = 'en-IN'; // Tuned for Indian English + global platform names
+                speechRecognitionInstance.lang = 'en-IN';
 
                 speechRecognitionInstance.onstart = () => {
                     isListening = true;
                     updateVoiceUIState(true);
-                    logFullTerminal('[ASR STREAM] Microphone active (en-IN / en-US). Speak your command clearly...', 'INFO');
-                    synthesizeAudioFeedback("Listening. Tell me what to order and which app to open.");
+                    document.getElementById('liveWaveform').style.display = 'flex';
+                    logFullTerminal('[ASR STREAM] Microphone listening live (en-IN / en-US)...', 'INFO');
+                    synthesizeAudioFeedback("Listening live. Speak your command.");
                 };
 
                 speechRecognitionInstance.onresult = (event) => {
@@ -1051,14 +1048,13 @@
                     if (finalTranscript.trim()) {
                         const spoken = finalTranscript.trim();
                         document.getElementById('fullCommandInput').value = spoken;
-                        logFullTerminal(`[ASR FINAL] Recognized speech: "${spoken}"`, 'SUCCESS');
+                        logFullTerminal(`[ASR FINAL] Voice recognized: "${spoken}"`, 'SUCCESS');
 
                         const lower = spoken.toLowerCase();
                         if (lower === "okay" || lower === "ok" || lower.includes("capture proof") || lower.includes("take screenshot")) {
-                            logFullTerminal('[TRIGGER TOKEN] Proof capture trigger detected.', 'WARN');
+                            logFullTerminal('[TRIGGER TOKEN] Spoken trigger "Okay" detected.', 'WARN');
                             captureFullProofScreenshot();
                         } else {
-                            // Automatically execute the parsed voice instruction!
                             processFullInstruction();
                         }
                     }
@@ -1088,8 +1084,9 @@
             if (speechRecognitionInstance) {
                 speechRecognitionInstance.stop();
             }
+            document.getElementById('liveWaveform').style.display = 'none';
             updateVoiceUIState(false);
-            logFullTerminal('[ASR STREAM] Microphone listener stopped.', 'INFO');
+            logFullTerminal('[ASR STREAM] Microphone stopped.', 'INFO');
         }
 
         function updateVoiceUIState(active) {
@@ -1113,7 +1110,6 @@
             }
         }
 
-        // 5. TEXT-TO-SPEECH (TTS) AUDIO FEEDBACK SYNTHESIZER
         function toggleTTS() {
             isTTSAudioEnabled = !isTTSAudioEnabled;
             const btn = document.getElementById('ttsToggleBtn');
@@ -1129,7 +1125,6 @@
             window.speechSynthesis.speak(utterance);
         }
 
-        // 6. MAIN EXECUTION PIPELINE
         function updateMetricsUI({ appConfig, entity, similarity, latency, method }) {
             document.getElementById('metricLatency').textContent = `${latency} ms`;
             document.getElementById('metricLatencyBar').style.width = `${Math.min((latency / 500) * 100, 100)}%`;
@@ -1188,11 +1183,9 @@
             captureFullProofScreenshot();
         }
 
-        // 7. APP NODE DRIVER EXECUTION & LIVE REDIRECTION
         function executeAppNodeDriver(appKey, targetConfig, searchQuery, isDirectOpen = false) {
             const deepLink = buildTargetDeepLink(appKey, targetConfig, searchQuery, isDirectOpen);
 
-            // Highlight active registered node (or mark all registered nodes standby if custom/universal)
             document.querySelectorAll('.app-node-card').forEach(node => {
                 const nodeApp = node.getAttribute('data-app');
                 const stateSpan = node.querySelector('.node-state');
@@ -1206,7 +1199,7 @@
                     dot.className = 'w-1.5 h-1.5 rounded-full bg-neonBlue animate-ping';
                 } else {
                     node.style.opacity = '0.45';
-                    node.className = 'app-node-card cursor-pointer bg-[var(--bg-sub)] p-3 rounded-xl border border-borderCol text-center opacity-45 hover:opacity-90';
+                    node.className = 'app-node-card cursor-pointer bg-[var(--bg-sub)] p-3 rounded-xl border border-borderCol text-center opacity-45 hover:opacity-95';
                     stateSpan.textContent = 'STATE: STANDBY';
                     stateSpan.className = 'node-state text-[9px] font-mono text-[var(--text-sub)] mt-1.5 block font-semibold';
                     dot.className = 'w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600';
@@ -1219,7 +1212,6 @@
 
             logFullTerminal(`[DISPATCHER] Package [${targetConfig.pkg}] -> ${deepLink}`, 'INFO');
 
-            // Clear spoken voice confirmation
             const spokenResponse = isDirectOpen
                 ? `Opening ${targetConfig.name} now.`
                 : `Searching for ${searchQuery} on ${targetConfig.name}.`;
@@ -1228,7 +1220,6 @@
             renderViewportCatalog(appKey, targetConfig, searchQuery, deepLink);
 
             if (isAutoRedirectEnabled) {
-                // Open immediately on user click or short delay on voice so browser popup blocker allows it
                 const popup = window.open(deepLink, '_blank');
                 if (!popup || popup.closed || typeof popup.closed === 'undefined') {
                     logFullTerminal(`[POPUP NOTICE] Browser blocked auto-tab. Click "Launch ${targetConfig.name} Now" in the viewport card.`, 'WARN');
@@ -1248,7 +1239,6 @@
             document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-emerald-950 text-neonGreen border border-emerald-800 font-bold text-[10px]';
         }
 
-        // 8. RENDER ACTIVE VIEWPORT CATALOG & REDIRECT CARD
         function renderViewportCatalog(appKey, target, query, deepLink) {
             const container = document.getElementById('fullCatalogContainer');
 
@@ -1332,7 +1322,6 @@
             logFullTerminal(`[DOM SCRAPE] Dynamic components serialized for "${activeQuery}".`, 'SUCCESS');
         }
 
-        // 9. PROOF SERIALIZATION PIPELINE (HTML2CANVAS)
         function captureFullProofScreenshot() {
             if (!activeAppConfig) {
                 logFullTerminal('[SERIALIZATION CANCELLED] No active app session found to capture.', 'WARN');
@@ -1408,7 +1397,6 @@
             });
         }
 
-        // 10. PROOF LIGHTBOX MODAL
         function openProofModal(artifactId) {
             const artifact = activeProofArtifacts.find(a => a.id === artifactId);
             if (!artifact) return;
@@ -1429,7 +1417,6 @@
             document.getElementById('proofModal').classList.add('hidden');
         }
 
-        // BOOTSTRAP
         document.addEventListener('DOMContentLoaded', () => {
             renderInitialNodesGrid();
         });
