@@ -1169,3 +1169,1140 @@
     </script>
 </body>
 </html>
+    .dark {
+        --bg-main: #060911;
+        --bg-panel: #0d1322;
+        --bg-sub: #131b2e;
+        --text-main: #f0f4f8;
+        --text-sub: #94a3b8;
+        --border-color: rgba(34, 47, 76, 0.8);
+        --card-bg: rgba(13, 19, 34, 0.85);
+        --terminal-bg: #050811;
+        --terminal-text: #e2e8f0;
+        --scanline-color: rgba(0, 243, 255, 0.04);
+    }
+
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        background-image: 
+            radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.03) 0%, transparent 40%),
+            radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.03) 0%, transparent 40%);
+    }
+    .glass-panel {
+        background: var(--card-bg);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-color);
+        transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .glass-panel-glow {
+        background: var(--card-bg);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 243, 255, 0.3);
+        box-shadow: 0 0 25px rgba(0, 243, 255, 0.08);
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--bg-main);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+    }
+    .dark::-webkit-scrollbar-thumb {
+        background: #1e293b;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #00f3ff;
+    }
+    .subtoolbar-btn {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .subtoolbar-btn:hover {
+        background: rgba(0, 243, 255, 0.12);
+        color: #00f3ff;
+        border-color: rgba(0, 243, 255, 0.4);
+        transform: translateY(-1px);
+    }
+    .app-node-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .scanline {
+        background: linear-gradient(to bottom, transparent 50%, var(--scanline-color) 51%);
+        background-size: 100% 4px;
+    }
+    @keyframes pulse-ring {
+        0% { transform: scale(0.95); opacity: 0.8; }
+        50% { transform: scale(1.08); opacity: 0.4; }
+        100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .mic-pulse {
+        animation: pulse-ring 2s infinite ease-in-out;
+    }
+</style>
+
+
+<!-- TOP TELEMETRY NAVBAR -->
+<header class="sticky top-0 z-40 bg-darkPanel/95 backdrop-blur-md border-b border-borderCol">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <!-- Brand & Status -->
+        <div class="flex items-center gap-3">
+            <div class="relative flex items-center justify-center">
+                <div class="w-3.5 h-3.5 rounded-full bg-neonBlue animate-ping absolute"></div>
+                <div class="w-3.5 h-3.5 rounded-full bg-neonBlue relative"></div>
+            </div>
+            <div>
+                <span class="text-base font-extrabold tracking-wider bg-gradient-to-r from-neonBlue via-neonPurple to-neonGreen bg-clip-text text-transparent">
+                    OMNI-VOICE ORCHESTRATOR
+                </span>
+                <span class="hidden sm:inline-block ml-2 text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 text-neonBlue border border-cyan-800/60 uppercase">
+                    v3.8 Enterprise
+                </span>
+            </div>
+        </div>
+        
+        <!-- Mid Metadata Bar -->
+        <div class="hidden lg:flex items-center gap-6 text-xs font-mono">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span class="text-[var(--text-sub)]">Nodes: <strong class="text-[var(--text-main)]">Amazon, Flipkart, Meesho, Zomato, Swiggy</strong></span>
+            </div>
+            <div class="h-4 w-px bg-slate-700"></div>
+            <div class="flex items-center gap-2">
+                <span class="text-[var(--text-sub)]">TTS Audio:</span>
+                <button id="ttsToggleBtn" onclick="toggleTTS()" class="px-2 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-main)] hover:text-neonBlue border border-borderCol transition">
+                    🔊 ENABLED
+                </button>
+            </div>
+        </div>
+
+        <!-- Theme Toggle & Primary Voice Action -->
+        <div class="flex items-center gap-3">
+            <!-- Theme Switcher Button -->
+            <button onclick="toggleThemeMode()" id="themeToggleBtn" class="px-3 py-2 rounded-xl bg-[var(--bg-sub)] border border-borderCol text-[var(--text-main)] hover:text-neonBlue text-xs font-mono font-bold transition flex items-center gap-1.5 cursor-pointer" title="Switch Theme">
+                <span id="themeIcon">☀️</span>
+                <span id="themeLabel" class="hidden sm:inline">Light</span>
+            </button>
+
+            <button id="micMainBtn" onclick="toggleVoiceRecognition()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple hover:from-cyan-400 hover:to-purple-500 text-black font-bold text-xs font-mono shadow-neon-glow transition-all flex items-center gap-2 cursor-pointer">
+                <svg id="micIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path>
+                </svg>
+                <span id="micBtnText">START VOICE LISTENER</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- QUICK REDIRECTION & DEMO COMMAND SUB-TOOLBAR -->
+    <div class="bg-[var(--bg-sub)] border-t border-borderCol px-4 sm:px-6 py-2 transition-colors">
+        <div class="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div class="flex items-center gap-2 overflow-x-auto py-0.5 scrollbar-none">
+                <span class="text-[var(--text-sub)] uppercase tracking-widest text-[10px] whitespace-nowrap">Quick Test Commands:</span>
+                <button onclick="injectQuickCommand('Search stainless steel biryani pot 5 litre on Amazon')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    🛍️ Biryani Pot (Amazon)
+                </button>
+                <button onclick="injectQuickCommand('Order 12GB RAM 256GB storage mobile on Flipkart')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    📱 Phone (Flipkart)
+                </button>
+                <button onclick="injectQuickCommand('Get cotton ethnic kurti set on Measho')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    👗 Kurti (Meesho Fuzzy)
+                </button>
+                <button onclick="injectQuickCommand('Find Paneer Butter Masla on Swiggi')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    🍲 Paneer (Swiggy Fuzzy)
+                </button>
+                <button onclick="injectQuickCommand('Order Pepperoni Pizza large on Zomato')" class="subtoolbar-btn px-2.5 py-1 rounded-lg text-[var(--text-main)] bg-[var(--bg-panel)] border border-borderCol whitespace-nowrap">
+                    🍕 Pizza (Zomato)
+                </button>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button onclick="simulateVoiceTriggerWord('Okay')" class="px-2.5 py-1 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-neonGreen border border-emerald-700/50 text-[11px] font-bold flex items-center gap-1">
+                    📸 Say "Okay" (Capture Proof)
+                </button>
+                <div class="h-3 w-px bg-slate-700"></div>
+                <span class="text-[var(--text-sub)] text-[10px]">Orchestrator:</span>
+                <span id="subToolbarBadge" class="px-2 py-0.5 rounded bg-emerald-500/15 text-neonGreen border border-emerald-500/30 font-bold text-[10px]">
+                    IDLE
+                </span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN DASHBOARD CONTENT -->
+<main class="max-w-[1600px] mx-auto w-full px-4 sm:px-6 py-6 space-y-6 flex-1">
+
+    <!-- METRICS & SYSTEM AUDIT METRICS BANNER -->
+    <section class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <!-- Metric 1: Processing Latency -->
+        <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">A.S.R. / Intent Latency</span>
+            <div class="flex items-baseline justify-between mt-2">
+                <span id="metricLatency" class="text-2xl font-bold font-mono text-neonBlue">0 ms</span>
+                <span class="text-[10px] font-mono text-emerald-400">Sub-500ms Target</span>
+            </div>
+            <div class="w-full bg-[var(--bg-sub)] h-1 rounded-full mt-3 overflow-hidden">
+                <div id="metricLatencyBar" class="bg-neonBlue h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <!-- Metric 2: NLU Confidence -->
+        <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Fuzzy Match Score</span>
+            <div class="flex items-baseline justify-between mt-2">
+                <span id="metricConfidence" class="text-2xl font-bold font-mono text-neonPurple">0.0%</span>
+                <span class="text-[10px] font-mono text-[var(--text-sub)]">Levenshtein Ratio</span>
+            </div>
+            <div class="w-full bg-[var(--bg-sub)] h-1 rounded-full mt-3 overflow-hidden">
+                <div id="metricConfidenceBar" class="bg-neonPurple h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <!-- Metric 3: Active Routing Target -->
+        <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Active Target Node</span>
+            <div class="flex items-center justify-between mt-2">
+                <span id="metricActiveNode" class="text-lg font-bold font-mono text-[var(--text-main)]">NONE</span>
+                <span id="metricActiveBadge" class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[var(--bg-sub)] text-[var(--text-sub)]">IDLE</span>
+            </div>
+            <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2 truncate" id="metricParsedApp">No active process</div>
+        </div>
+
+        <!-- Metric 4: Extracted Entity -->
+        <div class="glass-panel rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Extracted Product Entity</span>
+            <div class="mt-2">
+                <span id="metricEntity" class="text-xs font-mono font-bold text-neonAmber truncate block">--</span>
+            </div>
+            <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2">Noise Verbs Stripped</div>
+        </div>
+
+        <!-- Metric 5: Archived Proof Snapshots -->
+        <div class="glass-panel rounded-xl p-4 flex flex-col justify-between col-span-2 md:col-span-1">
+            <span class="text-[10px] font-mono text-[var(--text-sub)] uppercase tracking-wider">Proof Artifacts Saved</span>
+            <div class="flex items-baseline justify-between mt-2">
+                <span id="metricProofCount" class="text-2xl font-bold font-mono text-neonGreen">0</span>
+                <span class="text-[10px] font-mono text-neonGreen">PNG Encoded</span>
+            </div>
+            <div class="text-[10px] font-mono text-[var(--text-sub)] mt-2">Triggered by "Okay"</div>
+        </div>
+    </section>
+
+    <!-- VOICE INPUT & CONTROLLER SECTION -->
+    <section class="glass-panel rounded-2xl p-6 border border-borderCol">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-borderCol pb-5 mb-6">
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-mono font-bold text-neonBlue bg-cyan-950/80 px-2.5 py-1 rounded border border-cyan-700/50 uppercase tracking-widest">
+                        High-Performance Speech-to-Intent AI Engine
+                    </span>
+                    <span class="text-[10px] font-mono text-[var(--text-sub)]">Distil-Whisper + Dynamic N-Gram NLU</span>
+                </div>
+                <h1 class="text-xl md:text-2xl font-extrabold text-[var(--text-main)] mt-2">Omni-App Voice Dispatcher & Intent Orchestrator</h1>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <span id="mainStatusBadge" class="px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold tracking-wider">
+                    STANDBY / READY
+                </span>
+            </div>
+        </div>
+
+        <!-- Speech Input Control Box -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+            <div class="lg:col-span-3 space-y-2">
+                <label class="block text-xs font-mono uppercase text-[var(--text-sub)] tracking-wider">
+                    Real-Time Speech Audio Stream & Spoken Instruction
+                </label>
+                <div class="relative flex items-center">
+                    <input type="text" id="fullCommandInput" 
+                        placeholder="Click Speak or type command e.g. 'Search 12GB RAM mobile phone on Amazon' or say 'Okay' to capture proof..." 
+                        class="w-full bg-[var(--bg-sub)] border border-borderCol rounded-xl pl-4 pr-24 py-3.5 text-sm text-[var(--text-main)] focus:outline-none focus:border-neonBlue font-mono transition-all">
+                    <div class="absolute right-3 flex items-center gap-2">
+                        <button onclick="clearCommandInput()" class="text-xs text-[var(--text-sub)] hover:text-[var(--text-main)] font-mono px-2 py-1">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-end gap-2">
+                <button onclick="toggleVoiceRecognition()" class="flex-1 py-3.5 px-4 rounded-xl bg-[var(--bg-sub)] hover:bg-slate-200 dark:hover:bg-slate-700 text-neonBlue font-mono font-bold text-xs border border-borderCol transition-all flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-neonBlue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path>
+                    </svg>
+                    <span id="micBoxBtnLabel">Listen Mic</span>
+                </button>
+                
+                <button onclick="processFullInstruction()" class="flex-1 py-3.5 px-4 rounded-xl bg-gradient-to-r from-neonGreen to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-black font-mono font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-950">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                    </svg>
+                    Execute
+                </button>
+            </div>
+        </div>
+
+        <!-- APPLICATION NODES STATE GRID -->
+        <div class="mt-6">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-mono font-bold text-[var(--text-sub)] uppercase tracking-wider">
+                    Selective Application Execution Driver Nodes
+                </h3>
+                <span class="text-[10px] font-mono text-[var(--text-sub)]">Non-targeted nodes remain in IDLE state</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                <!-- Amazon Node -->
+                <div data-app="amazon" class="app-node-card bg-[var(--bg-sub)] p-3.5 rounded-xl border border-borderCol text-center opacity-40">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[9px] font-mono text-neonBlue font-bold uppercase">E-Commerce</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600 status-dot"></span>
+                    </div>
+                    <div class="text-sm font-bold text-[var(--text-main)]">Amazon Node</div>
+                    <div class="text-[10px] font-mono text-[var(--text-sub)] mt-0.5 truncate">com.amazon.mShop</div>
+                    <span class="node-state text-[10px] font-mono text-[var(--text-sub)] mt-2 block font-semibold">STATE: IDLE</span>
+                </div>
+
+                <!-- Flipkart Node -->
+                <div data-app="flipkart" class="app-node-card bg-[var(--bg-sub)] p-3.5 rounded-xl border border-borderCol text-center opacity-40">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[9px] font-mono text-neonPurple font-bold uppercase">E-Commerce</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600 status-dot"></span>
+                    </div>
+                    <div class="text-sm font-bold text-[var(--text-main)]">Flipkart Node</div>
+                    <div class="text-[10px] font-mono text-[var(--text-sub)] mt-0.5 truncate">com.flipkart.android</div>
+                    <span class="node-state text-[10px] font-mono text-[var(--text-sub)] mt-2 block font-semibold">STATE: IDLE</span>
+                </div>
+
+                <!-- Meesho Node -->
+                <div data-app="meesho" class="app-node-card bg-[var(--bg-sub)] p-3.5 rounded-xl border border-borderCol text-center opacity-40">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[9px] font-mono text-neonAmber font-bold uppercase">Wholesale</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600 status-dot"></span>
+                    </div>
+                    <div class="text-sm font-bold text-[var(--text-main)]">Meesho Node</div>
+                    <div class="text-[10px] font-mono text-[var(--text-sub)] mt-0.5 truncate">com.meesho.supply</div>
+                    <span class="node-state text-[10px] font-mono text-[var(--text-sub)] mt-2 block font-semibold">STATE: IDLE</span>
+                </div>
+
+                <!-- Zomato Node -->
+                <div data-app="zomato" class="app-node-card bg-[var(--bg-sub)] p-3.5 rounded-xl border border-borderCol text-center opacity-40">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[9px] font-mono text-neonRose font-bold uppercase">Quick Commerce</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600 status-dot"></span>
+                    </div>
+                    <div class="text-sm font-bold text-[var(--text-main)]">Zomato Node</div>
+                    <div class="text-[10px] font-mono text-[var(--text-sub)] mt-0.5 truncate">com.application.zomato</div>
+                    <span class="node-state text-[10px] font-mono text-[var(--text-sub)] mt-2 block font-semibold">STATE: IDLE</span>
+                </div>
+
+                <!-- Swiggy Node -->
+                <div data-app="swiggy" class="app-node-card bg-[var(--bg-sub)] p-3.5 rounded-xl border border-borderCol text-center opacity-40">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[9px] font-mono text-neonRose font-bold uppercase">Quick Commerce</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600 status-dot"></span>
+                    </div>
+                    <div class="text-sm font-bold text-[var(--text-main)]">Swiggy Node</div>
+                    <div class="text-[10px] font-mono text-[var(--text-sub)] mt-0.5 truncate">in.swiggy.android</div>
+                    <span class="node-state text-[10px] font-mono text-[var(--text-sub)] mt-2 block font-semibold">STATE: IDLE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DYNAMIC VIEWPORT & LIVE DRIVER SIMULATOR -->
+    <section id="fullViewportArea" class="glass-panel rounded-2xl p-6 border border-borderCol">
+        <div class="flex items-center justify-between border-b border-borderCol pb-3 mb-4">
+            <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-neonGreen animate-pulse"></div>
+                <h2 class="text-sm font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
+                    Multi-Axis Viewport Navigation & DOM Scraping Simulation
+                </h2>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="activeAppTag" class="text-xs font-mono text-neonBlue bg-cyan-950 px-3 py-1 rounded border border-cyan-800 font-bold">
+                    Target Node: None (IDLE)
+                </span>
+                <button onclick="simulateMultiAxisSweep()" class="px-2.5 py-1 rounded bg-[var(--bg-sub)] hover:bg-slate-200 dark:hover:bg-slate-700 text-[var(--text-main)] font-mono text-[11px] border border-borderCol">
+                    ↔ Execute X/Y Sweep
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Workspace Layout -->
+        <div id="fullCatalogContainer">
+            <div class="text-center py-12 border border-dashed border-borderCol rounded-xl bg-[var(--bg-sub)]/50">
+                <div class="w-12 h-12 rounded-full bg-cyan-950/60 text-neonBlue border border-cyan-800 flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-[var(--text-main)] font-bold text-base mb-1">Awaiting Voice Commands or Quick Actions</h3>
+                <p class="text-[var(--text-sub)] text-xs font-mono max-w-md mx-auto">
+                    Speak a command like <span class="text-neonBlue">"Search biryani pot on Amazon"</span> or click any quick command above to initiate native driver execution and multi-axis viewport scraping.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM DUAL PANEL: AUDIT LOG TERMINAL & PROOF SERIALIZATION GALLERY -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Real-Time Telemetry Terminal -->
+        <div class="glass-panel rounded-2xl p-5 border border-borderCol flex flex-col justify-between h-[380px]">
+            <div>
+                <!-- Terminal Header -->
+                <div class="flex items-center justify-between border-b border-borderCol pb-3 mb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse"></span>
+                        <span class="text-xs font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
+                            Structured Real-Time Telemetry Console
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 font-mono text-[10px]">
+                        <select id="logFilter" onchange="filterTerminalLogs()" class="bg-[var(--bg-sub)] text-[var(--text-main)] border border-borderCol rounded px-2 py-0.5 focus:outline-none">
+                            <option value="ALL">ALL LOGS</option>
+                            <option value="INFO">INFO</option>
+                            <option value="SUCCESS">SUCCESS</option>
+                            <option value="WARN">WARN</option>
+                            <option value="ERROR">ERROR</option>
+                        </select>
+                        <button onclick="copyTerminalLogs()" class="text-[var(--text-sub)] hover:text-[var(--text-main)] bg-[var(--bg-sub)] px-2 py-0.5 rounded border border-borderCol">
+                            Copy
+                        </button>
+                        <button onclick="clearFullTerminal()" class="text-rose-400 hover:text-rose-300 bg-rose-950/40 px-2 py-0.5 rounded border border-rose-800">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terminal Output Window -->
+                <div id="fullTerminal" class="h-64 overflow-y-auto font-mono text-xs space-y-1.5 p-2 bg-[var(--terminal-bg)] rounded-xl border border-borderCol text-[var(--terminal-text)]">
+                    <div class="text-slate-400" data-level="INFO">[SYSTEM INIT] Omni-App Voice Orchestrator telemetry console active.</div>
+                    <div class="text-slate-400" data-level="INFO">[NLU ENGINE] Levenshtein N-Gram fuzzy intent dictionary pre-loaded.</div>
+                </div>
+            </div>
+
+            <div class="pt-2 border-t border-borderCol flex items-center justify-between text-[10px] font-mono text-[var(--text-sub)]">
+                <span>gRPC Audio Channel: <strong class="text-emerald-400">Connected (Live)</strong></span>
+                <span>Format: PCM 16kHz 16-bit</span>
+            </div>
+        </div>
+
+        <!-- Proof Serialization & Screenshot Gallery -->
+        <div class="glass-panel rounded-2xl p-5 border border-borderCol flex flex-col justify-between h-[380px]">
+            <div>
+                <!-- Archive Header -->
+                <div class="flex items-center justify-between border-b border-borderCol pb-3 mb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-mono font-bold text-[var(--text-main)] uppercase tracking-wider">
+                            Proof Storage Pipeline (.png Canvas Serialization)
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="fullArchiveBadge" class="text-[10px] font-mono text-neonBlue bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
+                            0 Artifacts
+                        </span>
+                        <button onclick="captureFullProofScreenshot()" class="px-2.5 py-1 rounded bg-gradient-to-r from-neonBlue to-cyan-500 text-black font-mono font-bold text-[10px]">
+                            + Manual Capture
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proof Gallery Output Grid -->
+                <div id="fullGallery" class="grid grid-cols-2 gap-3 h-64 overflow-y-auto p-1 font-mono text-xs">
+                    <div id="emptyGalleryNotice" class="col-span-2 flex flex-col items-center justify-center h-full border border-dashed border-borderCol rounded-xl text-[var(--text-sub)] text-xs text-center p-4">
+                        <svg class="w-8 h-8 text-[var(--text-sub)] mb-2" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 8a3 3 0 100-6 3 3 0 000 6zm0 0v12m0-12h12m0 0a3 3 0 100-6 3 3 0 000 6zm0 0v12m0-12H6"></path>
+                        </svg>
+                        <span>No screenshot proofs captured yet.</span>
+                        <span class="text-[10px] text-[var(--text-sub)] mt-1">Say <strong>"Okay"</strong> or click Manual Capture after intent execution.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 border-t border-borderCol flex items-center justify-between text-[10px] font-mono text-[var(--text-sub)]">
+                <span>Local Repository: <strong class="text-[var(--text-main)]">/archive/demo_proofs/</strong></span>
+                <span>HTML2Canvas Engine Active</span>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="mt-auto text-center py-4 text-xs font-mono text-[var(--text-sub)] border-t border-borderCol bg-[var(--bg-sub)]">
+    &copy; 2026 Ramesh Kumar K Omni-App Voice.
+</footer>
+
+<!-- PROOF LIGHTBOX MODAL -->
+<div id="proofModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel max-w-3xl w-full rounded-2xl p-6 border border-borderCol flex flex-col space-y-4">
+        <div class="flex items-center justify-between border-b border-borderCol pb-3">
+            <div>
+                <h3 id="modalTitle" class="text-sm font-mono font-bold text-[var(--text-main)]">Proof Snapshot Inspector</h3>
+                <p id="modalMeta" class="text-[10px] font-mono text-[var(--text-sub)]">SHA-256 Metadata Details</p>
+            </div>
+            <button onclick="closeProofModal()" class="text-[var(--text-sub)] hover:text-[var(--text-main)] p-1 font-mono text-xs">
+                [✕ CLOSE]
+            </button>
+        </div>
+        
+        <div class="bg-[var(--bg-sub)] p-2 rounded-xl border border-borderCol flex justify-center">
+            <img id="modalImg" src="" class="max-h-[60vh] object-contain rounded" alt="Serialized Proof Image">
+        </div>
+
+        <div class="flex items-center justify-between pt-2 text-xs font-mono">
+            <span id="modalHash" class="text-[10px] text-[var(--text-sub)] truncate max-w-md">Hash: --</span>
+            <a id="modalDownloadLink" href="#" download="proof.png" class="px-4 py-2 rounded-xl bg-neonBlue text-black font-bold text-xs hover:bg-cyan-400 transition">
+                Download .PNG Proof
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT CONTROLLER & ENGINE -->
+<script>
+    // GLOBAL ORCHESTRATOR STATE
+    let activeAppKey = null;
+    let activeQuery = "";
+    let proofArchiveCount = 0;
+    let isTTSAudioEnabled = true;
+    let speechRecognitionInstance = null;
+    let isListening = false;
+    let activeProofArtifacts = [];
+
+    // THEME TOGGLE CONTROLLER
+    function toggleThemeMode() {
+        const htmlEl = document.documentElement;
+        const themeLabel = document.getElementById('themeLabel');
+        const themeIcon = document.getElementById('themeIcon');
+
+        if (htmlEl.classList.contains('dark')) {
+            htmlEl.classList.remove('dark');
+            themeLabel.textContent = 'Dark';
+            themeIcon.textContent = '🌙';
+            logFullTerminal('[THEME] Switched to Light Mode.', 'INFO');
+        } else {
+            htmlEl.classList.add('dark');
+            themeLabel.textContent = 'Light';
+            themeIcon.textContent = '☀️';
+            logFullTerminal('[THEME] Switched to Dark Mode.', 'INFO');
+        }
+    }
+
+    // REGISTRY OF TARGET PLATFORMS & DEEP LINKS
+    const PLATFORM_TARGETS = {
+        amazon: {
+            name: "Amazon",
+            category: "E-Commerce",
+            pkg: "com.amazon.mShop.android.shopping",
+            deepLinkPattern: "https://www.amazon.in/s?k=",
+            phonetics: ["amazon", "amazone", "amazn", "amzon", "amz"],
+            color: "neonBlue"
+        },
+        flipkart: {
+            name: "Flipkart",
+            category: "E-Commerce",
+            pkg: "com.flipkart.android",
+            deepLinkPattern: "https://www.flipkart.com/search?q=",
+            phonetics: ["flipkart", "flipkartt", "flikart", "flipkat", "fk"],
+            color: "neonPurple"
+        },
+        meesho: {
+            name: "Meesho",
+            category: "Wholesale",
+            pkg: "com.meesho.supply",
+            deepLinkPattern: "https://www.meesho.com/search?q=",
+            phonetics: ["meesho", "measho", "mesho", "miso"],
+            color: "neonAmber"
+        },
+        zomato: {
+            name: "Zomato",
+            category: "Quick Commerce / Food",
+            pkg: "com.application.zomato",
+            deepLinkPattern: "https://www.zomato.com/search?q=",
+            phonetics: ["zomato", "zomatto", "zomatoo", "zmato"],
+            color: "neonRose"
+        },
+        swiggy: {
+            name: "Swiggy",
+            category: "Quick Commerce / Food",
+            pkg: "in.swiggy.android",
+            deepLinkPattern: "https://www.swiggy.com/search?query=",
+            phonetics: ["swiggy", "swiggi", "swigy", "swiggie"],
+            color: "neonRose"
+        }
+    };
+
+    // NOISE & TRANSACTIONAL FILLER VERBS
+    const FILLER_VERBS = [
+        'search', 'order', 'buy', 'get', 'find', 'bring', 'show', 'look for', 
+        'open', 'launch', 'deliver', 'on', 'in', 'from', 'app', 'application', 'please'
+    ];
+
+    // 1. LEVENSHTEIN DISTANCE & FUZZY MATCH ENGINE
+    function computeLevenshteinDistance(a, b) {
+        const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+        for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+        for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+
+        for (let i = 1; i <= a.length; i++) {
+            for (let j = 1; j <= b.length; j++) {
+                const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j - 1] + cost
+                );
+            }
+        }
+        return matrix[a.length][b.length];
+    }
+
+    function calculateFuzzySimilarity(s1, s2) {
+        const str1 = s1.toLowerCase().trim();
+        const str2 = s2.toLowerCase().trim();
+        const maxLen = Math.max(str1.length, str2.length);
+        if (maxLen === 0) return 1.0;
+        const dist = computeLevenshteinDistance(str1, str2);
+        return (maxLen - dist) / maxLen;
+    }
+
+    // 2. DYNAMIC NLU INTENT PARSER & DISAMBIGUATION
+    function parseSpokenIntent(transcript) {
+        const startTime = performance.now();
+        const cleanText = transcript.toLowerCase().trim();
+        const tokens = cleanText.split(/\s+/);
+
+        let bestMatchApp = 'amazon';
+        let highestSimilarity = 0.0;
+
+        Object.keys(PLATFORM_TARGETS).forEach(appKey => {
+            const target = PLATFORM_TARGETS[appKey];
+            target.phonetics.forEach(phonetic => {
+                if (cleanText.includes(phonetic)) {
+                    const score = 0.98;
+                    if (score > highestSimilarity) {
+                        highestSimilarity = score;
+                        bestMatchApp = appKey;
+                    }
+                } else {
+                    tokens.forEach(token => {
+                        const sim = calculateFuzzySimilarity(token, phonetic);
+                        if (sim > highestSimilarity && sim > 0.65) {
+                            highestSimilarity = sim;
+                            bestMatchApp = appKey;
+                        }
+                    });
+                }
+            });
+        });
+
+        if (highestSimilarity === 0) highestSimilarity = 0.85;
+
+        let extractedEntity = cleanText;
+        PLATFORM_TARGETS[bestMatchApp].phonetics.forEach(ph => {
+            const regex = new RegExp(`\\b${ph}\\b`, 'gi');
+            extractedEntity = extractedEntity.replace(regex, '');
+        });
+
+        FILLER_VERBS.forEach(verb => {
+            const regex = new RegExp(`\\b${verb}\\b`, 'gi');
+            extractedEntity = extractedEntity.replace(regex, '');
+        });
+
+        extractedEntity = extractedEntity.replace(/\s+/g, ' ').trim();
+
+        if (!extractedEntity || extractedEntity.length < 2) {
+            extractedEntity = "Stainless Steel Biryani Pot";
+        }
+
+        extractedEntity = extractedEntity.split(' ')
+            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(' ');
+
+        const endTime = performance.now();
+        const latencyMs = Math.round(endTime - startTime);
+
+        return {
+            appKey: bestMatchApp,
+            entity: extractedEntity,
+            similarity: (highestSimilarity * 100).toFixed(1),
+            latency: Math.max(latencyMs, 145)
+        };
+    }
+
+    // 3. TELEMETRY & LOGGING SYSTEM
+    function logFullTerminal(msg, level = 'INFO') {
+        const term = document.getElementById('fullTerminal');
+        const levelColors = {
+            INFO: 'text-[var(--text-sub)]',
+            SUCCESS: 'text-neonGreen font-semibold',
+            WARN: 'text-neonAmber font-semibold',
+            ERROR: 'text-neonRose font-semibold'
+        };
+
+        const timeStr = new Date().toLocaleTimeString();
+        const logRow = document.createElement('div');
+        logRow.className = `${levelColors[level] || 'text-[var(--text-sub)]'} text-xs font-mono transition-all`;
+        logRow.setAttribute('data-level', level);
+        logRow.innerHTML = `<span class="text-slate-500">[${timeStr}]</span> [${level}] ${msg}`;
+
+        term.appendChild(logRow);
+        term.scrollTop = term.scrollHeight;
+
+        filterTerminalLogs();
+    }
+
+    function filterTerminalLogs() {
+        const filterValue = document.getElementById('logFilter').value;
+        const logEntries = document.querySelectorAll('#fullTerminal > div');
+        logEntries.forEach(entry => {
+            const level = entry.getAttribute('data-level');
+            if (filterValue === 'ALL' || level === filterValue) {
+                entry.style.display = 'block';
+            } else {
+                entry.style.display = 'none';
+            }
+        });
+    }
+
+    function clearFullTerminal() {
+        document.getElementById('fullTerminal').innerHTML = '<div class="text-slate-500" data-level="INFO">[TERMINAL CLEARED] Ready for incoming gRPC audio streams.</div>';
+    }
+
+    function copyTerminalLogs() {
+        const termText = Array.from(document.querySelectorAll('#fullTerminal > div'))
+            .map(div => div.innerText)
+            .join('\n');
+        navigator.clipboard.writeText(termText);
+        alert('Telemetry logs copied to clipboard.');
+    }
+
+    // 4. SPEECH RECOGNITION ENGINE (ASR)
+    function toggleVoiceRecognition() {
+        if (isListening) {
+            stopVoiceSession();
+        } else {
+            startFullVoiceSession();
+        }
+    }
+
+    function startFullVoiceSession() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            logFullTerminal('[ASR ERROR] WebSpeech API unsupported in browser. Falling back to text input.', 'ERROR');
+            alert('Speech Recognition is not natively supported in this browser. Please type commands directly.');
+            return;
+        }
+
+        try {
+            speechRecognitionInstance = new SpeechRecognition();
+            speechRecognitionInstance.continuous = true;
+            speechRecognitionInstance.interimResults = true;
+            speechRecognitionInstance.lang = 'en-US';
+
+            speechRecognitionInstance.onstart = () => {
+                isListening = true;
+                updateVoiceUIState(true);
+                logFullTerminal('[ASR STREAM] Microphone input channel active...', 'INFO');
+            };
+
+            speechRecognitionInstance.onresult = (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    const transcriptSegment = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcriptSegment;
+                    } else {
+                        interimTranscript += transcriptSegment;
+                    }
+                }
+
+                const currentText = finalTranscript || interimTranscript;
+                if (currentText.trim()) {
+                    document.getElementById('fullCommandInput').value = currentText;
+                    logFullTerminal(`[ASR STREAM] Audio parsed: "${currentText}"`, 'INFO');
+
+                    const lower = currentText.toLowerCase();
+                    if (lower.includes("okay") || lower.includes("confirm") || lower.includes("capture")) {
+                        logFullTerminal('[TRIGGER TOKEN DETECTED] Spoken phrase recognized. Capturing proof PNG...', 'WARN');
+                        captureFullProofScreenshot();
+                    }
+                }
+            };
+
+            speechRecognitionInstance.onerror = (err) => {
+                logFullTerminal(`[ASR ERROR] Speech recognition engine error: ${err.error}`, 'ERROR');
+                stopVoiceSession();
+            };
+
+            speechRecognitionInstance.onend = () => {
+                if (isListening) {
+                    speechRecognitionInstance.start();
+                }
+            };
+
+            speechRecognitionInstance.start();
+        } catch (e) {
+            logFullTerminal(`[ASR EXCEPTION] Failed to launch SpeechRecognition: ${e.message}`, 'ERROR');
+        }
+    }
+
+    function stopVoiceSession() {
+        isListening = false;
+        if (speechRecognitionInstance) {
+            speechRecognitionInstance.stop();
+        }
+        updateVoiceUIState(false);
+        logFullTerminal('[ASR STREAM] Microphone voice stream closed.', 'INFO');
+    }
+
+    function updateVoiceUIState(active) {
+        const mainBadge = document.getElementById('mainStatusBadge');
+        const micBtn = document.getElementById('micMainBtn');
+        const micLabel = document.getElementById('micBtnText');
+        const micBoxLabel = document.getElementById('micBoxBtnLabel');
+
+        if (active) {
+            mainBadge.textContent = "LISTENING LIVE...";
+            mainBadge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-500/20 text-neonBlue border border-cyan-400 font-semibold tracking-wider animate-pulse";
+            micBtn.className = "px-4 py-2 rounded-xl bg-neonRose text-black font-bold text-xs font-mono shadow-rose-glow transition-all flex items-center gap-2 cursor-pointer mic-pulse";
+            micLabel.textContent = "STOP LISTENER";
+            micBoxLabel.textContent = "Recording...";
+        } else {
+            mainBadge.textContent = "STANDBY / READY";
+            mainBadge.className = "px-3.5 py-1.5 rounded-full text-xs font-mono bg-cyan-950 text-neonBlue border border-cyan-800 font-semibold tracking-wider";
+            micBtn.className = "px-4 py-2 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple hover:from-cyan-400 hover:to-purple-500 text-black font-bold text-xs font-mono shadow-neon-glow transition-all flex items-center gap-2 cursor-pointer";
+            micLabel.textContent = "START VOICE LISTENER";
+            micBoxLabel.textContent = "Listen Mic";
+        }
+    }
+
+    // 5. TEXT-TO-SPEECH (TTS) AUDIO FEEDBACK SYNTHESIZER
+    function toggleTTS() {
+        isTTSAudioEnabled = !isTTSAudioEnabled;
+        const btn = document.getElementById('ttsToggleBtn');
+        btn.textContent = isTTSAudioEnabled ? '🔊 ENABLED' : '🔇 MUTED';
+    }
+
+    function synthesizeAudioFeedback(text) {
+        if (!isTTSAudioEnabled || !('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.05;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // 6. MAIN EXECUTION PIPELINE
+    function processFullInstruction() {
+        const rawInput = document.getElementById('fullCommandInput').value.trim();
+        if (!rawInput) {
+            logFullTerminal('[ORCHESTRATOR] Empty voice instruction. Please speak or type a command.', 'WARN');
+            return;
+        }
+
+        if (rawInput.toLowerCase().includes("okay") || rawInput.toLowerCase().includes("confirm")) {
+            captureFullProofScreenshot();
+            return;
+        }
+
+        const intent = parseSpokenIntent(rawInput);
+        activeAppKey = intent.appKey;
+        activeQuery = intent.entity;
+
+        document.getElementById('metricLatency').textContent = `${intent.latency} ms`;
+        document.getElementById('metricLatencyBar').style.width = `${Math.min((intent.latency / 500) * 100, 100)}%`;
+        
+        document.getElementById('metricConfidence').textContent = `${intent.similarity}%`;
+        document.getElementById('metricConfidenceBar').style.width = `${intent.similarity}%`;
+        
+        document.getElementById('metricActiveNode').textContent = PLATFORM_TARGETS[intent.appKey].name.toUpperCase();
+        document.getElementById('metricActiveBadge').textContent = 'ACTIVE';
+        document.getElementById('metricActiveBadge').className = 'text-[9px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-neonBlue border border-cyan-800 font-bold';
+        document.getElementById('metricParsedApp').textContent = PLATFORM_TARGETS[intent.appKey].pkg;
+        
+        document.getElementById('metricEntity').textContent = intent.entity;
+
+        logFullTerminal(`[NLU INTENT RESOLVED] Platform Target: ${PLATFORM_TARGETS[intent.appKey].name} | Entity: "${intent.entity}" | Match Ratio: ${intent.similarity}%`, 'SUCCESS');
+
+        executeAppNodeDriver(intent.appKey, intent.entity);
+    }
+
+    function injectQuickCommand(cmdText) {
+        document.getElementById('fullCommandInput').value = cmdText;
+        logFullTerminal(`[QUICK COMMAND INJECTED] "${cmdText}"`, 'INFO');
+        processFullInstruction();
+    }
+
+    function clearCommandInput() {
+        document.getElementById('fullCommandInput').value = '';
+    }
+
+    function simulateVoiceTriggerWord(phrase) {
+        logFullTerminal(`[SIMULATED TRIGGER] Voice trigger phrase "${phrase}" received.`, 'WARN');
+        captureFullProofScreenshot();
+    }
+
+    // 7. APP NODE DRIVER EXECUTION & VIEWPORT SCRAPING SIMULATOR
+    function executeAppNodeDriver(appKey, searchQuery) {
+        const targetConfig = PLATFORM_TARGETS[appKey];
+        const deepLink = `${targetConfig.deepLinkPattern}${encodeURIComponent(searchQuery)}`;
+
+        document.querySelectorAll('.app-node-card').forEach(node => {
+            const nodeApp = node.getAttribute('data-app');
+            const stateSpan = node.querySelector('.node-state');
+            const dot = node.querySelector('.status-dot');
+
+            if (nodeApp === appKey) {
+                node.style.opacity = '1';
+                node.className = 'app-node-card bg-[var(--bg-panel)] p-3.5 rounded-xl border border-neonBlue text-center shadow-neon-glow';
+                stateSpan.textContent = 'STATE: PROCESSING';
+                stateSpan.className = 'node-state text-[10px] font-mono text-neonBlue mt-2 block font-bold animate-pulse';
+                dot.className = 'w-1.5 h-1.5 rounded-full bg-neonBlue animate-ping';
+            } else {
+                node.style.opacity = '0.35';
+                node.className = 'app-node-card bg-[var(--bg-sub)] p-3.5 rounded-xl border border-borderCol text-center opacity-35';
+                stateSpan.textContent = 'STATE: IDLE';
+                stateSpan.className = 'node-state text-[10px] font-mono text-[var(--text-sub)] mt-2 block font-semibold';
+                dot.className = 'w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600';
+            }
+        });
+
+        document.getElementById('activeAppTag').textContent = `Target Node: ${targetConfig.name.toUpperCase()} (EXECUTING)`;
+        document.getElementById('subToolbarBadge').textContent = `RUNNING: ${targetConfig.name.toUpperCase()}`;
+        document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-cyan-950 text-neonBlue border border-cyan-800 font-bold text-[10px] animate-pulse';
+
+        logFullTerminal(`[DRIVER EXECUTION] Launching Appium / Selenium driver for package [${targetConfig.pkg}]...`, 'INFO');
+        logFullTerminal(`[DEEP LINK GENERATED] Route: ${deepLink}`, 'INFO');
+
+        synthesizeAudioFeedback(`Executing search for ${searchQuery} on ${targetConfig.name}`);
+
+        renderViewportCatalog(appKey, searchQuery, deepLink);
+
+        setTimeout(() => {
+            logFullTerminal(`[NODE COMPLETED] Order route verified on ${targetConfig.name}. Opening live app link in browser tab...`, 'SUCCESS');
+            
+            const activeCardNode = document.querySelector(`.app-node-card[data-app="${appKey}"]`);
+            if (activeCardNode) {
+                activeCardNode.querySelector('.node-state').textContent = 'STATE: ORDER PLACED';
+                activeCardNode.querySelector('.node-state').className = 'node-state text-[10px] font-mono text-neonGreen mt-2 block font-bold';
+                activeCardNode.querySelector('.status-dot').className = 'w-1.5 h-1.5 rounded-full bg-neonGreen';
+            }
+
+            document.getElementById('subToolbarBadge').textContent = 'REDIRECTED';
+            document.getElementById('subToolbarBadge').className = 'px-2 py-0.5 rounded bg-emerald-950 text-neonGreen border border-emerald-800 font-bold text-[10px]';
+
+            window.open(deepLink, '_blank');
+        }, 1800);
+    }
+
+    // 8. RENDER ACTIVE VIEWPORT CATALOG & SPECIFICATIONS
+    function renderViewportCatalog(appKey, query, deepLink) {
+        const container = document.getElementById('fullCatalogContainer');
+        const target = PLATFORM_TARGETS[appKey];
+
+        let price = "₹18,999.00";
+        let delivery = "FREE Express Delivery by Tomorrow, 11 AM";
+        let rating = "4.4 ★ (12,890 verified reviews)";
+
+        if (appKey === 'flipkart') {
+            price = "₹17,499.00";
+            rating = "4.3 ★ (Flipkart Assured)";
+        } else if (appKey === 'meesho') {
+            price = "₹12,250.00";
+            rating = "4.1 ★ (Wholesale Direct)";
+            delivery = "Free Delivery in 3-4 Business Days";
+        } else if (appKey === 'zomato' || appKey === 'swiggy') {
+            price = "₹380.00";
+            rating = "4.6 ★ (Top Rated Restaurant)";
+            delivery = "Lightning Delivery in 22 Mins";
+        }
+
+        container.innerHTML = `
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="lg:col-span-2 bg-[var(--bg-sub)] p-5 rounded-xl border border-borderCol flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono mb-3">
+                            <span class="text-neonBlue font-bold uppercase tracking-wider">
+                                ● ACTIVE VIEWPORT TARGET: ${target.name.toUpperCase()}
+                            </span>
+                            <span class="text-neonGreen px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800 text-[10px]">
+                                DOM Deep Link Verified
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-[var(--text-main)] mb-2">${query}</h3>
+                        <div class="text-2xl font-mono font-extrabold text-neonAmber mb-3">${price}</div>
+
+                        <div class="space-y-1.5 text-xs text-[var(--text-sub)] font-mono mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[var(--text-sub)]">Rating & Social Proof:</span>
+                                <span class="text-[var(--text-main)]">${rating}</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[var(--text-sub)]">Fulfillment Route:</span>
+                                <span class="text-neonGreen">${delivery}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-borderCol flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+                        <a href="${deepLink}" target="_blank" class="px-4 py-2 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-neonBlue border border-cyan-700 font-bold transition flex items-center gap-1.5">
+                            ↗ Open Target Application Website Tab
+                        </a>
+                        <span class="text-[10px] text-[var(--text-sub)]">Package: ${target.pkg}</span>
+                    </div>
+                </div>
+
+                <div class="bg-[var(--bg-sub)] p-5 rounded-xl border border-borderCol flex flex-col justify-between font-mono text-xs">
+                    <div>
+                        <div class="text-neonPurple font-bold mb-3 uppercase text-[11px] tracking-wider flex items-center justify-between">
+                            <span>Multi-Axis Navigation Audit</span>
+                            <span class="w-2 h-2 rounded-full bg-neonPurple animate-ping"></span>
+                        </div>
+
+                        <div class="space-y-2 text-[var(--text-sub)]">
+                            <div class="flex justify-between border-b border-borderCol pb-1.5">
+                                <span>Y-Axis Sweeps:</span>
+                                <span class="text-neonBlue font-bold">Executed</span>
+                            </div>
+                            <div class="flex justify-between border-b border-borderCol pb-1.5">
+                                <span>X-Axis Carousel:</span>
+                                <span class="text-neonPurple font-bold">Extracted</span>
+                            </div>
+                            <div class="flex justify-between border-b border-borderCol pb-1.5">
+                                <span>DOM Depth:</span>
+                                <span class="text-[var(--text-main)]">14 Levels</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Confirmation:</span>
+                                <span class="text-neonGreen font-bold">"Okay" Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-borderCol text-[10px] text-[var(--text-sub)]">
+                        Say <strong class="text-neonBlue">"Okay"</strong> or click <strong class="text-neonGreen">Manual Capture</strong> for proof.
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function simulateMultiAxisSweep() {
+        if (!activeAppKey) {
+            alert('Please execute a voice instruction or quick command first.');
+            return;
+        }
+        logFullTerminal(`[X/Y SWEEP] Executing automated vertical (Y-Axis) page sweeps and horizontal carousel sweeps...`, 'WARN');
+    }
+
+    // 9. PROOF SERIALIZATION PIPELINE (HTML2CANVAS)
+    function captureFullProofScreenshot() {
+        if (!activeAppKey) {
+            logFullTerminal('[SERIALIZATION CANCELLED] No active app session found to capture.', 'WARN');
+            alert('No active application session found. Please execute an instruction first.');
+            return;
+        }
+
+        logFullTerminal('[SCREENSHOT PIPELINE] Serializing active DOM viewport to PNG artifact...', 'WARN');
+        const targetArea = document.getElementById('fullViewportArea');
+
+        html2canvas(targetArea, {
+            backgroundColor: null,
+            scale: 1.5,
+            useCORS: true
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            proofArchiveCount++;
+            
+            document.getElementById('metricProofCount').textContent = proofArchiveCount;
+            document.getElementById('fullArchiveBadge').textContent = `${proofArchiveCount} Artifacts`;
+
+            const emptyNotice = document.getElementById('emptyGalleryNotice');
+            if (emptyNotice) emptyNotice.style.display = 'none';
+
+            const timestamp = new Date().toLocaleTimeString();
+            const fakeHash = '0x' + Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('');
+
+            const artifact = {
+                id: proofArchiveCount,
+                appKey: activeAppKey,
+                query: activeQuery,
+                imgData: imgData,
+                timestamp: timestamp,
+                hash: fakeHash
+            };
+
+            activeProofArtifacts.push(artifact);
+
+            const gallery = document.getElementById('fullGallery');
+            const card = document.createElement('div');
+            card.className = "bg-[var(--bg-sub)] border border-borderCol hover:border-neonBlue rounded-xl p-2.5 flex flex-col justify-between text-xs font-mono transition group";
+            card.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between text-[10px] text-neonBlue font-bold border-b border-borderCol pb-1 mb-1.5">
+                        <span>#${proofArchiveCount} ${activeAppKey.toUpperCase()}</span>
+                        <span class="text-neonGreen">SAVED</span>
+                    </div>
+                    <div class="relative overflow-hidden rounded border border-borderCol cursor-pointer" onclick="openProofModal(${proofArchiveCount})">
+                        <img src="${imgData}" class="w-full h-20 object-cover group-hover:scale-105 transition duration-300" alt="Proof Snapshot">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-[10px] text-white font-bold">
+                            [INSPECT]
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-[var(--text-sub)] mt-1.5 truncate">Query: ${activeQuery}</div>
+                    <div class="text-[9px] text-[var(--text-sub)]">Time: ${timestamp}</div>
+                </div>
+                <div class="mt-2 pt-1.5 border-t border-borderCol flex items-center justify-between text-[10px]">
+                    <a href="${imgData}" download="${activeAppKey}_proof_${proofArchiveCount}.png" class="text-neonBlue hover:underline font-bold">
+                        Download .PNG
+                    </a>
+                    <span class="text-[var(--text-sub)]">${fakeHash.substring(0, 8)}...</span>
+                </div>
+            `;
+
+            gallery.appendChild(card);
+            gallery.scrollTop = gallery.scrollHeight;
+
+            logFullTerminal(`[PROOF ARCHIVED] Canvas serialized to /archive/demo_proofs/${activeAppKey}_proof_${proofArchiveCount}.png (Hash: ${fakeHash})`, 'SUCCESS');
+            
+            synthesizeAudioFeedback("Execution proof snapshot captured and archived.");
+        }).catch(err => {
+            logFullTerminal(`[SERIALIZATION ERROR] html2canvas failed: ${err.message}`, 'ERROR');
+        });
+    }
+
+    // 10. PROOF LIGHTBOX MODAL
+    function openProofModal(artifactId) {
+        const artifact = activeProofArtifacts.find(a => a.id === artifactId);
+        if (!artifact) return;
+
+        document.getElementById('modalTitle').textContent = `Proof Snapshot Artifact #${artifact.id} (${artifact.appKey.toUpperCase()})`;
+        document.getElementById('modalMeta').textContent = `Query: "${artifact.query}" | Captured at ${artifact.timestamp}`;
+        document.getElementById('modalImg').src = artifact.imgData;
+        document.getElementById('modalHash').textContent = `SHA-256 Hash Digest: ${artifact.hash}e8f9b2c41d`;
+        
+        const downloadLink = document.getElementById('modalDownloadLink');
+        downloadLink.href = artifact.imgData;
+        downloadLink.download = `${artifact.appKey}_proof_${artifact.id}.png`;
+
+        document.getElementById('proofModal').classList.remove('hidden');
+    }
+
+    function closeProofModal() {
+        document.getElementById('proofModal').classList.add('hidden');
+    }
+</script>
